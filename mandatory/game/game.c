@@ -135,14 +135,17 @@ void paint_floor_celling(t_main_s *var)
 {
      int color;
     t_xy_i start, till;
-     color = create_trgb(var->parse->clr_c[0],var->parse->clr_c[1], var->parse->clr_c[2], 255); 
+    color = 0;
+
+    //  color = create_trgb(var->parse->clr_c[0],var->parse->clr_c[1], var->parse->clr_c[2], 255); 
     till.x = (var->window_width);
     till.y = (var->window_height) /2;
     start.x = 0;
     start.y = 0;
     paintit(var->img2,color,  &start, &till );
     start.y = var->window_height / 2;
-    color = create_trgb(var->parse->clr_f[0],var->parse->clr_c[1], var->parse->clr_c[2], 255); 
+    // color = create_trgb(var->parse->clr_f[0],var->parse->clr_c[1], var->parse->clr_c[2], 255); 
+    color = 0;
     paintit(var->img2, color, &start, &till);
 }
 

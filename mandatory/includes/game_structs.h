@@ -287,7 +287,7 @@ struct s_enemy
 struct s_player_bonus
 {
     t_obj *obj;
-    t_enemi *enemi;
+    t_enemy *enemy;
 };
 
 struct s_calc_img

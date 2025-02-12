@@ -10,20 +10,14 @@
 
 
 
-<<<<<<< HEAD
-void shoot_the_rays(t_main_s * var);
-int need_update(t_player_infos * var, char **map);
-=======
 
 void shoot_the_rays(t_main_s * var);
 int need_update(t_main_s *main, t_player_infos * var, char **map);
->>>>>>> 1fbec513bee9a06fa2b830321d0984abd50fe9b3
 
 int is_there_a_wall(double new_y, double new_x, char **map);
 int check_teleportation(t_player_infos *var, char **map);
 
 /*************************************************/
-<<<<<<< HEAD
 //            >>    TEXTURES.C     <<
 /*************************************************/
 
@@ -32,8 +26,6 @@ int calc_y_img(int y_proj ,int wall_hiegt , int img_h);
 
 
 /*************************************************/
-=======
->>>>>>> 1fbec513bee9a06fa2b830321d0984abd50fe9b3
 //            >>    DRAWING.C     <<
 /*************************************************/
 
@@ -85,13 +77,8 @@ int is_it_the_player(char c);
 void init_cst_vert(t_casting *cst, t_main_s *var, int i);
 void init_cst_horiz(t_casting *cst, t_main_s *var, int i);
 // int hit_a_wall(t_casting *cst, t_main_s *var, int i, int ref);
-<<<<<<< HEAD
 double cast_vertically(t_main_s *var, int i, t_x_and_y_d *xy, t_x_and_y_d* door_xy);
 double cast_horizontally(t_main_s *var, int i, t_x_and_y_d *xy, t_x_and_y_d* door_xy);
-=======
-double cast_vertically(t_main_s *var, int i, t_x_and_y_d *xy);
-double cast_horizontally(t_main_s *var, int i, t_x_and_y_d *xy);
->>>>>>> 1fbec513bee9a06fa2b830321d0984abd50fe9b3
 int hit_a_wall(t_main_s *var, double xintersection, double yintersection, int i);
 
 

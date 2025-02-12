@@ -62,7 +62,7 @@ void    draw_door(t_main_s *var,t_walls *walls, int i, int j, double offset)
 {
     int top;
     int color;
-    int buttom;
+    // int buttom;
     int c;
     //  double offset = 1;
     double door_h;
@@ -75,7 +75,7 @@ void    draw_door(t_main_s *var,t_walls *walls, int i, int j, double offset)
         adjusted_distance = 0.5;
     door_h =((double)square_len / adjusted_distance) * walls->distance_prj_plane; 
     top = ((var->window_height) / 2) - (door_h / 2);
-    buttom = ((var->window_height) / 2) + (door_h / 2);
+    // buttom = ((var->window_height) / 2) + (door_h / 2);
     // buttom = top + door_h;
     x_door = calc_x_door(var->p_infos->rays[i].bonus_rays->door->from, var->p_infos->rays[i].bonus_rays->door, square_len, var->bonus->door->width, i, var);
     // printf("ray number >>%d, from %c, x_intersection : %f\n", i, var->p_infos->rays[i].bonus_rays->door->from , var->p_infos->rays[i].bonus_rays->door->x_intersection);
