@@ -35,7 +35,6 @@ int get_color_of_floor(t_main_s *var, double x, double y)
     int color;
     double x_offset;
     double y_offset;
-
     int new_x;
     int new_y;
 
@@ -47,8 +46,9 @@ int get_color_of_floor(t_main_s *var, double x, double y)
 
     new_x = (double)var->bonus->floor_text->width * x_offset;
     new_y = (double)var->bonus->floor_text->hieght * y_offset;
-
-    color = var->bonus->floor_text->pixels[(int)floor(new_y)][(int)floor(new_x)];
+    color = 0;
+    if ((new_x >= 0 && new_x < var->bonus->floor_text->width) && (new_y >= 0 && new_y < var->bonus->floor_text->hieght))
+        color = var->bonus->floor_text->pixels[(int)floor(new_y)][(int)floor(new_x)];
     return color;
 }
 
@@ -64,7 +64,6 @@ int get_color_for_floor(t_main_s *var, int y, int nbr_ray)
     origin_line_distance = straight_line_dis / cos(beta);
     floor_x = var->p_infos->y + (cos(var->p_infos->rays[nbr_ray].angle - (M_PI / 2)) * origin_line_distance);
     floor_y = var->p_infos->x - (sin(var->p_infos->rays[nbr_ray].angle - (M_PI / 2)) * origin_line_distance) ;
-
     color = get_color_of_floor(var, floor_x, floor_y);
     return color;
 }
