@@ -10,13 +10,20 @@
 
 
 
+<<<<<<< HEAD
 void shoot_the_rays(t_main_s * var);
 int need_update(t_player_infos * var, char **map);
+=======
+
+void shoot_the_rays(t_main_s * var);
+int need_update(t_main_s *main, t_player_infos * var, char **map);
+>>>>>>> 1fbec513bee9a06fa2b830321d0984abd50fe9b3
 
 int is_there_a_wall(double new_y, double new_x, char **map);
 int check_teleportation(t_player_infos *var, char **map);
 
 /*************************************************/
+<<<<<<< HEAD
 //            >>    TEXTURES.C     <<
 /*************************************************/
 
@@ -25,6 +32,8 @@ int calc_y_img(int y_proj ,int wall_hiegt , int img_h);
 
 
 /*************************************************/
+=======
+>>>>>>> 1fbec513bee9a06fa2b830321d0984abd50fe9b3
 //            >>    DRAWING.C     <<
 /*************************************************/
 
@@ -76,8 +85,13 @@ int is_it_the_player(char c);
 void init_cst_vert(t_casting *cst, t_main_s *var, int i);
 void init_cst_horiz(t_casting *cst, t_main_s *var, int i);
 // int hit_a_wall(t_casting *cst, t_main_s *var, int i, int ref);
+<<<<<<< HEAD
 double cast_vertically(t_main_s *var, int i, t_x_and_y_d *xy, t_x_and_y_d* door_xy);
 double cast_horizontally(t_main_s *var, int i, t_x_and_y_d *xy, t_x_and_y_d* door_xy);
+=======
+double cast_vertically(t_main_s *var, int i, t_x_and_y_d *xy);
+double cast_horizontally(t_main_s *var, int i, t_x_and_y_d *xy);
+>>>>>>> 1fbec513bee9a06fa2b830321d0984abd50fe9b3
 int hit_a_wall(t_main_s *var, double xintersection, double yintersection, int i);
 
 
@@ -104,7 +118,7 @@ int draw_mini_map_42(t_main_s *var);
 
 /****************************TMP************ */
 void fill_map(char **av,t_main_s *var);
-void work_of_art(t_main_s *var);
+void work_of_art(t_main_s *var, int shoot);
 void wall_rendering(t_main_s *var);
 // void paintit(mlx_image_t *img, int color, int hight, int width);
 void paintit(mlx_image_t *img, int color, t_xy_i *start, t_xy_i *till);
@@ -126,10 +140,28 @@ t_player_bonus *init_player_bonus(t_main_s *var, t_player_infos *ptr);
 
 
 int get_color_obj(t_main_s *var, int obj_height, int obj_width, int x, int y);
-
-
-void update_obj_data(t_player_infos *p_var, t_obj *obj,int nbr_obj);
+void update_obj_data(t_main_s *var,  t_player_infos *p_var, t_obj *obj,int nbr_obj);
 void render_objects(t_main_s *var, t_player_bonus *p_ptr);
+
+double calculate_obj_or_enemy_teta(t_player_infos *p_var, t_obj *obj, t_enemy *enemy);
+double get_distance(t_player_infos *p_var, double x, double y);
+void update_enemy_data(t_main_s *var, t_player_infos *p_var, t_enemy *enemy,int nbr_enemy);
+void render_enemies(t_main_s *var, t_player_bonus *p_ptr);
+void adjust_rank_enemies(t_enemy *enemy, int max);
+
+long long	get_time_mil(void);
+void draw_health_bar(t_main_s *var);
+void shoot_them_mfs(t_main_s *var);
+void redisplay_the_gun(t_main_s * var);
+
+
+
+/************************************************************/
+//                      >> FLOOR_CEILING-BONUS.C <<
+/************************************************************/
+
+void draw_floor(t_main_s *var, int x, int y, int nbr_ray);
+void render_sky(t_main_s *var, int x, int y_end, int nbr_ray);
 
 /************************************************************/
 //                      >> FREEDOM.C <<
@@ -144,5 +176,14 @@ void free_rays(t_main_s *var);
 
 int is_there_door(t_rays_bonus* ray, t_main_s *var, int ray_nbr);
 void    draw_door(t_main_s *var,t_walls *walls, int i, int j, double offset);
+void free_p_info(t_player_infos *player, t_main_s *var);
+void        free_p_bonus(t_player_bonus* player_b);
+void free_minimap(t_main_s *var ,t_mini_map *mini_map);
+void free_text(t_text *text);
+void free_texts(t_text **text);
+void free_d_arr(char **av);
+void free_main_bonus(t_bonus *var, t_main_s *main);
+void reset_them_all(t_main_s * var);
+void free_all(t_main_s *var);
 
 #endif

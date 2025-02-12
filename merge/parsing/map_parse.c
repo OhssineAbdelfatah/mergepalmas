@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_parse.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aohssine <aohssine@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: blacksniper <blacksniper@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 18:02:37 by aohssine          #+#    #+#             */
-/*   Updated: 2025/02/04 12:54:11 by aohssine         ###   ########.fr       */
+/*   Updated: 2025/02/12 18:06:17 by blacksniper      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,9 +37,9 @@ int	verify_obj(char *arr, int *dir)
 		if (!is_valid_obj(arr[i]))
 		{
 			// printf(">>>%c", arr[i]);
-			return (1);
+			return (printf("%c invalid obj\n", arr[i]), 1);
 		}
-		if (arr[i] == 'N' || arr[i] == 'E' || arr[i] == 'W' || arr[i] == 'S')
+		if (arr[i] == 'N' || arr[i] == 'E' || arr[i] == 'W' || arr[i] == 'S' || arr[i] == 'O' || arr[i] == 'e')
 			(*dir)++;
 		i++;
 	}
@@ -53,11 +53,13 @@ int	parse_map(t_map_lst *map_dbl)
 	dir = 0;
 	while (map_dbl)
 	{
-		if (verify_obj(map_dbl->value, &dir) || contain_line(map_dbl->value))
+		if (verify_obj(map_dbl->value, &dir) )
 			return (1);
+		else if ( contain_line(map_dbl->value))
+			return (printf("map contain a \\ n \n"),1);
 		map_dbl = map_dbl->next;
 	}
-	if (dir < 1)
-		return (1);
+	// if (dir < 1)
+	// 	return (1);
 	return (0);
 }

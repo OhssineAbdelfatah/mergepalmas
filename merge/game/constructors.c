@@ -13,6 +13,7 @@ t_walls *init_walls(t_main_s *ptr)
     if (!var)
         panic("malloc failed !\n");
     var->distance_prj_plane = (ptr->window_width / 2) / tan(((M_PI / 180) * 60 )/ 2);
+    var->wall_hight = 0;
     var->prj_plane_height = square_len / 2;
     return var;
 }
@@ -39,7 +40,7 @@ t_ray_hit_door *init_door()
     if (!ret)
         panic("malloc failed !\n");
     ret->distance = 0;
-    ret->from = 'N';
+    ret->from = 0;
     ret->x_intersection = 0;
     ret->y_intersection = 0;
     return ret;
@@ -54,9 +55,9 @@ t_rays_bonus *init_bonus_rays()
         panic("malloc failed !\n");
     ret->hit_a_door = false;
     ret->hit_an_obj = false;
-    ret->hit_an_enemi = false;
+    ret->hit_an_enemy = false;
     ret->door = init_door();
-    ret->enemi = NULL;
+    ret->enemy = NULL;
     ret->obj = init_obj();
     // ret->obj = init_obj();
     return ret;
@@ -81,7 +82,7 @@ int **gat_pixles(mlx_texture_t* img, int w, int h)
             return (printf("malooc in pix int* failed")), NULL ;
         while(j < w )
         {
-            pixs[i][j] = gettt_rgba( &img->pixels[((i * w) + j) * 4] );
+            pixs[i][j] = gettt_rgba( &img->pixels[((i * w) + j) * 4] ); // y * width + x
             j++;
         }
         i++;
@@ -92,21 +93,24 @@ int **gat_pixles(mlx_texture_t* img, int w, int h)
 
 t_text *get_image(mlx_texture_t *text)
 {
-    int i = 0 ;
-    i = 0 ;
+    // int i = 0 ;
+    // i = 0 ;
     t_text *img;
 
 
     // mlx_image_t* img;
-    
+
     img = malloc(sizeof(t_text));
     if(!img )
         return NULL;
-    
-    img[i].pixels = gat_pixles(text, text->width, text->height);
-    img[i].hieght = text->height;
-    img[i].width = text->width;
-    // dstroy textures
+
+    // img[i].pixels = gat_pixles(text, text->width, text->height);
+    // img[i].hieght = text->height;
+    // img[i].width = text->width;
+    img->pixels = gat_pixles(text, text->width, text->height);
+    img->hieght = text->height;
+    img->width = text->width;
+    mlx_delete_texture(text);
     return img;
 }
 
@@ -121,8 +125,8 @@ t_player_infos *init_player_struct(t_main_s *ptr,char c, int x, int y)
     var->move_up_down = 0;
     var->move_left_right = 0;
     var->turn_arround = 0; 
-    var->speed = 6;
-    var->rotation_speed = (M_PI / 180) * 3;
+    var->speed = 10;
+    var->rotation_speed = (M_PI / 180) * 4;
     var->rays = NULL;
     var->nbr_rays = 0;
     var->fov = (M_PI / 180) * 60;
@@ -140,6 +144,11 @@ t_player_infos *init_player_struct(t_main_s *ptr,char c, int x, int y)
 
     /******BONUS*****/
     var->jump_kneel = 0;
+    var->look_up_down = 0;
+    var->up_down_offset = 0;
+    var->alive = true;
+    var->health = 100;
+    var->max_health = var->health;
     // printf("x >>> %f\n", var->p_infos->x);
 
     var->p_bonus = init_player_bonus(ptr, var);
@@ -168,38 +177,45 @@ t_bonus *init_bonus(t_main_s *main)
     var = (t_bonus *)malloc(sizeof(t_bonus));
     if (!var)
         panic("malloc faild! \n");
-    // var->gun_in_hand =  safe_load("../assets/textures/shoot1.png");
-    var->gun_in_hand =  safe_load("../assets/textures/w0_b.png");
-    // var->floor = safe_load("../assets/floor/Tile/Tile_05-128x128.png");
-    var->floor = safe_load("../assets/floor/Tile/Tile_14-128x128.png");
-    // var->floor = safe_load("../assets/textures/2d.png");
+    var->gun_in_hand[0] =  safe_load("../assets/textures/RGLGD0.png");
+    var->gun_in_hand[1] =  safe_load("../assets/textures/RGLFA0.png");
+    var->gun_in_hand[2] =  safe_load("../assets/textures/RGLFB0.png");
+    var->gun_in_hand[3] =  safe_load("../assets/textures/RGLFC0.png");
+    var->crosshair =  safe_load("../assets/textures/techno1.png");
+    var->floor = safe_load("../assets/floor/Brick/Brick_18-128x128.png");
+    var->enemy_mlx_tex = safe_load("../assets/textures/AGAHA1.png");
+    var->dead_enemy_mlx_tex = safe_load("../assets/textures/AGAHL0.png");
+    var->enemy_text = get_image(var->enemy_mlx_tex);
+    var->dead_enemy_text = get_image(var->dead_enemy_mlx_tex);
     var->sky = safe_load("../assets/sky/Fuzzy Sky/Fuzzy_Sky-Sunset_04-1024x512.png");
-    
+    // var->door = NULL;
     mlx_texture_t* door_text = safe_load("../assets/textures/doortile.png");
     var->door = get_image(door_text);
-    if(!var->door )
-        puts("valid door");
-    mlx_delete_texture(door_text);
-    
-    var->img = NULL;
-    var->key = NULL;
+    // var->img = NULL;
+    // var->key = NULL;
     var->mouse_x = (main->window_width) / 2;
-    var->gun_in_hand_text = get_image(var->gun_in_hand);
+    var->mouse_y = (main->window_height) / 2;
+    // var->gun_in_hand_text0 = get_image(var->gun_in_hand[0]);
+    var->gun_in_hand_text0 = NULL;
     var->floor_text = get_image(var->floor);
-    var->sky_text = get_image(var->sky);
-    printf("sky W :%d , sky H : %d\n",var->sky_text->width, var->sky_text->hieght );
-    var->pillar_tex = safe_load("../assets/textures/AncientPillar_green.png");
+    var->sky_text = get_image(var->sky);  
+    var->pillar_tex = safe_load("../assets/textures/EHEDC0.png");
     var->pillar_img = get_image(var->pillar_tex);
-    // var->door = main->text[0];
-    var->pillar_img = NULL;
-    var->pillar_tex = NULL;
-    // var->pillar_tex = NULL;
-    // var->pillar_img =NULL;
-    var->gun_in_hands_img = mlx_texture_to_image(main->mlx, var->gun_in_hand);
-    mlx_resize_image(var->gun_in_hands_img, main->window_width / 2, main->window_height / 2);
-    var->gun_in_hands_img->enabled= true;
-    var->nbr_enemi = 0;
-    var->nbr_obj = 0;   
+    var->gun_in_hands_img[0] = mlx_texture_to_image(main->mlx, var->gun_in_hand[0]);
+    var->gun_in_hands_img[1] = mlx_texture_to_image(main->mlx, var->gun_in_hand[1]);
+    var->gun_in_hands_img[2] = mlx_texture_to_image(main->mlx, var->gun_in_hand[2]);
+    var->gun_in_hands_img[3] = mlx_texture_to_image(main->mlx, var->gun_in_hand[3]);
+    var->crosshair_img = mlx_texture_to_image(main->mlx, var->crosshair);
+    mlx_resize_image(var->crosshair_img, main->window_width / 14, main->window_height / 8);
+    mlx_resize_image(var->gun_in_hands_img[0], main->window_width - ( main->window_width / 3), main->window_height - ( main->window_height / 3));
+    mlx_resize_image(var->gun_in_hands_img[1], main->window_width - ( main->window_width / 3), main->window_height - ( main->window_height / 3));
+    mlx_resize_image(var->gun_in_hands_img[2], main->window_width - ( main->window_width / 3), main->window_height - ( main->window_height / 3));
+    mlx_resize_image(var->gun_in_hands_img[3], main->window_width - ( main->window_width / 3), main->window_height - ( main->window_height / 3));
+    var->gun_in_hands_img[1]->enabled =false;
+    var->gun_in_hands_img[2]->enabled =false;
+    var->gun_in_hands_img[3]->enabled =false;
+    var->nbr_enemies = 0;
+    var->nbr_obj = 0;
     return (var);
 }
 
@@ -277,16 +293,6 @@ t_text **init_textures(t_main_s *var)
     text[3] = get_image(img3);
     (void)var;
     return text;
-    // safe_load();
-    // safe_load();
-    // safe_load();
-        
-    // var->text.height = 64;
-    // var->text.width = 64;
-    // var->text.img_hor = mlx_xpm_file_to_image(var->mlx, "", &var->text.width, &var->text.height);
-    // var->text.img_ver = mlx_xpm_file_to_image(var->mlx, "", &var->text.width, &var->text.height);
-    // var->text.img_hor = NULL;
-    // var->text.img_ver = NULL;
 }
 
 
@@ -316,7 +322,8 @@ t_main_s *init_main_var(t_parse_data *parse)
     var->text = init_textures(var);
 
     var->bonus = init_bonus(var);
-    gettimeofday(&var->tv, NULL);
+    var->start_frame = get_time_mil();
+    // gettimeofday(&var->tv, NULL);
     //  BONUS PART :: 
     // var->mouse_x = (var->window_width * square_len) / 2;
     // init_textures(var);

@@ -35,7 +35,6 @@ int calc_y_img(int y_proj ,int wall_hiegt , int img_h)
 
 
 
-
 /***
  * images stored in array in a strict order 
  * following real direction N -> E -> S -> W 

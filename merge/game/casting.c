@@ -1,13 +1,12 @@
 # include "../includes/ps.h"
-# include "stdio.h"
 
 
-// double get_distance_obj(t_main_s *var, double x, double  y)
-// {
-//     double ret;
-//     ret = sqrt(pow((x - var->p_infos->x), 2) + pow ((y - var->p_infos->y), 2));
-//     return (ret);
-// }
+double get_distance_obj(t_main_s *var, double x, double  y)
+{
+    double ret;
+    ret = sqrt(pow((x - var->p_infos->x), 2) + pow ((y - var->p_infos->y), 2));
+    return (ret);
+}
 
 // int hit_an_obj(t_main_s *var, double xintersection, double yintersection, int i, int which)
 // {
@@ -175,7 +174,6 @@ double cast_vertically(t_main_s *var, int i, t_x_and_y_d *xy, t_x_and_y_d *v_xy_
         }
         cst.xintersection += cst.xsteps;
         cst.yintersection += cst.ysteps;
-
     }
     cst.distance = sqrt(pow((cst.xintersection - var->p_infos->x), 2) + pow(cst.yintersection  - var->p_infos->y , 2));
     return cst.distance;

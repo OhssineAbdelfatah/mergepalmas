@@ -28,7 +28,6 @@ void set_ray_direction(t_ray_info *var, double ray_angle)
 
 void set_ray_infos(t_ray_info *ray, char which_one, t_x_and_y_d x_y, double distance)
 {
-    // ray->bonus_rays->door
     ray->distance = distance;
     ray->horzt_or_vert = which_one;
     ray->x_last_intersection = x_y.x;
