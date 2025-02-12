@@ -52,7 +52,8 @@ void free_main_bonus(t_bonus *var, t_main_s *main)
 {
     int i;
 
-    i = 0;
+    if (var->door)
+        free_text(var->door);
     if (var->dead_enemy_text)
         free_text(var->dead_enemy_text);
     if (var->enemy_text)
@@ -65,11 +66,11 @@ void free_main_bonus(t_bonus *var, t_main_s *main)
         free_text(var->gun_in_hand_text0);
     if (var->pillar_img)
         free_text(var->pillar_img);
-    while (i <  4)
+    i = -1;
+    while (++i <  4)
     {
         mlx_delete_image(main->mlx , var->gun_in_hands_img[i]);
         mlx_delete_texture(var->gun_in_hand[i]);
-        i++;
     }
     mlx_delete_texture(var->crosshair);
     mlx_delete_image(main->mlx, var->crosshair_img);

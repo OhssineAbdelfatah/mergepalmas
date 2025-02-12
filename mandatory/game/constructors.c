@@ -93,8 +93,6 @@ int **gat_pixles(mlx_texture_t* img, int w, int h)
 
 t_text *get_image(mlx_texture_t *text)
 {
-    // int i = 0 ;
-    // i = 0 ;
     t_text *img;
 
 

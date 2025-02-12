@@ -1,9 +1,9 @@
 #include "../includes/ps.h"
 
-int	gettt_rgba(uint8_t *color)
-{
-	return (color[0] << 24 | color[1] << 16 | color[2] << 8 | color[3]);
-}
+// int	gettt_rgba(uint8_t *color)
+// {
+// 	return (color[0] << 24 | color[1] << 16 | color[2] << 8 | color[3]);
+// }
 t_text *which_texture(t_ray_info* ray, t_text** texture)
 {
     if(ray->wall_dir ==  'W')
@@ -116,9 +116,9 @@ void    wall_rendering(t_main_s *var)
         transparency = get_transparency(adjusted_distance);
         render_sky(var, j, top, i);
         draw_rectangle(var,texture, j, top, buttom, x_img, color, transparency, i);
+        draw_floor(var, j, buttom, i);
         if(is_there_door(var->p_infos->rays[i].bonus_rays, var, i))
             draw_door(var, walls,i,j, offset);
-        draw_floor(var, j, buttom, i);
 
         i--;
         j++;

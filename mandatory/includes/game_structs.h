@@ -227,13 +227,9 @@ struct s_bonus
     int nbr_enemies;
     int mouse_x;
     int mouse_y;
-    // mlx_texture_t *img;
-    // mlx_texture_t *key;
-    // mlx_texture_t *gun_in_hand0;
     mlx_texture_t *enemy_mlx_tex;
     mlx_texture_t *dead_enemy_mlx_tex;
     mlx_texture_t *pillar_tex;
-    // mlx_texture_t *door;
     mlx_texture_t *floor;
     mlx_texture_t *sky;
     mlx_texture_t *gun_in_hand[4];
@@ -247,8 +243,6 @@ struct s_bonus
     t_text *pillar_img;
     mlx_image_t *gun_in_hands_img[4];
     mlx_image_t *crosshair_img;
-    // mlx_image_t *gun_in_hands_img;
-    // mlx_image_t *door;
 };
 
 
