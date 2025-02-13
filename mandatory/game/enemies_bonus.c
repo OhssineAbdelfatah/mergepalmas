@@ -26,6 +26,24 @@ int get_color_enemy(t_main_s *var, int enemy_height, int enemy_width, int x, int
     return color;
 }
 
+// static int alo;
+bool check_for_doors(t_main_s *var, t_player_bonus *ptr, int i, int ray_to_inspect)
+{
+    // if (ray_to_inspect == 699 && var->p_infos->rays[699].bonus_rays->hit_a_door)
+    //     printf("i am hitiing a door!\n");
+    if ( var->p_infos->rays[ray_to_inspect].bonus_rays->hit_a_door  && var->p_infos->rays[ray_to_inspect].bonus_rays->door->distance < ptr->enemy[i].distance )
+     {
+        // if (alo == 0)
+        // {
+        //     printf("pspsp>> %d, \n", ray_to_inspect);
+        //     printf("door dis>> %f, \n",var->p_infos->rays[ray_to_inspect].bonus_rays->door->distance);
+        //     alo++;
+        // }
+        return false;
+     }
+    return true;
+}
+
 void render_enemy(t_main_s *var, t_player_bonus *ptr, t_walls *walls,int i)
 {
     int x_start, x_end, y_start, y_end;
@@ -52,6 +70,11 @@ void render_enemy(t_main_s *var, t_player_bonus *ptr, t_walls *walls,int i)
                 color = get_color_enemy(var, ptr->enemy[i].enemy_height, ptr->enemy[i].enemy_width, x_increment, y_increment, i);
                 if (ray_to_inspect >=0 && ray_to_inspect < 1400 && var->p_infos->rays[ray_to_inspect].distance > ptr->enemy[i].distance)
                 {
+                    // if ( check_for_doors(var, ptr, i , ray_to_inspect) && alo == 0)
+                    // {
+                    //     printf("thereis a door in ray:: %d\n", ray_to_inspect);
+                    //     alo ++;
+                    // }
                     if (x_start + x_increment >= 0 && x_start + x_increment <  var->window_width && color)
                         mlx_put_pixel(var->img2, x_start + x_increment, y_start, color);
                 }  
@@ -98,18 +121,20 @@ int check_for_walls(t_main_s *var,  t_player_infos *p_player, t_enemy *enemy, in
     double new_V_x, new_V_y, new_E_x, new_E_y;
 
     if (enemy[i].vector_x > 0)
-            new_V_x = enemy[i].vector_x - (p_player->speed / 2) - (int)(enemy[i].enemy_width / 2);
+            new_V_x = enemy[i].vector_x - (p_player->speed / 2);
     else
-        new_V_x = enemy[i].vector_x + (p_player->speed / 2) + (int)(enemy[i].enemy_width / 2);
+        new_V_x = enemy[i].vector_x + (p_player->speed / 2);
     new_E_x = p_player->y - new_V_x;
 
     if (enemy[i].vector_y > 0)
-        new_V_y =  enemy[i].vector_y - (p_player->speed / 2) - (int)(enemy[i].enemy_width / 2);
+        new_V_y =  enemy[i].vector_y - (p_player->speed / 2);
     else
-        new_V_y =  enemy[i].vector_y + (p_player->speed / 2) + (int)(enemy[i].enemy_width / 2);
+        new_V_y =  enemy[i].vector_y + (p_player->speed / 2) ;
     
     new_E_y =  p_player->x - new_V_y;
     if (hit_a_wall(var, new_E_y, new_E_x, 0))
+        return 1;
+    if (hit_a_door(var, new_E_y, new_E_x, 0))
         return 1;
     return 0;
 }
@@ -145,13 +170,11 @@ void chase_player(t_main_s *var, t_player_infos *p_player, t_enemy *enemy, int i
 }
 void update_enemy_data(t_main_s *var, t_player_infos *p_var, t_enemy *enemy,int nbr_enemy)
 {
-    // static int alo;
     int i;
 
     i = 0;
     if (enemy)
     {
-        // printf("/********************/\n");
         while (i < nbr_enemy)
         {
             enemy[i].distance = get_distance(p_var,enemy[i].x, enemy[i].y);
@@ -164,10 +187,8 @@ void update_enemy_data(t_main_s *var, t_player_infos *p_var, t_enemy *enemy,int 
             enemy[i].enemy_teta = calculate_obj_or_enemy_teta(p_var,NULL, &enemy[i]);
             enemy[i].x_screen = enemy[i].enemy_teta * (1400 / p_var->fov);
             enemy[i].y_screen = (var->window_height / 2) + var->p_infos->up_down_offset ;
-            // printf("Vector teta : %f,enemy teta : %f, enemy x_screen : %d\n", enemy[i].vector_teta , enemy[i].enemy_teta, enemy[i].x_screen);
             i++;
         }
         adjust_rank_enemies(enemy, nbr_enemy);
-        // print_obj(p_var,obj, nbr_obj);
     } 
 }

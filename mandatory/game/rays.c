@@ -61,14 +61,17 @@ void cast_ray(t_main_s *var, int i)
     v_xy_door.distance = 0;
     v_xy_door.x = 0;
     v_xy_door.y = 0;
+    v_xy_door.hit_a_door = false;
     h_xy_door.distance = 0;
     h_xy_door.x = 0;
     h_xy_door.y = 0;
+    h_xy_door.hit_a_door = false;
     if (fabs(var->p_infos->rays[i].angle - M_PI) < EPSILON || fabs(var->p_infos->rays[i].angle) < -EPSILON)
     {
         distance1 = cast_horizontally(var, i, &h_xy, &h_xy_door);
         set_ray_infos(&var->p_infos->rays[i],'h', h_xy, distance1 );
         var->p_infos->rays[i].bonus_rays->door->from = 'h';
+        var->p_infos->rays[i].bonus_rays->hit_a_door  = true;
         var->p_infos->rays[i].bonus_rays->door->distance = h_xy_door.distance;
         var->p_infos->rays[i].bonus_rays->door->x_intersection = h_xy_door.x;
         var->p_infos->rays[i].bonus_rays->door->y_intersection = h_xy_door.y;
@@ -77,8 +80,10 @@ void cast_ray(t_main_s *var, int i)
     if (fabs(var->p_infos->rays[i].angle - M_PI / 2) < EPSILON || fabs(var->p_infos->rays[i].angle - (M_PI + M_PI / 2)) < EPSILON)
     {
         distance1 = cast_vertically(var, i, &v_xy, &v_xy_door);
-        set_ray_infos(&var->p_infos->rays[i],'v', v_xy, distance1 );
+        set_ray_infos(&var->p_infos->rays[i],'v', v_xy, distance1);
+        
         var->p_infos->rays[i].bonus_rays->door->from = 'v';
+        var->p_infos->rays[i].bonus_rays->hit_a_door  = true;
         var->p_infos->rays[i].bonus_rays->door->distance = v_xy_door.distance;
         var->p_infos->rays[i].bonus_rays->door->x_intersection = v_xy_door.x;
         var->p_infos->rays[i].bonus_rays->door->y_intersection = v_xy_door.y;
@@ -94,6 +99,7 @@ void cast_ray(t_main_s *var, int i)
 
     if (h_xy_door.distance)
     {
+        var->p_infos->rays[i].bonus_rays->hit_a_door  = true;
         var->p_infos->rays[i].bonus_rays->door->from = 'h';
         var->p_infos->rays[i].bonus_rays->door->distance = h_xy_door.distance;
         var->p_infos->rays[i].bonus_rays->door->x_intersection = h_xy_door.x;
@@ -113,6 +119,8 @@ void cast_ray(t_main_s *var, int i)
     }
     else
     {
+        if (v_xy_door.distance)
+            var->p_infos->rays[i].bonus_rays->hit_a_door  = true;
         var->p_infos->rays[i].bonus_rays->door->from = 'v';
         var->p_infos->rays[i].bonus_rays->door->distance = v_xy_door.distance;
         var->p_infos->rays[i].bonus_rays->door->x_intersection = v_xy_door.x;

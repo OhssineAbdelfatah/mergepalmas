@@ -43,7 +43,7 @@ int hit_a_door(t_main_s *var, double xintersection, double yintersection, int i)
     x = (int)floor(xintersection / square_len);
     y = (int)floor(yintersection / square_len);
     if (y < 0 || x < 0 || x >= var->map_hight || y > (int)ft_strlen(var->map[x]))
-        return 1;
+        return 0;
     if (var->map[x][y] == 'D')
         return 1;
     (void)i;
@@ -64,6 +64,22 @@ int hit_a_wall(t_main_s *var, double xintersection, double yintersection, int i)
     (void)i;
     return 0;
 }
+
+
+
+// int hit_a_door(t_main_s *var, double xintersection, double yintersection)
+// {
+//     int x;
+//     int y;
+
+//     x = (int)floor(xintersection / square_len);
+//     y = (int)floor(yintersection / square_len);
+//     if (y < 0 || x < 0 || x >= var->map_hight || y > (int)ft_strlen(var->map[x]))
+//         return 1;
+//     if (var->map[x][y] == 'D')
+//         return 1;
+//     return 0;
+// }
 
 void init_cst_horiz(t_casting *cst, t_main_s *var, int i)
 {
@@ -102,9 +118,13 @@ double cast_horizontally(t_main_s *var, int i, t_x_and_y_d *xy, t_x_and_y_d *h_x
         up_down = -1;
     while (cst.xintersection >= 0 && cst.yintersection >= 0)
     {
-        if (hit_a_door(var,cst.xintersection + up_down, cst.yintersection , i) && !var->p_infos->rays[i].bonus_rays->hit_a_door)
+        // if (hit_a_door(var,cst.xintersection + up_down, cst.yintersection , i) && !var->p_infos->rays[i].bonus_rays->hit_a_door)
+        if (hit_a_door(var,cst.xintersection + up_down, cst.yintersection , i) && !h_xy_door->hit_a_door)
         {
-            var->p_infos->rays[i].bonus_rays->hit_a_door = true;
+            // if (i == 699)
+            //     printf("casting rays >> and setting it true\n");
+            // var->p_infos->rays[i].bonus_rays->hit_a_door = true;
+            h_xy_door->hit_a_door = true;
             h_xy_door->y = cst.xintersection;
             h_xy_door->x = cst.yintersection;
             h_xy_door->distance = sqrt(pow((cst.xintersection - var->p_infos->x), 2) + pow ((cst.yintersection - var->p_infos->y), 2));
@@ -159,9 +179,11 @@ double cast_vertically(t_main_s *var, int i, t_x_and_y_d *xy, t_x_and_y_d *v_xy_
         left_right = -1;
     while (cst.xintersection >= 0.00 && cst.yintersection >= 0.00)
     {
-        if (hit_a_door(var,cst.xintersection , cst.yintersection + left_right , i) && !var->p_infos->rays[i].bonus_rays->hit_a_door)
+        // if (hit_a_door(var,cst.xintersection , cst.yintersection + left_right , i) && !var->p_infos->rays[i].bonus_rays->hit_a_door)
+        if (hit_a_door(var,cst.xintersection , cst.yintersection + left_right , i) && !v_xy_door->hit_a_door)
         {
-            var->p_infos->rays[i].bonus_rays->hit_a_door = true;
+            // var->p_infos->rays[i].bonus_rays->hit_a_door = true;
+            v_xy_door->hit_a_door = true;
             v_xy_door->y = cst.xintersection;
             v_xy_door->x = cst.yintersection;
             v_xy_door->distance = sqrt(pow((cst.xintersection - var->p_infos->x), 2) + pow ((cst.yintersection - var->p_infos->y), 2));

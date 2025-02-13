@@ -5,7 +5,6 @@ int is_there_enemy(t_main_s *var, double x, double y)
     int new_enemy_x;
     int new_enemy_y;
     int i;
-    // static int alo;
 
     i = var->bonus->nbr_enemies - 1;
     while (i >= 0)
@@ -20,16 +19,6 @@ int is_there_enemy(t_main_s *var, double x, double y)
                 return 2;
 
         }
-        // if (i == 0 && alo == 0)
-        // {
-        //     printf("Ey : %f, Ex : %f\n",var->p_infos->p_bonus->enemy[i].y , var->p_infos->p_bonus->enemy[i].x);
-        //     alo ++;
-        // }
-        // if (var->p_infos->p_bonus->enemy[i].x == x && var->p_infos->p_bonus->enemy[i].y == y)
-        // {
-        //     printf(">>>Ey : %f, Ex : %f\n",var->p_infos->p_bonus->enemy[i].y , var->p_infos->p_bonus->enemy[i].x);
-        //     return 1;
-        // }
         i--;
     }
     return 0;
@@ -68,6 +57,8 @@ int check_the_pixel(t_main_s *var, int x, int y)
         return -1;
     if (var->map[diff_y][diff_x] == 'O')
         return -2;
+    if (var->map[diff_y][diff_x] == 'D')
+        return -3;
     int enemy_there = is_there_enemy(var, diff_x, diff_y); 
     if (enemy_there == 1)
     {
@@ -97,6 +88,8 @@ void draw_the_pixel_for_minimap(t_main_s *var, int x, int y)
         mlx_put_pixel(var->mini_map->img3, x, y, 0x606060FF);
     else if (check == -2)
         mlx_put_pixel(var->mini_map->img3, x, y, 0x66CC00FF);
+     else if (check == -3)
+        mlx_put_pixel(var->mini_map->img3, x, y, 0x5EC4D4FF);
     // is_there_enemy(var, x, y);
     // else if (check == -3)
     //     mlx_put_pixel(var->mini_map->img3, x, y, 0xD82020FF);

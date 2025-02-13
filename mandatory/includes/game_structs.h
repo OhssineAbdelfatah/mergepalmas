@@ -63,6 +63,7 @@ struct s_text {
 
 struct s_x_and_y_d
 {
+    bool hit_a_door;
     double x;
     double y; 
     double distance;

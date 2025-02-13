@@ -80,7 +80,7 @@ void init_cst_horiz(t_casting *cst, t_main_s *var, int i);
 double cast_vertically(t_main_s *var, int i, t_x_and_y_d *xy, t_x_and_y_d* door_xy);
 double cast_horizontally(t_main_s *var, int i, t_x_and_y_d *xy, t_x_and_y_d* door_xy);
 int hit_a_wall(t_main_s *var, double xintersection, double yintersection, int i);
-
+int hit_a_door(t_main_s *var, double xintersection, double yintersection, int i);
 
 /*************************************************/
 //            >>   HOOKS_ND_LOOPS.C     <<
