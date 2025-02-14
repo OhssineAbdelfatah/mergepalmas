@@ -1,5 +1,16 @@
 #include "../includes/ps.h"
 
+int ft_dstr_len(char **av)
+{
+    int i = 0;
+
+    if (!av)
+        return 0;
+    while (av[i])
+        i++;
+    return (i);
+}
+
 int is_it_the_player(char c)
 {
     if (c == 'W' || c == 'N' || c == 'S' || c == 'E')

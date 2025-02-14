@@ -1,15 +1,6 @@
 # include "../includes/ps.h"
 
-int ft_dstr_len(char **av)
-{
-    int i = 0;
 
-    if (!av)
-        return 0;
-    while (av[i])
-        i++;
-    return (i);
-}
 
 
 double calcul_obj_height(t_main_s *var, int i)

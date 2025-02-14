@@ -29,18 +29,8 @@ int get_color_enemy(t_main_s *var, int enemy_height, int enemy_width, int x, int
 // static int alo;
 bool check_for_doors(t_main_s *var, t_player_bonus *ptr, int i, int ray_to_inspect)
 {
-    // if (ray_to_inspect == 699 && var->p_infos->rays[699].bonus_rays->hit_a_door)
-    //     printf("i am hitiing a door!\n");
     if ( var->p_infos->rays[ray_to_inspect].bonus_rays->hit_a_door  && var->p_infos->rays[ray_to_inspect].bonus_rays->door->distance < ptr->enemy[i].distance )
-     {
-        // if (alo == 0)
-        // {
-        //     printf("pspsp>> %d, \n", ray_to_inspect);
-        //     printf("door dis>> %f, \n",var->p_infos->rays[ray_to_inspect].bonus_rays->door->distance);
-        //     alo++;
-        // }
         return false;
-     }
     return true;
 }
 
@@ -68,13 +58,8 @@ void render_enemy(t_main_s *var, t_player_bonus *ptr, t_walls *walls,int i)
             {
                 ray_to_inspect = var->p_infos->nbr_rays - 1 - (x_increment + x_start);
                 color = get_color_enemy(var, ptr->enemy[i].enemy_height, ptr->enemy[i].enemy_width, x_increment, y_increment, i);
-                if (ray_to_inspect >=0 && ray_to_inspect < 1400 && var->p_infos->rays[ray_to_inspect].distance > ptr->enemy[i].distance)
+                if (ray_to_inspect >=0 && ray_to_inspect < 1400 && var->p_infos->rays[ray_to_inspect].distance > ptr->enemy[i].distance && check_for_doors(var, ptr, i , ray_to_inspect))
                 {
-                    // if ( check_for_doors(var, ptr, i , ray_to_inspect) && alo == 0)
-                    // {
-                    //     printf("thereis a door in ray:: %d\n", ray_to_inspect);
-                    //     alo ++;
-                    // }
                     if (x_start + x_increment >= 0 && x_start + x_increment <  var->window_width && color)
                         mlx_put_pixel(var->img2, x_start + x_increment, y_start, color);
                 }  
