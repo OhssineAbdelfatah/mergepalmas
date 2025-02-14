@@ -1,12 +1,10 @@
 # include "../includes/ps.h"
 
 
-
-
 double calcul_obj_height(t_main_s *var, int i)
 {
     double height;
-    
+
     height = ((square_len ) / var->p_infos->rays[i].bonus_rays->obj->distance) * var->p_infos->walls->distance_prj_plane;
     return height;
 }
@@ -62,10 +60,11 @@ int get_color_obj(t_main_s *var, int obj_height, int obj_width, int x, int y)
 
 void paint_floor_celling(t_main_s *var)
 {
-     int color;
-    t_xy_i start, till;
+    int color;
+    t_xy_i start;
+    t_xy_i till;
+    
     color = 0;
-
     //  color = create_trgb(var->parse->clr_c[0],var->parse->clr_c[1], var->parse->clr_c[2], 255); 
     till.x = (var->window_width);
     till.y = (var->window_height) /2;
@@ -80,7 +79,7 @@ void paint_floor_celling(t_main_s *var)
 
 void work_of_art(t_main_s *var, int shoot)
 {  
-    paint_floor_celling(var);
+    // paint_floor_celling(var);
     if (var->p_infos == NULL)
     {
         var->p_infos=  init_player_struct(var , var->parse->dir, ((var->parse->pos->y_ver * square_len) + (square_len / 2)), ((var->parse->pos->x_hor * square_len) + (square_len / 2)));

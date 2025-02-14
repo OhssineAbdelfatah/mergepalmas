@@ -7,6 +7,7 @@
 #include "parsing.h"
 #include "macros.h"
 #include "game_structs.h"
+#include "norm_structs.h"
 
 
 

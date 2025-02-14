@@ -58,8 +58,8 @@ t_rays_bonus *init_bonus_rays()
     ret->hit_an_enemy = false;
     ret->door = init_door();
     ret->enemy = NULL;
-    ret->obj = init_obj();
     // ret->obj = init_obj();
+    ret->obj = NULL;
     return ret;
 }
 
@@ -96,15 +96,9 @@ t_text *get_image(mlx_texture_t *text)
     t_text *img;
 
 
-    // mlx_image_t* img;
-
     img = malloc(sizeof(t_text));
     if(!img )
         return NULL;
-
-    // img[i].pixels = gat_pixles(text, text->width, text->height);
-    // img[i].hieght = text->height;
-    // img[i].width = text->width;
     img->pixels = gat_pixles(text, text->width, text->height);
     img->hieght = text->height;
     img->width = text->width;

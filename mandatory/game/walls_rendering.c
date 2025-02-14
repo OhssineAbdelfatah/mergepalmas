@@ -102,10 +102,6 @@ void    wall_rendering(t_main_s *var)
         if (adjusted_distance == 0)
             adjusted_distance = 0.5;
         walls->wall_hight = (square_len / adjusted_distance) * walls->distance_prj_plane;
-        // y = ((var->window_height) / 2) - (walls->wall_hight / 2) ;
-        // x = ((var->window_height) / 2) + (walls->wall_hight / 2);
-        // if (i == 0)
-        //     printf ("look up and  dowm : %d \n", var->p_infos->up_down_offset);
         top = (((var->window_height) / 2) - (walls->wall_hight / 2)) + var->p_infos->up_down_offset;
         buttom = top + walls->wall_hight;
         x_img = calc_x_img(var->p_infos->rays[i].horzt_or_vert, var->p_infos->rays + i, square_len, texture->width);
@@ -119,7 +115,5 @@ void    wall_rendering(t_main_s *var)
         i--;
         j++;
     }
-    (void)x_img;
-    (void)buttom;
     free(walls);
 }
