@@ -30,7 +30,7 @@ ASCII_ART = "\033[31m\n"\
 "\__| \_,_|_.__/___/ |___/  \n"\
 "  \033[0m "                          
 
-GNL = ../lib/gnl/get_next_line.c ../lib/gnl/get_next_line_utils.c
+GNL = ../../lib/gnl/get_next_line.c ../../lib/gnl/get_next_line_utils.c
 
 # GAME_FILES = game/hooks_nd_loops.c game/casting.c game/tools.c game/walls_rendering.c game/rays.c \
 # 			 game/drawing.c game/draw_minimap.c game/constructors.c game/main.c
@@ -39,15 +39,15 @@ GNL = ../lib/gnl/get_next_line.c ../lib/gnl/get_next_line_utils.c
 PARSING = 	cub.c          infos_utils2.c map_check.c	\
 			infos_parse.c  list_init.c    map_parse.c	\
 			valid_map.c    infos_utils.c  list_utils.c	\
-			safe_func.c    main.c test.c
+			safe_func.c    main.c test.c infos_utils3.c 
 			
 CFILES = ${PARSING} ${GNL}  main.c
  
 OBJ = $(CFILES:.c=.o)
 NAME = cub3D
 
-My_lib = ../lib/libft/libft.a
-FOLDER_LIBFT = ../lib/libft
+My_lib = ../../lib/libft/libft.a
+FOLDER_LIBFT = ../../lib/libft
 
 all : $(My_lib) $(NAME)
 

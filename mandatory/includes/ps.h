@@ -58,7 +58,7 @@ t_ray_info *init_rays(t_main_s *ptr, double ray_angle, double ray_increment);
 t_walls *init_walls(t_main_s *ptr);
 
 
-t_text *get_image(mlx_texture_t *text);
+t_text *get_image(char *path);
 int **gat_pixles(mlx_texture_t* img, int w, int h);
 /*************************************************/
 //            >>    TOOLS.C     <<

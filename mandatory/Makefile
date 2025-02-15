@@ -41,7 +41,7 @@ BONUS_FILES = game/drawing_things_bonus.c game/enemies_bonus.c  game/floor_ceill
 GAME_FILES = game/hooks_nd_loops.c game/casting.c game/casting_tools.c game/tools.c game/walls_rendering.c game/rays.c \
 			game/drawing.c game/draw_minimap.c game/draw_mini_map_pro.c game/bonus.c \
 			game/constructors.c game/constructors_bonus.c\
-			game/obj_bonus.c \
+			game/obj_bonus.c png_to_text.c \
 			game/game.c
 CLEANING = cleaning_nd_freeing/freedom.c cleaning_nd_freeing/freedom_part2.c \
 			cleaning_nd_freeing/freedom_part3.c
