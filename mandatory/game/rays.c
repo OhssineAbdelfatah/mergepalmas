@@ -35,13 +35,13 @@ void set_ray_infos(t_ray_info *ray, char which_one, t_x_and_y_d x_y, double dist
     if (which_one == 'h')
     {
         ray->wall_dir = 'S';
-        if (ray->facing_up && which_one == 'h')
+        if (ray->facing_up)
             ray->wall_dir = 'N';
     }
     if (which_one == 'v')
     {
         ray->wall_dir = 'W';
-        if (ray->facing_right && which_one == 'v')
+        if (ray->facing_right)
             ray->wall_dir = 'E';
     }
 }

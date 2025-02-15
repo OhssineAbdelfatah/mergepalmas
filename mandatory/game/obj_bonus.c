@@ -2,6 +2,13 @@
 # include "../includes/ps.h"
 
 
+bool check_doors_for_obj_rendering(t_main_s *var, t_player_bonus *ptr, int i, int ray_to_inspect)
+{
+    if ( var->p_infos->rays[ray_to_inspect].bonus_rays->hit_a_door  && var->p_infos->rays[ray_to_inspect].bonus_rays->door->distance < ptr->obj[i].distance )
+        return false;
+    return true;
+}
+
 void render_obj(t_main_s *var, t_player_bonus *ptr, t_walls *walls,int i)
 {
     int obj_height, obj_width;
@@ -28,7 +35,7 @@ void render_obj(t_main_s *var, t_player_bonus *ptr, t_walls *walls,int i)
             {
                 ray_to_inspect = var->p_infos->nbr_rays - 1 - (x_increment + x_start);
                 color = get_color_obj(var, obj_height, obj_width, x_increment, y_increment);
-                if (ray_to_inspect >=0 && ray_to_inspect < 1400 && var->p_infos->rays[ray_to_inspect].distance > ptr->obj[i].distance)
+                if (ray_to_inspect >=0 && ray_to_inspect < 1400 && var->p_infos->rays[ray_to_inspect].distance > ptr->obj[i].distance && check_doors_for_obj_rendering(var, ptr, i , ray_to_inspect))
                 {
                     if (x_start + x_increment >= 0 && x_start + x_increment <  var->window_width && color)
                         mlx_put_pixel(var->img2, x_start + x_increment, y_start, color);

@@ -74,7 +74,7 @@ void    draw_door(t_main_s *var,t_walls *walls, int i, int j, double offset)
     if (adjusted_distance == 0)
         adjusted_distance = 0.5;
     door_h =((double)square_len / adjusted_distance) * walls->distance_prj_plane; 
-    top = ((var->window_height) / 2) - (door_h / 2);
+    top = ((var->window_height) / 2) - (door_h / 2) + var->p_infos->up_down_offset;
     // buttom = ((var->window_height) / 2) + (door_h / 2);
     // buttom = top + door_h;
     x_door = calc_x_door(var->p_infos->rays[i].bonus_rays->door->from, var->p_infos->rays[i].bonus_rays->door, square_len, var->bonus->door->width, i, var);
@@ -88,7 +88,7 @@ void    draw_door(t_main_s *var,t_walls *walls, int i, int j, double offset)
     //     offset += 0.1;
 
     c = 0; 
-    while(c +  (door_h -( door_h*offset)) < door_h)
+    while(c +  (door_h - (door_h*offset)) < door_h)
     {
         // if (c + top >= 0 && c + top  < var->window_height) // window hieght
         if (c + top >= 0 && c + top  + (door_h -( door_h*offset)) < var->window_height) // window hieght
