@@ -39,6 +39,7 @@ int	safe_open(char *file, t_pre_data *dt)
 	fd = open(file, O_RDONLY);
 	if (fd == -1)
 	{
+		free(dt->data);
 		free(dt);
 		ft_putstr_fd("Error open map\n", 2);
 		exit(1);
