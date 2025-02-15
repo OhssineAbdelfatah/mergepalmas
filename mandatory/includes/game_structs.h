@@ -108,12 +108,7 @@ struct s_ray_hit_enemy
 struct s_rays_bonus
 {
     bool hit_a_door;
-    bool hit_an_obj;
-    bool hit_an_enemy;
-
-    t_ray_hit_obj *obj;
     t_ray_hit_door *door;
-    t_ray_hit_enemy *enemy;
 };
 
 
@@ -133,7 +128,6 @@ struct s_mini_map
     int minimap_width;
     int minimap_height;
     int mini_square_len;
-    // t_data img3;
     mlx_image_t *img3;
 };
 
@@ -200,7 +194,6 @@ struct s_main_struct
     char **map;
     mlx_t *mlx;
     mlx_image_t *img2;
-    mlx_image_t *img3;
     t_text **text;
     t_mini_map *mini_map;
     t_player_infos *p_infos;
@@ -240,11 +233,6 @@ struct s_bonus
     int nbr_enemies;
     int mouse_x;
     int mouse_y;
-    mlx_texture_t *enemy_mlx_tex;
-    mlx_texture_t *dead_enemy_mlx_tex;
-    mlx_texture_t *pillar_tex;
-    mlx_texture_t *floor;
-    mlx_texture_t *sky;
     mlx_texture_t *gun_in_hand[4];
     mlx_texture_t *crosshair;
     t_text *dead_enemy_text;
@@ -252,8 +240,8 @@ struct s_bonus
     t_text *enemy_text;
     t_text *floor_text;
     t_text *sky_text;
-    t_text *gun_in_hand_text0;
-    t_text *pillar_img;
+    // t_text *gun_in_hand_text0;
+    t_text *obj_img;
     mlx_image_t *gun_in_hands_img[4];
     mlx_image_t *crosshair_img;
 };

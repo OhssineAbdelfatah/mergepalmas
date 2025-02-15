@@ -26,19 +26,13 @@ int is_there_enemy(t_main_s *var, double x, double y)
 
 int check_the_pixel(t_main_s *var, int x, int y)
 {
-    // static int alo;
-    int diff_x, diff_y; 
-    // double x_2d_map, y_2d_map;
+    int enemy_there;
+    int diff_x;
+    int diff_y;
+    int square;
 
     diff_x = (x - var->mini_map->p_x) * 2;
     diff_y = (y - var->mini_map->p_y) * 2;
-    // x_2d_map = var->p_infos->x + (double) diff_x;
-    // y_2d_map = var->p_infos->y + (double) diff_y;
-    // if (alo ==0)
-    // {
-    //     printf("y_2d_map>>%f,player y : %f ,diff_y: %f \n", y_2d_map,var->p_infos->y, (double)diff_y);
-    //     alo++;
-    // }
     diff_x = ((int)floor(var->p_infos->y) + diff_x);
     diff_y = ((int)floor(var->p_infos->x) + diff_y);
     if (diff_x < 0 || diff_y < 0)
@@ -49,29 +43,21 @@ int check_the_pixel(t_main_s *var, int x, int y)
         return -1;
     if (diff_x >= (int)ft_strlen(var->map[diff_y]))
         return -1;
-    if (var->map[diff_y][diff_x] == '1')
+    square = var->map[diff_y][diff_x];
+    if (square == '1')
         return 1;
-    if (var->map[diff_y][diff_x] == '\n')
+    if (square == '\n' || square == 32)
         return -1;
-    if (var->map[diff_y][diff_x] == 32)
-        return -1;
-    if (var->map[diff_y][diff_x] == 'O')
+    if (square == 'O')
         return -2;
-    if (var->map[diff_y][diff_x] == 'D')
+    if (square == 'D')
         return -3;
-    int enemy_there = is_there_enemy(var, diff_x, diff_y); 
+    enemy_there = is_there_enemy(var, diff_x, diff_y); 
     if (enemy_there == 1)
-    {
-        // printf("ENEMYY\n");
-        mlx_put_pixel(var->mini_map->img3, x, y, 0xD82020FF);
-        // draw_disk11(var->mini_map->img3,x, y, 3, 0xD82020FF);
-        return -4;
-    }
+        return (mlx_put_pixel(var->mini_map->img3, x, y, 0xD82020FF), -4);
     else if (enemy_there == 2)
-    {
-        mlx_put_pixel(var->mini_map->img3, x, y, 0xCC6600FF);
-        return -5;
-    }
+        return(mlx_put_pixel(var->mini_map->img3, x, y, 0xCC6600FF),-5) ;
+
     return 0;
 }
 
@@ -90,12 +76,6 @@ void draw_the_pixel_for_minimap(t_main_s *var, int x, int y)
         mlx_put_pixel(var->mini_map->img3, x, y, 0x66CC00FF);
      else if (check == -3)
         mlx_put_pixel(var->mini_map->img3, x, y, 0x5EC4D4FF);
-    // is_there_enemy(var, x, y);
-    // else if (check == -3)
-    //     mlx_put_pixel(var->mini_map->img3, x, y, 0xD82020FF);
-    // else if (check == -3)
-    //     draw_disk11()
-            // mlx_put_pixel(var->mini_map->img3, x, y, 0xD82020FF);
 }
 
 int draw_mini_map_42(t_main_s *var)

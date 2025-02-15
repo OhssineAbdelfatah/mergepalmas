@@ -36,12 +36,13 @@ ASCII_ART = "\033[31m\n"\
 
 GNL = ../lib/gnl/get_next_line.c ../lib/gnl/get_next_line_utils.c
 
-BONUS_FILES = game/drawing_things_bonus.c game/enemies_bonus.c  game/floor_ceilling_bonus.c
+BONUS_FILES =    game/constructors_tools_bonus.c game/constructors_bonus.c \
+			 game/drawing_things_bonus.c game/enemies_bonus.c  game/floor_ceilling_bonus.c
 
-GAME_FILES = game/hooks_nd_loops.c game/casting.c game/casting_tools.c game/tools.c game/walls_rendering.c game/rays.c \
+GAME_FILES = game/hooks_nd_loops.c game/casting.c game/casting_tools.c  game/tools_2.c  game/tools.c game/walls_rendering.c game/rays.c \
 			game/drawing.c game/draw_minimap.c game/draw_mini_map_pro.c game/bonus.c \
-			game/constructors.c game/constructors_bonus.c\
-			game/obj_bonus.c png_to_text.c \
+			game/constructors.c game/constructors_2.c \
+			game/obj_bonus.c \
 			game/game.c
 CLEANING = cleaning_nd_freeing/freedom.c cleaning_nd_freeing/freedom_part2.c \
 			cleaning_nd_freeing/freedom_part3.c

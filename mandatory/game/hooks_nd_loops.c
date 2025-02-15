@@ -41,10 +41,10 @@ int need_update(t_main_s *main, t_player_infos * var, char **map)
     {
         if (var->look_up_down == 1)
             if (var->up_down_offset < (main->window_height / 3))
-                var->up_down_offset += var->speed * var->look_up_down * 2;
+                var->up_down_offset += var->speed * var->look_up_down * 4;
         if (var->look_up_down == -1)
             if (var->up_down_offset > ( main->window_height / 3) * -1)
-                var->up_down_offset += var->speed  * var->look_up_down * 2;
+                var->up_down_offset += var->speed  * var->look_up_down * 4;
     }
     if ( var->look_up_down || var->move_up_down != 0 || var->turn_arround != 0 || var->move_left_right != 0)
         return 1;
@@ -184,19 +184,12 @@ void loop_hook(void *ptr)
     if (need_update(var,  var->p_infos, var->map))
     {
         work_of_art(var, 1);
-        // var->p_infos->move_up_down  = 0;
-        // var->p_infos->move_left_right  = 0;
-        // var->p_infos->turn_arround  = 0;
-        // var->p_infos->look_up_down  = 0;
     }                           
     else if (now - var->start_frame > 30)
     {
         var->start_frame = now;
         work_of_art (var, 0);
     }
-    (void)var;
-    (void)now;
-    (void)ptr;
 }
 
 void display_shooting(t_main_s *var)

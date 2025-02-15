@@ -55,22 +55,43 @@ int draw_the_mini_map(t_main_s *var);
 t_main_s *init_main_var(t_parse_data *parse);
 t_player_infos *init_player_struct(t_main_s *ptr, char c, int x, int y);
 t_ray_info *init_rays(t_main_s *ptr, double ray_angle, double ray_increment);
+
+t_text *get_image(mlx_texture_t *text);
+int **get_pixles(mlx_texture_t* img, int w, int h);
+
+
+/*************************************************/
+//            >>    CONSTRUCTORS_2.C     <<
+/*************************************************/
+mlx_texture_t *safe_load(char *path);
 t_walls *init_walls(t_main_s *ptr);
+t_text *safe_img_cnv(char *path_to_img);
 
 
-t_text *get_image(char *path);
-int **gat_pixles(mlx_texture_t* img, int w, int h);
+
+
+/*************************************************/
+//        >>    CONSTRUCTORS_TOOLS_BONUS.C    <<
+/*************************************************/
+double get_distance(t_player_infos *p_var, double x, double y);
+void fill_obj(t_main_s *var, t_obj *obj, t_player_infos *p_var);
+void fill_enemy(t_main_s *var, t_enemy *enemy, t_player_infos *p_var);
+
+
 /*************************************************/
 //            >>    TOOLS.C     <<
 /*************************************************/
 
 int ft_dstr_len(char **av);
-void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
 double adjust_angle(double angle);
 void panic(char *s);
 int is_it_the_player(char c);
 
 
+/*************************************************/
+//            >>    TOOLS_2.C     <<
+/*************************************************/
+int	gettt_rgba(uint8_t *color);
 
 /*************************************************/
 //            >>   CASTING.C     <<

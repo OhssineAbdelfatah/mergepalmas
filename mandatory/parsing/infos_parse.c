@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   infos_parse.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: blacksniper <blacksniper@student.42.fr>    +#+  +:+       +#+        */
+/*   By: aohssine <aohssine@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/20 17:22:54 by aohssine          #+#    #+#             */
-/*   Updated: 2025/02/12 18:03:53 by blacksniper      ###   ########.fr       */
+/*   Updated: 2025/02/15 22:42:29 by aohssine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int	check_unicty_infos(t_map_lst *list)
 	t_map_lst	*tmp;
 
 	if (list_size(list) != 6)
-		return (1);
+		return ((printf("psp\n")), 1);
 	while (list)
 	{
 		tmp = list->next;

@@ -6,7 +6,7 @@
 /*   By: aohssine <aohssine@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 18:02:25 by aohssine          #+#    #+#             */
-/*   Updated: 2025/02/15 22:25:29 by aohssine         ###   ########.fr       */
+/*   Updated: 2025/02/15 22:54:15 by aohssine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,10 +97,11 @@ int get_type(char *line)
 	if (ft_strslen(tokens) >= 2 && __type_tex(type))
 	{
 		if (tex_name_with_spaces(tokens[0], line))
-			return (free_split(tokens), type);
-		return (free_split(tokens), NO_TYPE);
+			return (free_split(tokens), NO_TYPE);
+		return (free_split(tokens), type);
 	}
-	else if (ft_strslen(tokens) != 2)
+	else 
+	if (ft_strslen(tokens) != 2)
 		return (free_split(tokens), type);
 	if (__type_tex(type))
 	{
