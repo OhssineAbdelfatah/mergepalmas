@@ -1,44 +1,6 @@
 # include "../includes/ps.h"
 
 
-double calcul_obj_height(t_main_s *var, int i)
-{
-    double height;
-
-    height = ((square_len ) / var->p_infos->rays[i].bonus_rays->obj->distance) * var->p_infos->walls->distance_prj_plane;
-    return height;
-}
-
-
-double calc_obj_width(t_main_s *var)
-{
-    int i,first, last;
-    double width;
-
-    width = 0;
-    i = var->p_infos->nbr_rays - 1;
-    first = -1;
-    last = -1;
-    while (i >= 0)
-    {
-        if (var->p_infos->rays[i].bonus_rays->hit_an_obj == true)
-        {
-            if (first == -1)
-                first = i;
-            if ( i - 1 >= 0 && var->p_infos->rays[i - 1].bonus_rays->hit_an_obj == false)
-                last = i ;
-
-        }
-        i--;
-    }
-    if (first != -1 && last == -1)
-        last = 0;
-    if (last != -1 && first != -1)
-        width = first - last;
-    return width;
-}
-
-
 int get_color_obj(t_main_s *var, int obj_height, int obj_width, int x, int y)
 {
     int color;
@@ -50,10 +12,10 @@ int get_color_obj(t_main_s *var, int obj_height, int obj_width, int x, int y)
     x_offset = (double)x / (double)obj_width;
     y_offset = (double)y / (double)obj_height;
 
-    new_x = (double)var->bonus->pillar_img->width * x_offset;
-    new_y = (double)var->bonus->pillar_img->hieght * y_offset;
+    new_x = (double)var->bonus->obj_img->width * x_offset;
+    new_y = (double)var->bonus->obj_img->hieght * y_offset;
 
-    color = var->bonus->pillar_img->pixels[(int)floor(new_y)][(int)floor(new_x)];
+    color = var->bonus->obj_img->pixels[(int)floor(new_y)][(int)floor(new_x)];
     return color;
 }
 
