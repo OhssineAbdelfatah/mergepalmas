@@ -6,7 +6,7 @@
 /*   By: blacksniper <blacksniper@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/20 13:39:01 by aohssine          #+#    #+#             */
-/*   Updated: 2025/01/26 20:43:26 by blacksniper      ###   ########.fr       */
+/*   Updated: 2025/02/15 23:32:31 by blacksniper      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,7 +123,7 @@ void 						free_data(t_parse_data* data);
 t_pre_data					*read_file(char *file);
 t_map_lst					*get_map_infos(int fd_map);
 int							check_unicty_infos(t_map_lst *list);
-
+char **split2(char *base);
 /*  inofs_utils */
 int							get_type(char *line);
 int							__type_tex(int type);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   infos_parse.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aohssine <aohssine@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: blacksniper <blacksniper@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/20 17:22:54 by aohssine          #+#    #+#             */
-/*   Updated: 2025/02/15 23:49:21 by aohssine         ###   ########.fr       */
+/*   Updated: 2025/02/15 23:33:08 by blacksniper      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -163,11 +163,23 @@ t_pre_data	* read_file(char *file)
 
 char **split2(char *base)
 {
-	int i;
-	char *
-	char *str1 ;
-
-	str1 = ft_strnstr(base, );
+	char **strs;
+	char **new;
+	new = (char **)malloc(sizeof(char*) *3);
+	strs = ft_split(base, 32);
+	if(!new || !strs)
+		return NULL;
+	if(ft_strslen(strs) == 1){
+		new[0] = ft_strdup(strs[0]);
+		new[1] = NULL;
+		new[2] = NULL;
+	}
+	else if (ft_strslen(strs) > 1){
+		new[0] = ft_strdup(strs[0]);
+		new[1] = ft_strchr(base,strs[1][0]);
+		new[2] = NULL;	
+	}	
+	return (free_split(strs), new);
 }
 
 // here check the mfc map
