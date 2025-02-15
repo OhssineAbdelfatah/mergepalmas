@@ -6,7 +6,7 @@
 /*   By: aohssine <aohssine@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/20 17:22:54 by aohssine          #+#    #+#             */
-/*   Updated: 2025/02/15 22:42:29 by aohssine         ###   ########.fr       */
+/*   Updated: 2025/02/15 23:49:21 by aohssine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,7 @@ t_map_lst	*get_map_infos(int fd_map)
 			return (free_map(dt.map_lst), free(dt.line), get_next_line(-1),
 				NULL);
 		dt.count++;
+		printf("line %s\n", dt.line);
 		dt.nd = create_node(dt.line, dt.type);
 		add_back(&dt.map_lst, &dt.tail, dt.nd);
 	}
@@ -156,6 +157,17 @@ t_pre_data	* read_file(char *file)
 				free_map(dt->info), free_map(dt->map), free(dt), printf("not a vaid map\n"), NULL);
 	}
 	return (fill_data(dt), free_map(dt->map), close(fd_map), dt);
+}
+
+
+
+char **split2(char *base)
+{
+	int i;
+	char *
+	char *str1 ;
+
+	str1 = ft_strnstr(base, );
 }
 
 // here check the mfc map
