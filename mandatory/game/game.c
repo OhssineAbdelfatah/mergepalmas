@@ -1,5 +1,9 @@
 # include "../includes/ps.h"
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 4b38982e2d627d87528018ae12d97d5b63d03de7
 double calcul_obj_height(t_main_s *var, int i)
 {
     double height;

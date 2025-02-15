@@ -63,6 +63,49 @@ t_rays_bonus *init_bonus_rays()
     return ret;
 }
 
+int **gat_pixles(mlx_texture_t* img, int w, int h)
+{
+    (void)img;
+    int **pixs;
+    int i;
+    int j;
+
+    i = 0 ;
+    pixs = malloc(sizeof(int *) * h );
+    if(!pixs)
+        return (printf("malooc in pix int** failed")), NULL ;
+    while(i < h )
+    {
+        j = 0 ;
+        pixs[i] = (int *)malloc(sizeof(int) * w);
+        if(!pixs)
+            return (printf("malooc in pix int* failed")), NULL ;
+        while(j < w )
+        {
+            pixs[i][j] = gettt_rgba( &img->pixels[((i * w) + j) * 4] ); // y * width + x
+            j++;
+        }
+        i++;
+    }
+    return pixs;
+}
+
+
+t_text *get_image(mlx_texture_t *text)
+{
+    t_text *img;
+
+
+    img = malloc(sizeof(t_text));
+    if(!img )
+        return NULL;
+    img->pixels = gat_pixles(text, text->width, text->height);
+    img->hieght = text->height;
+    img->width = text->width;
+    mlx_delete_texture(text);
+    return img;
+}
+
 t_player_infos *init_player_struct(t_main_s *ptr,char c, int x, int y)
 {
     t_player_infos *var;
