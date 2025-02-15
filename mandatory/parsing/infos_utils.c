@@ -12,10 +12,10 @@
 
 #include "../includes/parsing.h"
 
-int	valid_set(char *set)
+int valid_set(char *set)
 {
-	char	**sets;
-	int		i;
+	char **sets;
+	int i;
 
 	sets = ft_split(set, ',');
 	if (!sets)
@@ -36,7 +36,7 @@ int	valid_set(char *set)
 }
 
 // tsawer bach biti tkhdem abatal
-int	handel_file(char *texture)
+int handel_file(char *texture)
 {
 	if (check_ext(texture, ".png"))
 	{
@@ -51,31 +51,53 @@ int	handel_file(char *texture)
 	return (0);
 }
 
-int	__type_color(int type)
+int __type_color(int type)
 {
 	return (type == CEILEING || type == FLOOR);
 }
 
-int	__type_tex(int type)
+int __type_tex(int type)
 {
-	return (type == IMG_EA || type == IMG_NO || type == IMG_SO
-		|| type == IMG_WE);
+	return (type == IMG_EA || type == IMG_NO || type == IMG_SO || type == IMG_WE);
 }
 
-	/*
-		u caan split textures chcek and colors sets
-	*/
-	// texture name with spaces should handeld here in second if
-int	get_type(char *line)
+/*
+	u caan split textures chcek and colors sets
+*/
+// texture name with spaces should handeld here in second if
+int tex_name_with_spaces(char *first_str, char *info)
 {
-	char	**tokens;
-	int		type;
+	int i;
+	
+	i = ft_strlen(first_str);
+	if (i != 0 && info[i+1])
+	{
+		while(info[++i])
+		{
+			if(!__space(info[i]))
+			break;
+		}
+		if(file_exist(info + i))
+			return 1;
+	}
+	return 0;
+}
+
+int get_type(char *line)
+{
+	char **tokens;
+	int type;
 
 	type = NO_TYPE;
 	tokens = ft_split(line, ' ');
 	if (!tokens)
 		return (type);
-	if (ft_strslen(tokens) != 2)
+	if (ft_strslen(tokens) >= 2)
+	{
+		if (tex_name_with_spaces(tokens[0], line))
+			return (free_split(tokens), type);
+	}
+	else if (ft_strslen(tokens) != 2)
 		return (free_split(tokens), type);
 	if (tokens[0])
 		type = return_type(tokens[0]);
