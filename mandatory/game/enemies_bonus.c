@@ -26,7 +26,6 @@ int get_color_enemy(t_main_s *var, int enemy_height, int enemy_width, int x, int
     return color;
 }
 
-// static int alo;
 bool check_for_doors(t_main_s *var, t_player_bonus *ptr, int i, int ray_to_inspect)
 {
     if ( var->p_infos->rays[ray_to_inspect].bonus_rays->hit_a_door  && var->p_infos->rays[ray_to_inspect].bonus_rays->door->distance < ptr->enemy[i].distance )
@@ -151,7 +150,6 @@ void chase_player(t_main_s *var, t_player_infos *p_player, t_enemy *enemy, int i
         enemy[i].y = p_player->x - enemy[i].vector_y;
     }
     enemy[i].distance =  get_distance(p_player,enemy[i].x, enemy[i].y);
-    (void)var;
 }
 void update_enemy_data(t_main_s *var, t_player_infos *p_var, t_enemy *enemy,int nbr_enemy)
 {

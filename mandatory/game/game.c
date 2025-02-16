@@ -1,25 +1,5 @@
 # include "../includes/ps.h"
 
-
-int get_color_obj(t_main_s *var, int obj_height, int obj_width, int x, int y)
-{
-    int color;
-    double x_offset;
-    double y_offset;
-
-    int new_x, new_y;
-
-    x_offset = (double)x / (double)obj_width;
-    y_offset = (double)y / (double)obj_height;
-
-    new_x = (double)var->bonus->obj_img->width * x_offset;
-    new_y = (double)var->bonus->obj_img->hieght * y_offset;
-
-    color = var->bonus->obj_img->pixels[(int)floor(new_y)][(int)floor(new_x)];
-    return color;
-}
-
-
 void paint_floor_celling(t_main_s *var)
 {
     int color;
@@ -47,18 +27,18 @@ void work_of_art(t_main_s *var, int shoot)
         var->p_infos=  init_player_struct(var , var->parse->dir, ((var->parse->pos->y_ver * square_len) + (square_len / 2)), ((var->parse->pos->x_hor * square_len) + (square_len / 2)));
         mlx_image_to_window(var->mlx, var->img2, 0, 0);
         mlx_image_to_window(var->mlx, var->bonus->crosshair_img, (var->window_width / 2) - (var->bonus->crosshair_img->width / 2) , (var->window_height / 2) - (var->bonus->crosshair_img->height / 2));
-        mlx_image_to_window(var->mlx, var->bonus->gun_in_hands_img[0], var->window_width / 2 - (var->bonus->gun_in_hands_img[0]->width / 2), (var->window_height) - (var->bonus->gun_in_hands_img[0]->height) );
-        mlx_image_to_window(var->mlx, var->bonus->gun_in_hands_img[1], var->window_width / 2 - (var->bonus->gun_in_hands_img[1]->width / 2), (var->window_height) - (var->bonus->gun_in_hands_img[1]->height) );
-        mlx_image_to_window(var->mlx, var->bonus->gun_in_hands_img[2], var->window_width / 2 - (var->bonus->gun_in_hands_img[2]->width / 2), (var->window_height) - (var->bonus->gun_in_hands_img[2]->height) );
-        mlx_image_to_window(var->mlx, var->bonus->gun_in_hands_img[3], var->window_width / 2 - (var->bonus->gun_in_hands_img[3]->width / 2), (var->window_height) - (var->bonus->gun_in_hands_img[3]->height) );
+        mlx_image_to_window(var->mlx, var->bonus->gun_img[0], var->window_width / 2 - (var->bonus->gun_img[0]->width / 2), (var->window_height) - (var->bonus->gun_img[0]->height) );
+        mlx_image_to_window(var->mlx, var->bonus->gun_img[1], var->window_width / 2 - (var->bonus->gun_img[1]->width / 2), (var->window_height) - (var->bonus->gun_img[1]->height) );
+        mlx_image_to_window(var->mlx, var->bonus->gun_img[2], var->window_width / 2 - (var->bonus->gun_img[2]->width / 2), (var->window_height) - (var->bonus->gun_img[2]->height) );
+        mlx_image_to_window(var->mlx, var->bonus->gun_img[3], var->window_width / 2 - (var->bonus->gun_img[3]->width / 2), (var->window_height) - (var->bonus->gun_img[3]->height) );
         mlx_image_to_window(var->mlx, var->mini_map->img3, 10, 10);
     }
     if (shoot)
     {
         free_rays(var);
         shoot_the_rays(var);
+        draw_mini_map_42(var);
     }
-    draw_mini_map_42(var);
     wall_rendering(var);
     update_obj_data(var, var->p_infos, var->p_infos->p_bonus->obj, var->bonus->nbr_obj);
     update_enemy_data(var, var->p_infos, var->p_infos->p_bonus->enemy, var->bonus->nbr_enemies);

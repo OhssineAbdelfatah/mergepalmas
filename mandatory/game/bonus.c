@@ -175,9 +175,9 @@ void	count_obj_enemi(t_main_s *var)
 //     //     }
 //     //     x++;
 //     // }
-//     // mlx_image_to_window(var->mlx, var->bonus->gun_in_hands_img,
+//     // mlx_image_to_window(var->mlx, var->bonus->gun_img,
 	// var->window_width / 2, var->window_height / 2);
-//     // var->bonus->gun_in_hands_img->enabled = true;
+//     // var->bonus->gun_img->enabled = true;
 //     (void)var;
 //     }
 

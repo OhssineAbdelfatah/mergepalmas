@@ -67,12 +67,6 @@ void	free_main_bonus(t_bonus *var, t_main_s *main)
 	if (var->obj_img)
 		free_text(var->obj_img);
 	i = -1;
-	while (++i < 4)
-	{
-		mlx_delete_image(main->mlx, var->gun_in_hands_img[i]);
-		mlx_delete_texture(var->gun_in_hand[i]);
-	}
-	mlx_delete_texture(var->crosshair);
 	mlx_delete_image(main->mlx, var->crosshair_img);
 	free(var);
 }

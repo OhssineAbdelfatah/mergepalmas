@@ -203,6 +203,7 @@ struct s_main_struct
     //bonus
     /***********/
     // struct timeval tv;
+    // static int shoot;
     t_bonus *bonus;
 
 };
@@ -233,16 +234,13 @@ struct s_bonus
     int nbr_enemies;
     int mouse_x;
     int mouse_y;
-    mlx_texture_t *gun_in_hand[4];
-    mlx_texture_t *crosshair;
     t_text *dead_enemy_text;
     t_text *door;
     t_text *enemy_text;
     t_text *floor_text;
     t_text *sky_text;
-    // t_text *gun_in_hand_text0;
     t_text *obj_img;
-    mlx_image_t *gun_in_hands_img[4];
+    mlx_image_t *gun_img[4];
     mlx_image_t *crosshair_img;
 };
 

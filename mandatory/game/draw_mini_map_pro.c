@@ -57,7 +57,6 @@ int check_the_pixel(t_main_s *var, int x, int y)
         return (mlx_put_pixel(var->mini_map->img3, x, y, 0xD82020FF), -4);
     else if (enemy_there == 2)
         return(mlx_put_pixel(var->mini_map->img3, x, y, 0xCC6600FF),-5) ;
-
     return 0;
 }
 

@@ -1,38 +1,83 @@
 # include "../includes/ps.h"
 
 
+// int need_update(t_main_s *main, t_player_infos * var, char **map)
+// {
+//     int check;
+//     double move_steps;
+//     double new_y;
+//     double new_x;
+//     double tmp_angle;
+
+//     move_steps  = var->move_up_down * var->speed;
+//     if (var->move_up_down != 0 || var->turn_arround != 0 || var->move_left_right != 0)
+//     {
+//         // printf("move_up_down:  %d , move_left_right %d , turn_arround : %d \n" ,var->move_up_down,  var->move_left_right, var->turn_arround);
+//         var->rotation_angle += var->turn_arround * var->rotation_speed;
+//         var->rotation_angle = adjust_angle(var->rotation_angle);
+//         tmp_angle = var->rotation_angle;
+//         if (var->move_left_right)
+//         {
+//             move_steps  = var->move_left_right * var->speed;
+//             tmp_angle = adjust_angle(var->rotation_angle + (M_PI / 2));
+//         }
+//         new_x = var->x + cos(tmp_angle) * move_steps ;
+//         new_y = var->y + sin(tmp_angle) * move_steps ;
+//         if (var->move_left_right || var->move_up_down)
+//         {
+//             check = is_there_a_wall(new_x + ( 4 * (new_x - var->x)) , new_y + ( 4 * (new_y - var->y)), map);
+//             if (!check)
+//             {
+//                 check =  check_teleportation(var, map);
+//                 if (check == 0)
+//                 {
+//                     var->x = new_x;
+//                     var->y = new_y;
+//                 }
+//             }
+//         }
+//     }
+//     if ( var->look_up_down || var->move_up_down != 0 || var->turn_arround != 0 || var->move_left_right != 0)
+//     {
+//         if (var->look_up_down == 1)
+//             if (var->up_down_offset < (main->window_height / 3))
+//                 var->up_down_offset += var->speed * var->look_up_down * 4;
+//         if (var->look_up_down == -1)
+//             if (var->up_down_offset > ( main->window_height / 3) * -1)
+//                 var->up_down_offset += var->speed  * var->look_up_down * 4;
+//     }
+//     if ( var->look_up_down || var->move_up_down != 0 || var->turn_arround != 0 || var->move_left_right != 0)
+//         return 1;
+//     return 0;
+// }
+
 int need_update(t_main_s *main, t_player_infos * var, char **map)
 {
-    int check;
-    double move_steps;
-    double new_y;
-    double new_x;
-    double tmp_angle;
+    t_need_update func;
 
-    move_steps  = var->move_up_down * var->speed;
+    func.move_steps  = var->move_up_down * var->speed;
     if (var->move_up_down != 0 || var->turn_arround != 0 || var->move_left_right != 0)
     {
-        // printf("move_up_down:  %d , move_left_right %d , turn_arround : %d \n" ,var->move_up_down,  var->move_left_right, var->turn_arround);
         var->rotation_angle += var->turn_arround * var->rotation_speed;
         var->rotation_angle = adjust_angle(var->rotation_angle);
-        tmp_angle = var->rotation_angle;
+        func.tmp_angle = var->rotation_angle;
         if (var->move_left_right)
         {
-            move_steps  = var->move_left_right * var->speed;
-            tmp_angle = adjust_angle(var->rotation_angle + (M_PI / 2));
+            func.move_steps  = var->move_left_right * var->speed;
+            func.tmp_angle = adjust_angle(var->rotation_angle + (M_PI / 2));
         }
-        new_x = var->x + cos(tmp_angle) * move_steps ;
-        new_y = var->y + sin(tmp_angle) * move_steps ;
+        func.new_x = var->x + cos(func.tmp_angle) * func.move_steps ;
+        func.new_y = var->y + sin(func.tmp_angle) * func.move_steps ;
         if (var->move_left_right || var->move_up_down)
         {
-            check = is_there_a_wall(new_x + ( 4 * (new_x - var->x)) , new_y + ( 4 * (new_y - var->y)), map);
-            if (!check)
+            func.check = is_there_a_wall(func.new_x + (2 * (func.new_x - var->x)) , func.new_y + ( 2 * (func.new_y - var->y)), map);
+            if (!func.check)
             {
-                check =  check_teleportation(var, map);
-                if (check == 0)
+                func.check =  check_teleportation(var, map);
+                if (func.check == 0)
                 {
-                    var->x = new_x;
-                    var->y = new_y;
+                    var->x = func.new_x;
+                    var->y = func.new_y;
                 }
             }
         }
@@ -51,25 +96,12 @@ int need_update(t_main_s *main, t_player_infos * var, char **map)
     return 0;
 }
 
-void smooth_exit(t_main_s *var)
-{
-    // int i = 0;
-    // if (var->p_infos->rays->bonus_rays)
-    //     free_rays_bonus()
-    free(var->p_infos);
-    free(var->mlx);
-    free(var->parse);
-    free(var->bonus);
-    // (void)var;
-}
-
 
 void key_hook(mlx_key_data_t key, void *var)
 {
     t_main_s *ptr;
 
     ptr = (t_main_s *)var;
-
     if (key.key == MLX_KEY_ESCAPE)
     {
         free_all(var);
@@ -185,7 +217,7 @@ void loop_hook(void *ptr)
     {
         work_of_art(var, 1);
     }                           
-    else if (now - var->start_frame > 30)
+    else if (now - var->start_frame > 25)
     {
         var->start_frame = now;
         work_of_art (var, 0);
@@ -194,24 +226,16 @@ void loop_hook(void *ptr)
 
 void display_shooting(t_main_s *var)
 {
-    // long long last_frame, now, diff;
-    int  i;
-    i = 1;
-    // last_frame = get_time_mil();
-    while (i < 3)
+    static int  i =1;
+    if (i == 4)
     {
-        var->bonus->gun_in_hands_img[i]->enabled = true;
-        // now = get_time_mil();
-        // diff =  now - last_frame;
-        // while ( diff < 20)
-        // {
-        //     diff =  now - last_frame;
-        //     now = get_time_mil();
-        // }
-        // last_frame = now;
-        //  usleep(30000);
-        var->bonus->gun_in_hands_img[i - 1]->enabled = false;
-        
+        var->bonus->gun_img[i - 1]->enabled = false;
+        i = 1;
+    }
+    if (i < 4 && i != 0)
+    {
+        var->bonus->gun_img[i]->enabled = true;
+        var->bonus->gun_img[i - 1]->enabled = false;
         i++;
     }
 }
@@ -223,10 +247,10 @@ void redisplay_the_gun(t_main_s * var)
 
     while (i > 0)
     {
-        var->bonus->gun_in_hands_img[i]->enabled = false;
+        var->bonus->gun_img[i]->enabled = false;
         i --;
     }
-    var->bonus->gun_in_hands_img[i]->enabled = true;
+    var->bonus->gun_img[i]->enabled = true;
 }
 
 void shoot_them_mfs(t_main_s *var)
@@ -330,10 +354,7 @@ void cursor_func(double xpos, double ypos, void* param)
 void mlx_loops_and_hooks(t_main_s *var)
 {
     mlx_key_hook(var->mlx, key_hook, var);
-    // mlx_hook(var->mlx_win, 2, 1L<<0, key_hook, var);
-
     mlx_mouse_hook(var->mlx, mouse_hook, var);
-
     // mlx_cursor_hook(var->mlx, cursor_func, var);
     mlx_loop_hook(var->mlx, loop_hook, var);
     mlx_loop(var->mlx); 

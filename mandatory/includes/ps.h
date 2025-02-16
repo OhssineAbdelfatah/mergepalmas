@@ -15,6 +15,11 @@
 void shoot_the_rays(t_main_s * var);
 int need_update(t_main_s *main, t_player_infos * var, char **map);
 
+
+/*************************************************/
+//            >>    PLAYER_MOVE.C     <<
+/*************************************************/
+
 int is_there_a_wall(double new_y, double new_x, char **map);
 int check_teleportation(t_player_infos *var, char **map);
 
@@ -68,8 +73,13 @@ t_walls *init_walls(t_main_s *ptr);
 t_text *safe_img_cnv(char *path_to_img);
 
 
-
-
+/*************************************************/
+//            >>    CONSTRUCTORS_BONUS.C     <<
+/*************************************************/
+t_rays_bonus *init_bonus_rays();
+t_ray_hit_door *init_door();
+t_bonus *init_bonus(t_main_s *main);
+t_mini_map *init_mini_map(void *mlx, int width, int height);
 /*************************************************/
 //        >>    CONSTRUCTORS_TOOLS_BONUS.C    <<
 /*************************************************/
@@ -148,7 +158,8 @@ t_player_bonus *init_player_bonus(t_main_s *var, t_player_infos *ptr);
 
 
 
-int get_color_obj(t_main_s *var, int obj_height, int obj_width, int x, int y);
+int	get_color_obj(t_main_s *var, t_render_obj func);
+// int get_color_obj(t_main_s *var, int obj_height, int obj_width, int x, int y);
 void update_obj_data(t_main_s *var,  t_player_infos *p_var, t_obj *obj,int nbr_obj);
 void render_objects(t_main_s *var, t_player_bonus *p_ptr);
 
@@ -194,5 +205,13 @@ void free_d_arr(char **av);
 void free_main_bonus(t_bonus *var, t_main_s *main);
 void reset_them_all(t_main_s * var);
 void free_all(t_main_s *var);
+
+
+/************************************************************/
+//                      >> OBJ_TOOLS_BONUS.C <<
+/************************************************************/
+
+bool	check_doors_for_obj_rendering(t_main_s *var, t_player_bonus *ptr, int i,
+		int ray_to_inspect);
 
 #endif

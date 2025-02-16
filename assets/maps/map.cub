@@ -1,4 +1,4 @@
-NO ../assets/textures/zalij1 .png
+NO ../assets/textures/hitler.png
 EA ../assets/textures/red_wall.png
 SO ../assets/textures/ss.png
 WE ../assets/textures/brick.png
@@ -6,5 +6,7 @@ C 205,111,221
 F 0,1,2
 
 111111
-100S01
+100001
+100N01
+100001
 111111
