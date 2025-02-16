@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_parse.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: blacksniper <blacksniper@student.42.fr>    +#+  +:+       +#+        */
+/*   By: aohssine <aohssine@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 18:02:37 by aohssine          #+#    #+#             */
-/*   Updated: 2025/02/12 18:06:17 by blacksniper      ###   ########.fr       */
+/*   Updated: 2025/02/16 20:37:15 by aohssine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ int	parse_map(t_map_lst *map_dbl)
 			return (printf("map contain a \\ n \n"),1);
 		map_dbl = map_dbl->next;
 	}
-	// if (dir < 1)
-	// 	return (1);
+	if (dir != 1)
+		return (1);
 	return (0);
 }

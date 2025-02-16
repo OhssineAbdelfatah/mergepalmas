@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   infos_parse_bonus.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: blacksniper <blacksniper@student.42.fr>    +#+  +:+       +#+        */
+/*   By: aohssine <aohssine@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/20 17:22:54 by aohssine          #+#    #+#             */
-/*   Updated: 2025/02/16 01:52:44 by blacksniper      ###   ########.fr       */
+/*   Updated: 2025/02/16 23:20:16 by aohssine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -164,6 +164,8 @@ char **split2(char *base)
 {
 	char **strs;
 	char **new;
+
+	new = NULL;
 	strs = ft_split(base, 32);
 	if(!strs)
 		return NULL;

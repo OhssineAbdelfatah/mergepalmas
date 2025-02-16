@@ -55,15 +55,28 @@ PARSING = 	parsing/cub.c          parsing/infos_utils2.c parsing/infos_utils3.c 
 			parsing/valid_map.c    parsing/infos_utils.c  parsing/list_utils.c	\
 			parsing/safe_func.c    parsing/main.c parsing/test.c
 			
+PARSING_B = parsing_bonus/cub_bonus.c          parsing_bonus/infos_utils2_bonus.c parsing_bonus/infos_utils3_bonus.c \
+			parsing_bonus/map_check_bonus.c		\
+			parsing_bonus/infos_parse_bonus.c  parsing_bonus/list_init_bonus.c    parsing_bonus/map_parse_bonus.c	\
+			parsing_bonus/valid_map_bonus.c    parsing_bonus/infos_utils_bonus.c  parsing_bonus/list_utils_bonus.c	\
+			parsing_bonus/safe_func_bonus.c    parsing_bonus/main.c parsing_bonus/test_bonus.c parsing_bonus/map_tools_bonus.c
+
 CFILES = ${PARSING} ${GNL} ${TEXTURES} ${GAME_FILES} ${BONUS_FILES} ${CLEANING} main.c
 
+CFILESB = ${PARSING_B} ${GNL} ${TEXTURES} ${GAME_FILES} ${BONUS_FILES} ${CLEANING} main.c
+
 OBJ = $(CFILES:.c=.o)
+OBJB = $(CFILESB:.c=.o)
+
 NAME = cub3D
+NAMEB = cub3D_bonus
 
 My_lib = ../lib/libft/libft.a
 Folder_lib = ../lib/libft/
 
 all : $(My_lib) $(NAME)
+
+bonus : $(My_lib) $(NAMEB)
 
 %.o : %.c  Makefile ${HEADERS}
 	$(CC)  $(CFLAGS) $(FFLAG)   -c  $< -o $@
@@ -74,13 +87,16 @@ $(My_lib) :
 $(NAME) : $(OBJ) $(My_lib) 
 	$(CC) $^ $(CFLAGS) $(My_lib) $(MLXFLAGS_LINK)  -o $@
 
+$(NAMEB) : $(OBJB) $(My_lib) 
+	$(CC) $^ $(CFLAGS) $(My_lib) $(MLXFLAGS_LINK)  -o $@
+
 clean :
 	make clean -C ${Folder_lib}
-	rm -rf $(OBJ)
+	rm -rf  $(OBJ) $(OBJB)
 
 fclean : clean
 	make fclean -C ${Folder_lib}
-	rm -rf $(NAME)
+	rm -rf $(NAME) $(NAMEB)
 
 re : fclean all
 
