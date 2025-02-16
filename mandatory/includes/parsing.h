@@ -6,7 +6,7 @@
 /*   By: blacksniper <blacksniper@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/20 13:39:01 by aohssine          #+#    #+#             */
-/*   Updated: 2025/02/15 23:32:31 by blacksniper      ###   ########.fr       */
+/*   Updated: 2025/02/16 02:11:35 by blacksniper      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,13 @@
 # include <string.h>
 # include <unistd.h>
 
+
+/* BONUS HEADER */
+
+#include"parsing_bonus.h"
+
 /*   LIB   */
+
 # include "../../lib/gnl/get_next_line.h"
 # include "../../lib/libft/libft.h"
 

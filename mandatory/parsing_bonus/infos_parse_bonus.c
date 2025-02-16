@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   infos_parse.c                                      :+:      :+:    :+:   */
+/*   infos_parse_bonus.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: blacksniper <blacksniper@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/20 17:22:54 by aohssine          #+#    #+#             */
-/*   Updated: 2025/02/16 01:45:59 by blacksniper      ###   ########.fr       */
+/*   Updated: 2025/02/16 01:52:44 by blacksniper      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -153,7 +153,7 @@ t_pre_data	* read_file(char *file)
 				free_map(dt->info), free_map(dt->map), free(dt), printf("map null after list to array\n"), NULL);
 		if (valid_map(dt->data->map))
 			return (free_split(dt->data->map), free(dt->data), close(fd_map),
-				free_map(dt->info), free_map(dt->map), free(dt), printf("not a vaid map\n"), NULL);
+				free_map(dt->info), free_map(dt->map), free(dt), printf("not a vaild map\n"), NULL);
 	}
 	return (fill_data(dt), free_map(dt->map), close(fd_map), dt);
 }
