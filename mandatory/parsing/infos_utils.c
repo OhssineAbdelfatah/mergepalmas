@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   infos_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aohssine <aohssine@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: blacksniper <blacksniper@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 18:02:25 by aohssine          #+#    #+#             */
-/*   Updated: 2025/02/15 22:54:15 by aohssine         ###   ########.fr       */
+/*   Updated: 2025/02/16 01:20:20 by blacksniper      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,20 +89,13 @@ int get_type(char *line)
 	int type;
 
 	type = NO_TYPE;
-	tokens = ft_split(line, ' ');
+	tokens = split2(line);
 	if (!tokens)
 		return (type);
-	if (tokens[0])
-		type = return_type(tokens[0]);
-	if (ft_strslen(tokens) >= 2 && __type_tex(type))
-	{
-		if (tex_name_with_spaces(tokens[0], line))
-			return (free_split(tokens), NO_TYPE);
-		return (free_split(tokens), type);
-	}
-	else 
 	if (ft_strslen(tokens) != 2)
 		return (free_split(tokens), type);
+	if (tokens[0])
+		type = return_type(tokens[0]);
 	if (__type_tex(type))
 	{
 		if (handel_file(tokens[1]))

@@ -38,12 +38,14 @@ char	*find_info_value(int type, t_map_lst *info)
 
 char	*fetch_index_splited(char *str, int index, char set)
 {
+	(void)index;
+	(void)set;
 	char	**strs;
 	char	*new;
 
-	strs = ft_split(str, set);
-	if (index > ft_strslen(strs) || index < 0)
-		return (free_split(strs), NULL);
-	new = ft_strdup(strs[index]);
+	strs = split2(str);
+	// if (index > ft_strslen(strs) || index < 0)
+		// return (free_split(strs), NULL);
+	new = ft_strdup(strs[1]);
 	return (free_split(strs), new);
 }

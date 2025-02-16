@@ -6,7 +6,7 @@
 /*   By: blacksniper <blacksniper@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/20 17:22:54 by aohssine          #+#    #+#             */
-/*   Updated: 2025/02/15 23:33:08 by blacksniper      ###   ########.fr       */
+/*   Updated: 2025/02/16 01:20:52 by blacksniper      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -165,18 +165,22 @@ char **split2(char *base)
 {
 	char **strs;
 	char **new;
-	new = (char **)malloc(sizeof(char*) *3);
 	strs = ft_split(base, 32);
-	if(!new || !strs)
+	if(!strs)
 		return NULL;
 	if(ft_strslen(strs) == 1){
+		new = (char **)malloc(sizeof(char*) *2);
+		if(!new)
+			return NULL;
 		new[0] = ft_strdup(strs[0]);
 		new[1] = NULL;
-		new[2] = NULL;
 	}
 	else if (ft_strslen(strs) > 1){
+		new = (char **)malloc(sizeof(char*) *3);
+		if(!new)
+			return NULL;
 		new[0] = ft_strdup(strs[0]);
-		new[1] = ft_strchr(base,strs[1][0]);
+		new[1] = ft_strdup(ft_strchr(base,strs[1][0]));
 		new[2] = NULL;	
 	}	
 	return (free_split(strs), new);
