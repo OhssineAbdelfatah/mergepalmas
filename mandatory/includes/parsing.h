@@ -6,7 +6,7 @@
 /*   By: blacksniper <blacksniper@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/20 13:39:01 by aohssine          #+#    #+#             */
-/*   Updated: 2025/01/26 20:43:26 by blacksniper      ###   ########.fr       */
+/*   Updated: 2025/02/16 02:11:35 by blacksniper      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,13 @@
 # include <string.h>
 # include <unistd.h>
 
+
+/* BONUS HEADER */
+
+#include"parsing_bonus.h"
+
 /*   LIB   */
+
 # include "../../lib/gnl/get_next_line.h"
 # include "../../lib/libft/libft.h"
 
@@ -123,7 +129,7 @@ void 						free_data(t_parse_data* data);
 t_pre_data					*read_file(char *file);
 t_map_lst					*get_map_infos(int fd_map);
 int							check_unicty_infos(t_map_lst *list);
-
+char **split2(char *base);
 /*  inofs_utils */
 int							get_type(char *line);
 int							__type_tex(int type);

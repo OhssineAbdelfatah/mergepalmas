@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   valid_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: blacksniper <blacksniper@student.42.fr>    +#+  +:+       +#+        */
+/*   By: aohssine <aohssine@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 11:16:34 by aohssine          #+#    #+#             */
-/*   Updated: 2025/01/26 21:46:15 by blacksniper      ###   ########.fr       */
+/*   Updated: 2025/02/16 20:43:15 by aohssine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ t_pos	first_corner(char **map)
 		indx.x_hor = 0;
 		while (map[indx.y_ver][indx.x_hor])
 		{
-			if (map[indx.y_ver][indx.x_hor] == '0')
+			if (map[indx.y_ver][indx.x_hor] == '0' || __direction(map[indx.y_ver][indx.x_hor]))
 			{
 				return (indx);
 			}
@@ -49,7 +49,7 @@ int	check_directions_ver(char **map, t_pos pos)
 		&& map[pos.y_ver + 1][pos.x_hor] != '1'
 		&& !__direction(map[pos.y_ver + 1][pos.x_hor]))
 		return (1);
-	else if (pos.y_ver + 1 == (int)ft_strslen(map))
+	else if (pos.y_ver + 1 == (int)ft_strslen(map) || pos.y_ver - 1 < 0)
 		return (1);
 	return (0);
 }
