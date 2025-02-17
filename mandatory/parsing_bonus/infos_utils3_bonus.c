@@ -1,4 +1,16 @@
-#include "../includes/parsing.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   infos_utils3_bonus.c                               :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: aohssine <aohssine@student.1337.ma>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/02/17 17:37:39 by aohssine          #+#    #+#             */
+/*   Updated: 2025/02/17 17:56:44 by aohssine         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "../includes/parsing_bonus.h"
 
 void	find_pos(char **map, t_pos *pos)
 {
@@ -23,7 +35,6 @@ void	find_pos(char **map, t_pos *pos)
 	}
 	return ;
 }
-// norm
 
 char	*find_info_value(int type, t_map_lst *info)
 {

@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub.c                                              :+:      :+:    :+:   */
+/*   cub_bonus.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: blacksniper <blacksniper@student.42.fr>    +#+  +:+       +#+        */
+/*   By: aohssine <aohssine@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 18:00:24 by aohssine          #+#    #+#             */
-/*   Updated: 2025/02/12 18:01:50 by blacksniper      ###   ########.fr       */
+/*   Updated: 2025/02/17 17:56:03 by aohssine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/parsing.h"
+#include "../includes/parsing_bonus.h"
 
 int	check_ext(char *ext, char *base_ext)
 {
@@ -38,9 +38,9 @@ int	cube(char *ext, t_parse_data **data)
 		return (1);
 	dt = read_file(ext);
 	if (!dt)
-		return (free(dt), printf("read file\n"),1);
+		return (free(dt), printf("read file\n"), 1);
 	if (!dt->info)
-		return (free_map(dt->info), free(dt),printf("dt info null\n"), 1);
+		return (free_map(dt->info), free(dt), printf("dt info null\n"), 1);
 	*data = dt->data;
 	free_map(dt->info);
 	free(dt);

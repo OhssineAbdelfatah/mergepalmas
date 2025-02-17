@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   safe_func.c                                        :+:      :+:    :+:   */
+/*   safe_func_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: blacksniper <blacksniper@student.42.fr>    +#+  +:+       +#+        */
+/*   By: aohssine <aohssine@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 18:02:39 by aohssine          #+#    #+#             */
-/*   Updated: 2025/02/12 18:07:01 by blacksniper      ###   ########.fr       */
+/*   Updated: 2025/02/17 17:57:14 by aohssine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/parsing.h"
+#include "../includes/parsing_bonus.h"
 
 void	**safe__malloc(void)
 {

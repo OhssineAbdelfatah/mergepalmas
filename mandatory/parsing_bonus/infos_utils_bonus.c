@@ -3,19 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   infos_utils_bonus.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: blacksniper <blacksniper@student.42.fr>    +#+  +:+       +#+        */
+/*   By: aohssine <aohssine@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 18:02:25 by aohssine          #+#    #+#             */
-/*   Updated: 2025/02/17 01:03:31 by blacksniper      ###   ########.fr       */
+/*   Updated: 2025/02/17 17:56:34 by aohssine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/parsing.h"
+#include "../includes/parsing_bonus.h"
 
-int valid_set(char *set)
+int	valid_set(char *set)
 {
-	char **sets;
-	int i;
+	char	**sets;
+	int		i;
 
 	sets = ft_split(set, ',');
 	if (!sets)
@@ -36,7 +36,7 @@ int valid_set(char *set)
 }
 
 // tsawer bach biti tkhdem abatal
-int handel_file(char *texture)
+int	handel_file(char *texture)
 {
 	if (check_ext(texture, ".png"))
 	{
@@ -51,20 +51,21 @@ int handel_file(char *texture)
 	return (0);
 }
 
-int __type_color(int type)
+int	__type_color(int type)
 {
 	return (type == CEILEING || type == FLOOR);
 }
 
-int __type_tex(int type)
+int	__type_tex(int type)
 {
-	return (type == IMG_EA || type == IMG_NO || type == IMG_SO || type == IMG_WE);
+	return (type == IMG_EA || type == IMG_NO || type == IMG_SO
+		|| type == IMG_WE);
 }
 
-int get_type(char *line)
+int	get_type(char *line)
 {
-	char **tokens;
-	int type;
+	char	**tokens;
+	int		type;
 
 	type = NO_TYPE;
 	tokens = split2(line);

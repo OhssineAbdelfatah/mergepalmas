@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   infos_utils2.c                                     :+:      :+:    :+:   */
+/*   infos_utils2_bonus.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: blacksniper <blacksniper@student.42.fr>    +#+  +:+       +#+        */
+/*   By: aohssine <aohssine@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 18:02:28 by aohssine          #+#    #+#             */
-/*   Updated: 2025/01/26 21:38:37 by blacksniper      ###   ########.fr       */
+/*   Updated: 2025/02/17 17:56:38 by aohssine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/parsing.h"
+#include "../includes/parsing_bonus.h"
 
 int	return_type(char *tokens)
 {
