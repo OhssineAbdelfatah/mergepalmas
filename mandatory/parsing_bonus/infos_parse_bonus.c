@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   infos_parse_bonus.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aohssine <aohssine@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: blacksniper <blacksniper@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/20 17:22:54 by aohssine          #+#    #+#             */
-/*   Updated: 2025/02/16 23:20:16 by aohssine         ###   ########.fr       */
+/*   Updated: 2025/02/17 02:02:12 by blacksniper      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,29 +85,18 @@ t_map_lst	*get_map_infos(int fd_map)
 	return (dt.map_lst);
 }
 
-void	fill_data(t_pre_data *dt)
+void fill_colors(t_pre_data* dt)
 {
 	char	***sets;
 	char	*set1;
 	char	*set2;
 	int		count;
-
+	
 	count = 0;
-	dt->data->tex_ea = fetch_index_splited(find_info_value(IMG_EA, dt->info), 1,
-			' ');
-	dt->data->tex_so = fetch_index_splited(find_info_value(IMG_SO, dt->info), 1,
-			' ');
-	dt->data->tex_we = fetch_index_splited(find_info_value(IMG_WE, dt->info), 1,
-			' ');
-	dt->data->tex_no = fetch_index_splited(find_info_value(IMG_NO, dt->info), 1,
-			' ');
-	dt->data->pos = malloc(sizeof(t_pos));
-	find_pos(dt->data->map, dt->data->pos);
-	dt->data->dir = dt->data->map[dt->data->pos->y_ver][dt->data->pos->x_hor];
 	sets = (char ***)malloc(2 * sizeof(char **));
-	set1 = fetch_index_splited(find_info_value(FLOOR, dt->info), 1, ' ');
+	set1 = fetch_index_splited(find_info_value(FLOOR, dt->info));
 	sets[0] = ft_split(set1, ',');
-	set2 = fetch_index_splited(find_info_value(CEILEING, dt->info), 1, ' ');
+	set2 = fetch_index_splited(find_info_value(CEILEING, dt->info));
 	sets[1] = ft_split(set2, ',');
 	dt->data->clr_f = malloc(3 * sizeof(int));
 	dt->data->clr_c = malloc(3 * sizeof(int));
@@ -122,6 +111,21 @@ void	fill_data(t_pre_data *dt)
 	free_split(sets[0]);
 	free_split(sets[1]);
 	free(sets);
+	return ;
+}
+
+void	fill_data(t_pre_data *dt)
+{
+
+	dt->data->tex_ea = fetch_index_splited(find_info_value(IMG_EA, dt->info));
+	dt->data->tex_so = fetch_index_splited(find_info_value(IMG_SO, dt->info));
+	dt->data->tex_we = fetch_index_splited(find_info_value(IMG_WE, dt->info));
+	dt->data->tex_no = fetch_index_splited(find_info_value(IMG_NO, dt->info));
+	dt->data->pos = malloc(sizeof(t_pos));
+	find_pos(dt->data->map, dt->data->pos);
+	dt->data->dir = dt->data->map[dt->data->pos->y_ver][dt->data->pos->x_hor];
+	fill_colors(dt);
+	return ;
 }
 
 t_pre_data	* read_file(char *file)

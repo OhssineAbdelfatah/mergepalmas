@@ -6,7 +6,7 @@
 /*   By: blacksniper <blacksniper@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/20 13:39:01 by aohssine          #+#    #+#             */
-/*   Updated: 2025/02/16 02:11:35 by blacksniper      ###   ########.fr       */
+/*   Updated: 2025/02/17 00:58:51 by blacksniper      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -144,7 +144,7 @@ int							file_exist(char *path);
 
 void						find_pos(char **map, t_pos *pos);
 char						*find_info_value(int type, t_map_lst *info);
-char						*fetch_index_splited(char *str, int index, char set);
+char						*fetch_index_splited(char *str);
 
 /*  list init   */
 t_map_lst					*create_node(char *value, int type);

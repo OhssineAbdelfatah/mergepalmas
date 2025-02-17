@@ -6,7 +6,7 @@
 /*   By: blacksniper <blacksniper@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 23:30:04 by aohssine          #+#    #+#             */
-/*   Updated: 2025/01/26 21:40:35 by blacksniper      ###   ########.fr       */
+/*   Updated: 2025/02/17 01:35:20 by blacksniper      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ t_map_lst	*check_map(int fd_map)
 		add_back(&dt.map_lst, &dt.tail, dt.nd);
 	}
 	if (!dt.map_lst)
-		return (get_next_line(-1), printf("empty file\n"), dt.map_lst);
+		return (get_next_line(-1), printf("empty file\n"), NULL);
 	clean_map_updown(&(dt.map_lst));
 	clean_map_downup(&(dt.map_lst));
 	return (get_next_line(-1), dt.map_lst);

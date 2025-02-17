@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   infos_utils.c                                      :+:      :+:    :+:   */
+/*   infos_utils_bonus.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: blacksniper <blacksniper@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 18:02:25 by aohssine          #+#    #+#             */
-/*   Updated: 2025/02/16 01:20:20 by blacksniper      ###   ########.fr       */
+/*   Updated: 2025/02/17 01:03:31 by blacksniper      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,28 +59,6 @@ int __type_color(int type)
 int __type_tex(int type)
 {
 	return (type == IMG_EA || type == IMG_NO || type == IMG_SO || type == IMG_WE);
-}
-
-/*
-	u caan split textures chcek and colors sets
-*/
-// texture name with spaces should handeld here in second if
-int tex_name_with_spaces(char *first_str, char *info)
-{
-	int i;
-	
-	i = ft_strlen(first_str);
-	if (i != 0 && info[i+1])
-	{
-		while(info[++i])
-		{
-			if(!__space(info[i]))
-			break;
-		}
-		if (handel_file(info + i))
-			return 1;
-	}
-	return 0;
 }
 
 int get_type(char *line)

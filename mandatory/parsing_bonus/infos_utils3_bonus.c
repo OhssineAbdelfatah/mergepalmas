@@ -36,16 +36,12 @@ char	*find_info_value(int type, t_map_lst *info)
 	return (NULL);
 }
 
-char	*fetch_index_splited(char *str, int index, char set)
+char	*fetch_index_splited(char *str)
 {
-	(void)index;
-	(void)set;
 	char	**strs;
 	char	*new;
 
 	strs = split2(str);
-	// if (index > ft_strslen(strs) || index < 0)
-		// return (free_split(strs), NULL);
 	new = ft_strdup(strs[1]);
 	return (free_split(strs), new);
 }

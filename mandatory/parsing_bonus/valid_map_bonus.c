@@ -6,7 +6,7 @@
 /*   By: blacksniper <blacksniper@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 11:16:34 by aohssine          #+#    #+#             */
-/*   Updated: 2025/02/17 00:02:50 by blacksniper      ###   ########.fr       */
+/*   Updated: 2025/02/17 02:05:49 by blacksniper      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,8 @@ t_pos	first_corner(char **map)
 int	check_directions_ver(char **map, t_pos pos)
 {
 	if (pos.y_ver - 1 >= 0 && pos.x_hor >= (int)ft_strlen(map[pos.y_ver - 1]))
+		return (1);
+	else if(pos.y_ver + 1 < ft_strslen(map) && pos.x_hor >= (int)ft_strlen(map[pos.y_ver +1 ])) 
 		return (1);
 	else if (pos.y_ver - 1 >= 0
 		&& pos.x_hor < (int)ft_strlen(map[pos.y_ver - 1])

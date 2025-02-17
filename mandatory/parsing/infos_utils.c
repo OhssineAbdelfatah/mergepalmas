@@ -6,16 +6,16 @@
 /*   By: blacksniper <blacksniper@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 18:02:25 by aohssine          #+#    #+#             */
-/*   Updated: 2025/02/16 01:20:20 by blacksniper      ###   ########.fr       */
+/*   Updated: 2025/02/17 01:03:38 by blacksniper      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/parsing.h"
 
-int valid_set(char *set)
+int	valid_set(char *set)
 {
-	char **sets;
-	int i;
+	char	**sets;
+	int		i;
 
 	sets = ft_split(set, ',');
 	if (!sets)
@@ -35,8 +35,7 @@ int valid_set(char *set)
 	return (0);
 }
 
-// tsawer bach biti tkhdem abatal
-int handel_file(char *texture)
+int	handel_file(char *texture)
 {
 	if (check_ext(texture, ".png"))
 	{
@@ -51,42 +50,21 @@ int handel_file(char *texture)
 	return (0);
 }
 
-int __type_color(int type)
+int	__type_color(int type)
 {
 	return (type == CEILEING || type == FLOOR);
 }
 
-int __type_tex(int type)
+int	__type_tex(int type)
 {
-	return (type == IMG_EA || type == IMG_NO || type == IMG_SO || type == IMG_WE);
+	return (type == IMG_EA || type == IMG_NO || type == IMG_SO
+		|| type == IMG_WE);
 }
 
-/*
-	u caan split textures chcek and colors sets
-*/
-// texture name with spaces should handeld here in second if
-int tex_name_with_spaces(char *first_str, char *info)
+int	get_type(char *line)
 {
-	int i;
-	
-	i = ft_strlen(first_str);
-	if (i != 0 && info[i+1])
-	{
-		while(info[++i])
-		{
-			if(!__space(info[i]))
-			break;
-		}
-		if (handel_file(info + i))
-			return 1;
-	}
-	return 0;
-}
-
-int get_type(char *line)
-{
-	char **tokens;
-	int type;
+	char	**tokens;
+	int		type;
 
 	type = NO_TYPE;
 	tokens = split2(line);
