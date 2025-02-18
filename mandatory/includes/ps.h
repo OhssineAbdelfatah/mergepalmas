@@ -13,7 +13,7 @@
 
 
 void shoot_the_rays(t_main_s * var);
-int need_update(t_main_s *main, t_player_infos * var, char **map);
+int need_update(t_main_s *main, t_player_infos * var);
 
 
 /*************************************************/
@@ -27,6 +27,7 @@ int check_teleportation(t_player_infos *var, char **map);
 //            >>    TEXTURES.C     <<
 /*************************************************/
 
+t_text	*which_texture(t_ray_info *ray, t_text **texture);
 int calc_x_img(int hor_or_ver, t_ray_info *ray, double wall_hiegt, double img_w);
 int calc_y_img(int y_proj ,int wall_hiegt , int img_h);
 
@@ -35,16 +36,7 @@ int calc_y_img(int y_proj ,int wall_hiegt , int img_h);
 //            >>    DRAWING.C     <<
 /*************************************************/
 
-void draw_square(t_main_s *var, int x, int y);
-void draw_a_line(t_main_s *var, int s_x, int s_y, int f_x, int f_y, int color);
-void  draw_empty_square(t_main_s *var,int  y, int x);
-void draw_disk(t_main_s *var, int x_c, int y_c, int radius);
-void draw_disk1(t_main_s *var, int x_c, int y_c, int radius);
-void draw_disk11(mlx_image_t *img ,int x_c, int y_c, int radius, int color);
-void draw_disk2(t_test *var, int x_c, int y_c, int radius);
-void draw_disk3(t_test *var, int x_c, int y_c, int radius);
-void draw_square_for_mini(mlx_image_t *img, int x, int y, int color);
-void  draw_empty_square_for_mini(mlx_image_t *img,  int  y, int x);
+void draw_disk(mlx_image_t *img ,int x_c, int y_c, int radius, int color);
 void draw_a_line2(t_main_s *var, int s_x, int s_y, int f_x, int f_y, int color, mlx_image_t *img);
 
 /*************************************************/
@@ -104,31 +96,54 @@ int is_it_the_player(char c);
 int	gettt_rgba(uint8_t *color);
 
 /*************************************************/
+//            >>   CASTING_TOOLS_2.C     <<
+/*************************************************/
+
+void	set_ray_direction(t_ray_info *var, double ray_angle);
+void	set_ray_infos(t_ray_info *ray, char which_one, t_x_and_y_d x_y,
+		double distance);
+void	init_cast_ray_s(t_cast_rays *func);
+int	is_straight_ray(t_main_s *var, t_cast_rays *func, int i);
+void	set_doors_infos(t_main_s *var, t_x_and_y_d xy_door, int i, int from);
+
+
+/*************************************************/
 //            >>   CASTING.C     <<
 /*************************************************/
 void init_cst_vert(t_casting *cst, t_main_s *var, int i);
 void init_cst_horiz(t_casting *cst, t_main_s *var, int i);
-// int hit_a_wall(t_casting *cst, t_main_s *var, int i, int ref);
 double cast_vertically(t_main_s *var, int i, t_x_and_y_d *xy, t_x_and_y_d* door_xy);
 double cast_horizontally(t_main_s *var, int i, t_x_and_y_d *xy, t_x_and_y_d* door_xy);
 int hit_a_wall(t_main_s *var, double xintersection, double yintersection, int i);
 int hit_a_door(t_main_s *var, double xintersection, double yintersection, int i);
 
 /*************************************************/
+//            >>   PLAYER_MOVE_HOOKS.C     <<
+/*************************************************/
+void turnning_around(mlx_key_data_t key, t_main_s *ptr);
+void	moving_around(mlx_key_data_t key, t_main_s *ptr);
+void	looking_up_nd_down(mlx_key_data_t key, t_main_s *ptr);
+void	key_hook(mlx_key_data_t key, void *var);
+void	cursor_func(double xpos, double ypos, void *param);
+
+
+/*************************************************/
+//       >>   SHOOTING_ANIMATION_BONUS.C     <<
+/*************************************************/
+
+void	display_shooting(t_main_s *var);
+void	redisplay_the_gun(t_main_s *var);
+void	shoot_them_mfs(t_main_s *var);
+void	mouse_hook(mouse_key_t button, action_t action, modifier_key_t mods,
+		void *param);
+
+
+/*************************************************/
 //            >>   HOOKS_ND_LOOPS.C     <<
 /*************************************************/
-// int key_hook(int key, t_main_s *ptr);
-void key_hook(mlx_key_data_t key, void *var);
 // int loop_hook(t_main_s *var);
 void loop_hook(void *ptr);
 void mlx_loops_and_hooks(t_main_s *var);
-
-/*-------------DIRECTIONS-----------*/
-int         turn_left(t_main_s *ptr);
-int        turn_right(t_main_s *ptr);
-int        go_back(t_main_s *ptr);
-int        go_forward(t_main_s *ptr);
-
 
 /****************************************************/
 //          >> DRAW_MINI_MAP  <<
@@ -136,10 +151,8 @@ int        go_forward(t_main_s *ptr);
 int draw_mini_map_42(t_main_s *var);
 
 /****************************TMP************ */
-void fill_map(char **av,t_main_s *var);
 void work_of_art(t_main_s *var, int shoot);
 void wall_rendering(t_main_s *var);
-// void paintit(mlx_image_t *img, int color, int hight, int width);
 void paintit(mlx_image_t *img, int color, t_xy_i *start, t_xy_i *till);
 
 
@@ -147,19 +160,12 @@ void paintit(mlx_image_t *img, int color, t_xy_i *start, t_xy_i *till);
 //                      >> BONUS.C <<
 /************************************************************/
 
-
-void fps_hands_rendring(t_main_s *var);
-void draw_crosshairs(t_main_s *var, int len ,int width, int color);
-void obj_rebdering(t_main_s *var);
-int get_color(t_main_s *var, t_text *img, int x, int y);
-
 void count_obj_enemi(t_main_s *var);
 t_player_bonus *init_player_bonus(t_main_s *var, t_player_infos *ptr);
 
 
 
 int	get_color_obj(t_main_s *var, t_render_obj func);
-// int get_color_obj(t_main_s *var, int obj_height, int obj_width, int x, int y);
 void update_obj_data(t_main_s *var,  t_player_infos *p_var, t_obj *obj,int nbr_obj);
 void render_objects(t_main_s *var, t_player_bonus *p_ptr);
 
@@ -170,7 +176,7 @@ void render_enemies(t_main_s *var, t_player_bonus *p_ptr);
 void adjust_rank_enemies(t_enemy *enemy, int max);
 
 long long	get_time_mil(void);
-void draw_health_bar(t_main_s *var);
+void draw_health_bar(t_main_s *var,t_health_bar *bar);
 void shoot_them_mfs(t_main_s *var);
 void redisplay_the_gun(t_main_s * var);
 
@@ -197,7 +203,7 @@ void free_rays(t_main_s *var);
 int is_there_door(t_rays_bonus* ray, t_main_s *var, int ray_nbr);
 void    draw_door(t_main_s *var,t_walls *walls, int i, int j, double offset);
 void free_p_info(t_player_infos *player, t_main_s *var);
-void        free_p_bonus(t_player_bonus* player_b);
+void        free_p_bonus(t_main_s *var, t_player_bonus* player_b);
 void free_minimap(t_main_s *var ,t_mini_map *mini_map);
 void free_text(t_text *text);
 void free_texts(t_text **text);
@@ -213,5 +219,23 @@ void free_all(t_main_s *var);
 
 bool	check_doors_for_obj_rendering(t_main_s *var, t_player_bonus *ptr, int i,
 		int ray_to_inspect);
+
+/************************************************************/
+//                      >> ENEMIES_TOOLS_BONUS.C <<
+/************************************************************/
+
+// int	get_color_enemy(t_main_s *var, int enemy_height, int enemy_width, int x,
+// 		int y, int i);
+
+int	get_color_enemy(t_main_s *var, t_render_enemy *func, int enemy_height, int enemy_width);
+
+bool	check_for_doors(t_main_s *var, t_player_bonus *ptr, int i,
+		int ray_to_inspect);
+void	chase_player(t_main_s *var, t_player_infos *p_player, t_enemy *enemy,
+		int i);
+void	damage_player(t_player_infos *player, t_enemy *enemy, int i);
+
+int	check_for_walls(t_main_s *var, t_player_infos *p_player, t_enemy *enemy,
+		int i);
 
 #endif

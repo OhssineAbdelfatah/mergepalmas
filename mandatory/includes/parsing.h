@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: blacksniper <blacksniper@student.42.fr>    +#+  +:+       +#+        */
+/*   By: aohssine <aohssine@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/20 13:39:01 by aohssine          #+#    #+#             */
-/*   Updated: 2025/02/16 02:11:35 by blacksniper      ###   ########.fr       */
+/*   Updated: 2025/02/17 18:00:21 by aohssine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,9 +34,9 @@
 # include <unistd.h>
 
 
-/* BONUS HEADER */
+// /* BONUS HEADER */
 
-#include"parsing_bonus.h"
+// #include"parsing_bonus.h"
 
 /*   LIB   */
 
@@ -129,7 +129,14 @@ void 						free_data(t_parse_data* data);
 t_pre_data					*read_file(char *file);
 t_map_lst					*get_map_infos(int fd_map);
 int							check_unicty_infos(t_map_lst *list);
-char **split2(char *base);
+char 						**split2(char *base);
+
+/*  inofs parse 2*/
+
+void	*free_error(t_pre_data *dt, int f_dt_map, int f_dt_data_map);
+void	fill_data(t_pre_data *dt);
+void	fill_colors(t_pre_data *dt);
+
 /*  inofs_utils */
 int							get_type(char *line);
 int							__type_tex(int type);
@@ -144,7 +151,7 @@ int							file_exist(char *path);
 
 void						find_pos(char **map, t_pos *pos);
 char						*find_info_value(int type, t_map_lst *info);
-char						*fetch_index_splited(char *str, int index, char set);
+char						*fetch_index_splited(char *str);
 
 /*  list init   */
 t_map_lst					*create_node(char *value, int type);

@@ -51,32 +51,31 @@ void	fill_obj(t_main_s *var, t_obj *obj, t_player_infos *p_var)
 void	asign_values_enemy(t_main_s *var, t_enemy *enemy, t_player_infos *p_var,
 		t_fill_enemy *func)
 {
-    if (var->map[func->y][func->x] == 'e')
-    {
-        enemy[func->i].alive = true;
-        enemy[func->i].x = (double)(func->x * square_len) + (square_len / 2);
-        enemy[func->i].y = (double)(func->y * square_len) + (square_len / 2);
-        enemy[func->i].x_screen = 0;
-        enemy[func->i].y_screen = 0;
-        enemy[func->i].enemy_height = 0;
-        enemy[func->i].enemy_width = 0;
-        enemy[func->i].enemy_teta = 0;
-        enemy[func->i].vector_teta = 0;
-        enemy[func->i].vector_x = 0;
-        enemy[func->i].vector_y = 0;
-        enemy[func->i].distance = get_distance(p_var, func->x, func->y);
-        func->i++;
-    }
-
+	if (var->map[func->y][func->x] == 'e')
+	{
+		enemy[func->i].alive = true;
+		enemy[func->i].x = (double)(func->x * square_len) + (square_len / 2);
+		enemy[func->i].y = (double)(func->y * square_len) + (square_len / 2);
+		enemy[func->i].x_screen = 0;
+		enemy[func->i].y_screen = 0;
+		enemy[func->i].enemy_height = 0;
+		enemy[func->i].enemy_width = 0;
+		enemy[func->i].enemy_teta = 0;
+		enemy[func->i].vector_teta = 0;
+		enemy[func->i].vector_x = 0;
+		enemy[func->i].vector_y = 0;
+		enemy[func->i].distance = get_distance(p_var, func->x, func->y);
+		func->i++;
+	}
 }
 
 void	fill_enemy(t_main_s *var, t_enemy *enemy, t_player_infos *p_var)
 {
-    t_fill_enemy func;
+	t_fill_enemy	func;
 
-    func.x = 0;
-    func.y = 0;
-    func.i = 0;
+	func.x = 0;
+	func.y = 0;
+	func.i = 0;
 	while (var->map[func.y])
 	{
 		func.x = 0;

@@ -39,7 +39,7 @@ GNL = ../../lib/gnl/get_next_line.c ../../lib/gnl/get_next_line_utils.c
 PARSING = 	cub.c          infos_utils2.c map_check.c	\
 			infos_parse.c  list_init.c    map_parse.c	\
 			valid_map.c    infos_utils.c  list_utils.c	\
-			safe_func.c    main.c test.c  infos_utils3.c
+			safe_func.c    main.c test.c  infos_utils3.c infos_parse2.c
 			
 CFILES = ${PARSING} ${GNL}  main.c
  

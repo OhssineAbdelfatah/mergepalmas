@@ -52,8 +52,6 @@ void	free_d_arr(char **av)
 
 void	free_main_bonus(t_bonus *var, t_main_s *main)
 {
-	int	i;
-
 	if (var->door)
 		free_text(var->door);
 	if (var->dead_enemy_text)
@@ -66,7 +64,6 @@ void	free_main_bonus(t_bonus *var, t_main_s *main)
 		free_text(var->sky_text);
 	if (var->obj_img)
 		free_text(var->obj_img);
-	i = -1;
 	mlx_delete_image(main->mlx, var->crosshair_img);
 	free(var);
 }

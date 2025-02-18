@@ -41,6 +41,7 @@ typedef struct s_rays_bonus t_rays_bonus;
 typedef struct s_player_bonus t_player_bonus;
 typedef struct s_obj t_obj;
 typedef struct s_enemy t_enemy;
+typedef struct s_health_bar t_health_bar;
 typedef struct timeval			t_time;
 
 // {
@@ -277,10 +278,22 @@ struct s_enemy
     double distance;
 };
 
+struct s_health_bar
+{
+    mlx_image_t *health_img;
+	char *health_str;
+	int x;
+    int y;
+    int height;
+    int end;
+    int width;
+};
+
 struct s_player_bonus
 {
     t_obj *obj;
     t_enemy *enemy;
+    t_health_bar *h_bar;
 };
 
 struct s_calc_img

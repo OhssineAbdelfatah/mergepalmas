@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   test.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: blacksniper <blacksniper@student.42.fr>    +#+  +:+       +#+        */
+/*   By: aohssine <aohssine@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/20 13:39:59 by aohssine          #+#    #+#             */
-/*   Updated: 2025/01/16 01:08:56 by blacksniper      ###   ########.fr       */
+/*   Updated: 2025/02/17 16:59:31 by aohssine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,6 @@ void	print_data(t_parse_data *data)
 {
 	int	i;
 
-	// int oi = 0 ;
 	if (!data)
 		printf("data null \n");
 	print_str(data->tex_ea, "EA");

@@ -1,9 +1,9 @@
 #include "includes/ps.h"
 
-void	ff(void)
-{
-	system("leaks -q cub3D ");
-}
+// void	ff(void)
+// {
+// 	system("leaks -q cub3D ");
+// }
 
 /*  
     START GAME
@@ -19,8 +19,6 @@ int main(int ac, char **av)
 
     data = parse(ac, av);
     var = init_main_var(data);  
-    // av++;
-    // fill_map(av, var);
     // mlx_set_cursor_mode(var->mlx, MLX_MOUSE_DISABLED);
     work_of_art(var, 1);
     mlx_loops_and_hooks(var);

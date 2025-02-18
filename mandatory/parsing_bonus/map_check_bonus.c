@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map_check.c                                        :+:      :+:    :+:   */
+/*   map_check_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: blacksniper <blacksniper@student.42.fr>    +#+  +:+       +#+        */
+/*   By: aohssine <aohssine@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 23:30:04 by aohssine          #+#    #+#             */
-/*   Updated: 2025/01/26 21:40:35 by blacksniper      ###   ########.fr       */
+/*   Updated: 2025/02/17 17:57:01 by aohssine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/parsing.h"
+#include "../includes/parsing_bonus.h"
 
 char	*delete_nl(char *line)
 {
