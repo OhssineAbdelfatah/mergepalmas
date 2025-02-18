@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   list_init.c                                        :+:      :+:    :+:   */
+/*   list_init_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aohssine <aohssine@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/20 18:32:35 by aohssine          #+#    #+#             */
-/*   Updated: 2025/01/10 18:02:32 by aohssine         ###   ########.fr       */
+/*   Updated: 2025/02/17 17:56:48 by aohssine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/parsing.h"
+#include "../includes/parsing_bonus.h"
 
 t_map_lst	*create_node(char *value, int type)
 {

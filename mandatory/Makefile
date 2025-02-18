@@ -58,7 +58,7 @@ PARSING = 	parsing/cub.c          parsing/infos_utils2.c parsing/infos_utils3.c 
 			parsing/map_check.c	\
 			parsing/infos_parse.c  parsing/list_init.c    parsing/map_parse.c	\
 			parsing/valid_map.c    parsing/infos_utils.c  parsing/list_utils.c	\
-			parsing/safe_func.c    parsing/main.c parsing/test.c
+			parsing/safe_func.c    parsing/main.c parsing/test.c parsing/infos_parse2.c
 
 ENEMIES_OBJ = obj_enemies/obj_tools_bonus.c obj_enemies/obj_bonus.c\
 				obj_enemies/enemies_tools_bonus.c\
@@ -68,7 +68,8 @@ PARSING_B = parsing_bonus/cub_bonus.c          parsing_bonus/infos_utils2_bonus.
 			parsing_bonus/map_check_bonus.c		\
 			parsing_bonus/infos_parse_bonus.c  parsing_bonus/list_init_bonus.c    parsing_bonus/map_parse_bonus.c	\
 			parsing_bonus/valid_map_bonus.c    parsing_bonus/infos_utils_bonus.c  parsing_bonus/list_utils_bonus.c	\
-			parsing_bonus/safe_func_bonus.c    parsing_bonus/main.c parsing_bonus/test_bonus.c parsing_bonus/map_tools_bonus.c
+			parsing_bonus/safe_func_bonus.c    parsing_bonus/main.c parsing_bonus/test_bonus.c parsing_bonus/map_tools_bonus.c\
+			parsing_bonus/infos_parse2_bonus.c
 
 CFILES = ${PARSING} ${GNL} ${TEXTURES} ${ENEMIES_OBJ} ${GAME_FILES} ${BONUS_FILES} ${CONSTRUCTORS} ${CLEANING} main.c
 

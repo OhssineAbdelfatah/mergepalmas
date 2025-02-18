@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   test.c                                             :+:      :+:    :+:   */
+/*   test_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: blacksniper <blacksniper@student.42.fr>    +#+  +:+       +#+        */
+/*   By: aohssine <aohssine@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/20 13:39:59 by aohssine          #+#    #+#             */
-/*   Updated: 2025/02/16 01:46:28 by blacksniper      ###   ########.fr       */
+/*   Updated: 2025/02/17 17:57:21 by aohssine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/parsing.h"
+#include "../includes/parsing_bonus.h"
 
 /*  print   test    only    */
 
@@ -44,9 +44,7 @@ void	print_map(t_map_lst *head, char dir)
 	{
 		while (head)
 		{
-			// print_type(head->type);
 			printf("[%s]\n", head->value);
-			// printf("*****************\n");
 			head = head->next;
 		}
 	}
@@ -86,7 +84,6 @@ void	print_data(t_parse_data *data)
 {
 	int	i;
 
-	// int oi = 0 ;
 	if (!data)
 		printf("data null \n");
 	print_str(data->tex_ea, "EA");
