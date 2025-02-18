@@ -36,14 +36,16 @@ ASCII_ART = "\033[31m\n"\
 
 GNL = ../lib/gnl/get_next_line.c ../lib/gnl/get_next_line_utils.c
 
-BONUS_FILES = game/obj_tools_bonus.c game/obj_bonus.c  \
-				game/draw_minimap.c game/draw_mini_map_pro.c game/bonus.c \
-				game/constructors_tools_bonus.c game/constructors_bonus.c \
-				game/drawing_things_bonus.c game/enemies_bonus.c  game/floor_ceilling_bonus.c
+CONSTRUCTORS = constructors/constructors.c constructors/constructors_2.c \
+				constructors/constructors_bonus.c constructors/constructors_tools_bonus.c
 
-GAME_FILES = game/hooks_nd_loops.c game/casting.c game/casting_tools.c  game/tools_2.c  game/tools.c game/walls_rendering.c game/rays.c \
-			game/drawing.c\
-			game/constructors_2.c  game/constructors.c\
+BONUS_FILES = 	game/draw_mini_map_pro.c game/bonus.c \
+				game/drawing_things_bonus.c game/floor_ceilling_bonus.c \
+				game/shooting_animation_bonus.c
+
+GAME_FILES = game/hooks_nd_loops.c game/casting_tools_2.c  game/casting.c game/casting_tools.c  game/tools_2.c\
+			game/tools.c game/walls_rendering.c game/rays.c \
+			game/drawing.c game/player_move_hooks.c\
 			game/player_move.c \
 			game/game.c
 
@@ -57,16 +59,20 @@ PARSING = 	parsing/cub.c          parsing/infos_utils2.c parsing/infos_utils3.c 
 			parsing/infos_parse.c  parsing/list_init.c    parsing/map_parse.c	\
 			parsing/valid_map.c    parsing/infos_utils.c  parsing/list_utils.c	\
 			parsing/safe_func.c    parsing/main.c parsing/test.c
-			
+
+ENEMIES_OBJ = obj_enemies/obj_tools_bonus.c obj_enemies/obj_bonus.c\
+				obj_enemies/enemies_tools_bonus.c\
+				obj_enemies/enemies_bonus.c
+
 PARSING_B = parsing_bonus/cub_bonus.c          parsing_bonus/infos_utils2_bonus.c parsing_bonus/infos_utils3_bonus.c \
 			parsing_bonus/map_check_bonus.c		\
 			parsing_bonus/infos_parse_bonus.c  parsing_bonus/list_init_bonus.c    parsing_bonus/map_parse_bonus.c	\
 			parsing_bonus/valid_map_bonus.c    parsing_bonus/infos_utils_bonus.c  parsing_bonus/list_utils_bonus.c	\
 			parsing_bonus/safe_func_bonus.c    parsing_bonus/main.c parsing_bonus/test_bonus.c parsing_bonus/map_tools_bonus.c
 
-CFILES = ${PARSING} ${GNL} ${TEXTURES} ${GAME_FILES} ${BONUS_FILES} ${CLEANING} main.c
+CFILES = ${PARSING} ${GNL} ${TEXTURES} ${ENEMIES_OBJ} ${GAME_FILES} ${BONUS_FILES} ${CONSTRUCTORS} ${CLEANING} main.c
 
-CFILESB = ${PARSING_B} ${GNL} ${TEXTURES} ${GAME_FILES} ${BONUS_FILES} ${CLEANING} main.c
+CFILESB = ${PARSING_B} ${GNL} ${TEXTURES} ${ENEMIES_OBJ} ${GAME_FILES} ${BONUS_FILES} ${CONSTRUCTORS} ${CLEANING} main.c
 
 OBJ = $(CFILES:.c=.o)
 OBJB = $(CFILESB:.c=.o)

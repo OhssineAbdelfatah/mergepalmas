@@ -7,36 +7,26 @@ void	free_minimap(t_main_s *var, t_mini_map *mini_map)
 	free(mini_map);
 }
 
-void	free_p_bonus(t_player_bonus *player_b)
+void	free_health_bar(t_main_s *var, t_health_bar *bar)
+{
+	if (bar->health_img)
+		mlx_delete_image(var->mlx, bar->health_img);
+	if (bar->health_str)
+		free(bar->health_str);
+	bar->health_str = NULL;
+	bar->health_img = NULL;
+	free(bar);
+}
+
+void	free_p_bonus(t_main_s *var, t_player_bonus *player_b)
 {
 	free(player_b->obj);
 	player_b->obj = NULL;
 	free(player_b->enemy);
 	player_b->enemy = NULL;
+	if (player_b->h_bar)
+		free_health_bar(var, player_b->h_bar);
 	free(player_b);
-}
-
-void	free_p_info(t_player_infos *player, t_main_s *var)
-{
-	if (!player)
-		return ;
-	if (player->walls)
-	{
-		free(player->walls);
-		player->walls = NULL;
-	}
-	if (player->rays)
-	{
-		free_rays(var);
-		player->rays = NULL;
-	}
-	if (player->p_bonus)
-	{
-		free_p_bonus(player->p_bonus);
-		player->p_bonus = NULL;
-	}
-	free(player);
-	player = NULL;
 }
 
 void	free_rays_bonus(t_ray_info *var)

@@ -12,45 +12,6 @@
 
 #include "../includes/ps.h"
 
-void	fill_map(char **av, t_main_s *var)
-{
-	int		fd;
-	int		maplen;
-	char	*line;
-	int		i;
-
-	i = 0;
-	maplen = 0;
-	fd = open(av[1], O_RDONLY);
-	if (fd < 0)
-	{
-		perror("path of the file is invalid !");
-		return ;
-	}
-	line = get_next_line(fd);
-	while (line)
-	{
-		if (maplen == 0)
-			maplen++;
-		free(line);
-		line = get_next_line(fd);
-		maplen++;
-	}
-	close(fd);
-	var->map = (char **)malloc(sizeof(char *) * (maplen + 1));
-	if (!var->map)
-		perror("malloc failed !\n");
-	fd = open(av[1], O_RDONLY);
-	while (i < maplen)
-	{
-		var->map[i] = get_next_line(fd);
-		i++;
-	}
-	var->map[i] = NULL;
-	var->map_hight = ft_dstr_len(var->map);
-	var->map_width = ft_strlen(var->map[0]) - 1;
-}
-
 void	count_obj_enemi(t_main_s *var)
 {
 	int	nbr_obj;
@@ -79,11 +40,50 @@ void	count_obj_enemi(t_main_s *var)
 	var->bonus->nbr_obj = nbr_obj;
 }
 
+// void	fill_map(char **av, t_main_s *var)
+// {
+// 	int		fd;
+// 	int		maplen;
+// 	char	*line;
+// 	int		i;
+
+// 	i = 0;
+// 	maplen = 0;
+// 	fd = open(av[1], O_RDONLY);
+// 	if (fd < 0)
+// 	{
+// 		perror("path of the file is invalid !");
+// 		return ;
+// 	}
+// 	line = get_next_line(fd);
+// 	while (line)
+// 	{
+// 		if (maplen == 0)
+// 			maplen++;
+// 		free(line);
+// 		line = get_next_line(fd);
+// 		maplen++;
+// 	}
+// 	close(fd);
+// 	var->map = (char **)malloc(sizeof(char *) * (maplen + 1));
+// 	if (!var->map)
+// 		perror("malloc failed !\n");
+// 	fd = open(av[1], O_RDONLY);
+// 	while (i < maplen)
+// 	{
+// 		var->map[i] = get_next_line(fd);
+// 		i++;
+// 	}
+// 	var->map[i] = NULL;
+// 	var->map_hight = ft_dstr_len(var->map);
+// 	var->map_width = ft_strlen(var->map[0]) - 1;
+// }
+
 // double get_ideal_distance(t_main_s  *var, int i)
 // {
 //     double new_y, new_x;
 //     new_y = var->p_infos->rays[i].bonus_rays->obj->x_intersection
-	// / square_len;
+// / square_len;
 //     (void)new_x;
 //     (void)new_y;
 //     return (0.0);
@@ -111,7 +111,7 @@ void	count_obj_enemi(t_main_s *var)
 //     {
 //         moy = (last - first) / 2;
 //         inc_to_adj_dstc = get_ideal_distance(var, first)
-	// - var->p_infos->rays[moy].bonus_rays->obj->distance;
+// - var->p_infos->rays[moy].bonus_rays->obj->distance;
 //     }
 //     (void)inc_to_adj_dstc;
 // }
@@ -170,13 +170,13 @@ void	count_obj_enemi(t_main_s *var)
 //     //         color = get_color(var, var->bonus->gun_in_hand_text, x, y);
 //     //         if (color)
 //     //             mlx_put_pixel(var->img2, x + (var->window_width * 0.5)  ,
-	// y + (var->window_height - (var->window_height * 0.6)) , color);
+// y + (var->window_height - (var->window_height * 0.6)) , color);
 //     //         y ++;
 //     //     }
 //     //     x++;
 //     // }
 //     // mlx_image_to_window(var->mlx, var->bonus->gun_img,
-	// var->window_width / 2, var->window_height / 2);
+// var->window_width / 2, var->window_height / 2);
 //     // var->bonus->gun_img->enabled = true;
 //     (void)var;
 //     }
@@ -189,7 +189,7 @@ void	count_obj_enemi(t_main_s *var)
 //     x = (int)floor(xintersection / square_len);
 //     y = (int)floor(yintersection / square_len);
 //     if (y < 0 || x < 0 || x >= var->map_hight
-	// || y > (int)ft_strlen(var->map[x]))
+// || y > (int)ft_strlen(var->map[x]))
 //         return (1);
 //     if (var->map[x][y] == '1')
 //         return (1);

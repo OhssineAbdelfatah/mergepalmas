@@ -53,7 +53,8 @@ void	sec_while(t_main_s *var, t_player_bonus *ptr, t_render_obj *func)
 				+ func->x_start);
 		func->color = get_color_obj(var, *func);
 		obj_dis = ptr->obj[func->i].distance;
-		if (func->ray_to_inspect >= 0 && func->ray_to_inspect < 1400
+		if (func->ray_to_inspect >= 0
+			&& func->ray_to_inspect < var->p_infos->nbr_rays
 			&& var->p_infos->rays[func->ray_to_inspect].distance > obj_dis
 			&& check_doors_for_obj_rendering(var, ptr, func->i,
 				func->ray_to_inspect))
