@@ -6,11 +6,11 @@
 /*   By: aohssine <aohssine@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 17:32:16 by aohssine          #+#    #+#             */
-/*   Updated: 2025/02/17 17:33:07 by aohssine         ###   ########.fr       */
+/*   Updated: 2025/02/17 19:04:54 by aohssine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include"../includes/parsing.h"
+#include "../includes/parsing.h"
 
 void	fill_colors(t_pre_data *dt)
 {

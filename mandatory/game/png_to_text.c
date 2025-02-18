@@ -39,19 +39,3 @@ int **gat_pixles(mlx_texture_t* img, int w, int h)
     }
     return pixs;
 }
-
-
-t_text *get_image(char *path)
-{
-    t_text *img;
-    mlx_texture_t *text;
-    text = safe_load(path);
-    img = malloc(sizeof(t_text));
-    if(!img )
-        return NULL;
-    img->pixels = gat_pixles(text, text->width, text->height);
-    img->hieght = text->height;
-    img->width = text->width;
-    mlx_delete_texture(text);
-    return img;
-}
