@@ -60,10 +60,10 @@ int	check_teleportation(t_player_infos *var, char **map)
 	if (one_of_the_four(var->rotation_angle))
 		return (0);
 	if (dir == UP_RIGHT || dir == UP_LEFT)
-		check = is_there_a_wall(var->x - floor(var->move_up_down * var->speed), var->y,
-				map);
+		check = is_there_a_wall(var->x - floor(var->move_up_down * var->speed),
+				var->y, map);
 	else if (dir == DOWN_LEFT || dir == DOWN_RIGHT)
-		check = is_there_a_wall(var->x + floor(var->move_up_down * var->speed), var->y,
-				map);
+		check = is_there_a_wall(var->x + floor(var->move_up_down * var->speed),
+				var->y, map);
 	return (check);
 }

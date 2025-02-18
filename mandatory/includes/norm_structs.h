@@ -109,16 +109,16 @@ struct s_draw_mini_map
 
 struct s_draw_line
 {
-    int s_x;
-    int s_y;
-    int f_x;
-    int f_y;
-    int color;
-    int dx;
-    int dy;
-    int sx;
-    int sy;
-    int err;
+   	int f_x;
+	int f_y;
+	int s_x;
+	int s_y;
+	int	dx;
+	int	dy;
+	int	sx;
+	int	sy;
+	int	err;
+	int	e2;
 };
 
 struct s_render_enemy 
