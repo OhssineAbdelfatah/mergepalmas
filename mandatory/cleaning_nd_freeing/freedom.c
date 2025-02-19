@@ -1,5 +1,28 @@
 #include "../includes/ps.h"
 
+void	free_p_info(t_player_infos *player, t_main_s *var)
+{
+	if (!player)
+		return ;
+	if (player->walls)
+	{
+		free(player->walls);
+		player->walls = NULL;
+	}
+	if (player->rays)
+	{
+		free_rays(var);
+		player->rays = NULL;
+	}
+	if (player->p_bonus)
+	{
+		free_p_bonus(var, player->p_bonus);
+		player->p_bonus = NULL;
+	}
+	free(player);
+	player = NULL;
+}
+
 void	free_all(t_main_s *var)
 {
 	if (!var)
@@ -10,8 +33,6 @@ void	free_all(t_main_s *var)
 		mlx_delete_image(var->mlx, var->img2);
 	if (var->text)
 		free_texts(var->text);
-	// if (var->map)
-	// 	free_d_arr(var->map);
 	if (var->bonus)
 		free_main_bonus(var->bonus, var);
 	if (var->parse)

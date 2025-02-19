@@ -261,6 +261,24 @@ void	update_obj_data(t_main_s *var, t_player_infos *p_var, t_obj *obj,
 	}
 }
 
+t_health_bar	*init_h_bar(t_player_infos *p_var)
+{
+	t_health_bar	*res;
+
+	res = (t_health_bar *)malloc(sizeof(*res));
+	if (!res)
+		panic("malloc failed !\n");
+	res->x = 0;
+	res->y = 0;
+	res->width = 300;
+	res->end = (int)floor((double)res->width * ((double)p_var->health
+				/ (double)p_var->max_health));
+	res->height = 30;
+	res->health_str = NULL;
+	res->health_img = NULL;
+	return (res);
+}
+
 t_player_bonus	*init_player_bonus(t_main_s *var, t_player_infos *p_var)
 {
 	t_player_bonus	*res;
@@ -277,5 +295,6 @@ t_player_bonus	*init_player_bonus(t_main_s *var, t_player_infos *p_var)
 	count_obj_enemi(var);
 	res->enemy = init_enemies_p(var, p_var);
 	res->obj = init_obj_p(var, p_var);
+	res->h_bar = init_h_bar(p_var);
 	return (res);
 }

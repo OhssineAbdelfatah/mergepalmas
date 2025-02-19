@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   game_structs.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ilaasri <ilaasri@student.1337.ma>          +#+  +:+       +#+        */
+/*   By: aohssine <aohssine@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/14 22:49:29 by ilaasri           #+#    #+#             */
-/*   Updated: 2025/02/14 22:49:30 by ilaasri          ###   ########.fr       */
+/*   Updated: 2025/02/18 23:42:04 by aohssine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ typedef struct s_rays_bonus t_rays_bonus;
 typedef struct s_player_bonus t_player_bonus;
 typedef struct s_obj t_obj;
 typedef struct s_enemy t_enemy;
+typedef struct s_health_bar t_health_bar;
 typedef struct timeval			t_time;
 
 // {
@@ -198,7 +199,7 @@ struct s_main_struct
     t_mini_map *mini_map;
     t_player_infos *p_infos;
     t_parse_data *parse;
-    // t_walls *walls;
+    t_walls *walls;
     /***********/
     //bonus
     /***********/
@@ -277,19 +278,32 @@ struct s_enemy
     double distance;
 };
 
+struct s_health_bar
+{
+    mlx_image_t *health_img;
+	char *health_str;
+	int x;
+    int y;
+    int height;
+    int end;
+    int width;
+};
+
 struct s_player_bonus
 {
     t_obj *obj;
     t_enemy *enemy;
+    t_health_bar *h_bar;
 };
 
 struct s_calc_img
 {
     double door_h;
-    int ray_nbr;
-    double img_w;
-    double img_door_w;
-    t_enemy *enemy;
+    double  offset;
+    int x_door;
+    int top;
+    int j;
+    
 };
 
 

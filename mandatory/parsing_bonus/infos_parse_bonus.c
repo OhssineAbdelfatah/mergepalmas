@@ -11,6 +11,10 @@
 /* ************************************************************************** */
 
 #include "../includes/parsing_bonus.h"
+#include "../includes/parsing.h"
+#include "../includes/parsing_bonus.h"
+
+
 
 int	check_unicty_infos(t_map_lst *list)
 {
