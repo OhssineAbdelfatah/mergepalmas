@@ -71,23 +71,6 @@ t_walls	*init_walls(t_main_s *ptr)
 	var->distance_prj_plane = (ptr->window_width / 2) / tan(((M_PI / 180) * 60)
 			/ 2);
 	var->wall_hight = 0;
-	var->prj_plane_height = square_len / 2;
+	var->prj_plane_height = SQ_LEN / 2;
 	return (var);
 }
-
-// void print_pixesl(t_text *img)
-// {
-//     int i ,j ;
-
-//     i = 0;
-//     while(i < img->hieght)
-//     {
-//         j= 0;
-//         while(j < img->width)
-//         {
-//             printf("pix[%d][%d] |%d|\n",i , j , img->pixels[i][j]);
-//             j++;
-//         }
-//         i++;
-//     }
-// }

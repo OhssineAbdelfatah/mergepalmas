@@ -72,36 +72,20 @@ void	init_cast_ray_s(t_cast_rays *func)
 	func->h_xy_door.hit_a_door = false;
 }
 
-void	set_doors_infos(t_main_s *var, t_x_and_y_d xy_door, int i, int from)
-{
-	var->p_infos->rays[i].bonus_rays->door->from = from;
-	var->p_infos->rays[i].bonus_rays->door->distance = xy_door.distance;
-	var->p_infos->rays[i].bonus_rays->door->x_intersection = xy_door.x;
-	var->p_infos->rays[i].bonus_rays->door->y_intersection = xy_door.y;
-}
-
 int	is_straight_ray(t_main_s *var, t_cast_rays *func, int i)
 {
 	if (fabs(var->p_infos->rays[i].angle - M_PI) < EPSILON
 		|| fabs(var->p_infos->rays[i].angle) < -EPSILON)
 	{
-		func->distance1 = cast_horizontally(var, i, &func->h_xy,
-				&func->h_xy_door);
+		func->distance1 = cast_horizontally(var, i, &func->h_xy);
 		set_ray_infos(&var->p_infos->rays[i], 'h', func->h_xy, func->distance1);
-		if (func->h_xy_door.distance)
-			var->p_infos->rays[i].bonus_rays->hit_a_door = true;
-		set_doors_infos(var, func->h_xy_door, i, 'h');
 		return (1);
 	}
 	if (fabs(var->p_infos->rays[i].angle - M_PI / 2) < EPSILON
 		|| fabs(var->p_infos->rays[i].angle - (M_PI + M_PI / 2)) < EPSILON)
 	{
-		func->distance1 = cast_vertically(var, i, &func->v_xy,
-				&func->v_xy_door);
+		func->distance1 = cast_vertically(var, i, &func->v_xy);
 		set_ray_infos(&var->p_infos->rays[i], 'v', func->v_xy, func->distance1);
-		if (func->v_xy_door.distance)
-			var->p_infos->rays[i].bonus_rays->hit_a_door = true;
-		set_doors_infos(var, func->v_xy_door, i, 'v');
 		return (1);
 	}
 	return (0);

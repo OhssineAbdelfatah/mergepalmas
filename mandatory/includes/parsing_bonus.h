@@ -12,9 +12,9 @@
 
 #ifndef PARSING_BONUS_H
 # define PARSING_BONUS_H
-#include"parsing.h"
+# include "parsing.h"
 
-int bonus_obj(char c);
+int	bonus_obj(char c);
 int	valid_door(char **map, t_pos p);
 
 #endif

@@ -17,6 +17,14 @@ int	gettt_rgba(uint8_t *color)
 	return (color[0] << 24 | color[1] << 16 | color[2] << 8 | color[3]);
 }
 
+int	create_rgba(int r, int g, int b)
+{
+	int	color;
+
+	color = (r << 24 | g << 16 | b << 8 | 255);
+	return (color);
+}
+
 long long	get_time_mil(void)
 {
 	long long	res;

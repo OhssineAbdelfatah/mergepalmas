@@ -33,7 +33,6 @@
 # include <string.h>
 # include <unistd.h>
 
-
 // /* BONUS HEADER */
 
 // #include"parsing_bonus.h"
@@ -45,7 +44,7 @@
 
 /*   STRUCT MAP   */
 typedef struct s_map_lst	t_map_lst;
-typedef struct s_parse_data t_parse_data;
+typedef struct s_parse_data	t_parse_data;
 typedef enum s_type
 {
 	IMG_WE,
@@ -85,7 +84,6 @@ struct						s_map_lst
 	t_map_lst				*prev;
 };
 
-
 typedef struct s_pos
 {
 	int						x_hor;
@@ -104,7 +102,7 @@ typedef struct s_pos
 // 	char					**map;
 // }							t_data;
 
-struct s_parse_data
+struct						s_parse_data
 {
 	char					**map;
 	char					*tex_no;
@@ -121,21 +119,22 @@ struct s_parse_data
 /////////////////////////////////////////////
 
 /*  cub */
-int							cube(char *ext, t_parse_data** data);
+int							cube(char *ext, t_parse_data **data);
 int							check_ext(char *ext, char *base_ext);
-void 						free_data(t_parse_data* data);
+void						free_data(t_parse_data *data);
 
 /*  inofs parse */
 t_pre_data					*read_file(char *file);
 t_map_lst					*get_map_infos(int fd_map);
 int							check_unicty_infos(t_map_lst *list);
-char 						**split2(char *base);
+char						**split2(char *base);
 
 /*  inofs parse 2*/
 
-void	*free_error(t_pre_data *dt, int f_dt_map, int f_dt_data_map);
-void	fill_data(t_pre_data *dt);
-void	fill_colors(t_pre_data *dt);
+void						*free_error(t_pre_data *dt, int f_dt_map,
+								int f_dt_data_map);
+void						fill_data(t_pre_data *dt);
+void						fill_colors(t_pre_data *dt);
 
 /*  inofs_utils */
 int							get_type(char *line);
@@ -183,21 +182,18 @@ int							__direction(char c);
 int							valid_map(char **s_map_lst);
 
 /*	safe functions	*/
-void					*safe_malloc(void);
-int						safe_open(char *file, t_pre_data *dt);
-void					**safe__malloc(void);
-
+void						*safe_malloc(void);
+int							safe_open(char *file, t_pre_data *dt);
+void						**safe__malloc(void);
 
 /*	main func	*/
-t_parse_data	*parse(int ac, char **av);
+t_parse_data				*parse(int ac, char **av);
 
 ///////////////////////////////////////////////////////////////////////
-
-
 
 /*TEST*/
 void						print_type(int type);
 void						print_map(t_map_lst *head, char dir);
-void print_data(t_parse_data* data);
+void						print_data(t_parse_data *data);
 /*TEST*/
 #endif

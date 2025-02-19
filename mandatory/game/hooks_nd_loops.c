@@ -48,37 +48,9 @@ int	need_update(t_main_s *main, t_player_infos *var)
 
 	func.move_steps = var->move_up_down * var->speed;
 	need_update_first_check(main, var, &func);
-	if (var->look_up_down || var->move_up_down != 0 || var->turn_arround != 0
+	if (var->move_up_down != 0 || var->turn_arround != 0
 		|| var->move_left_right != 0)
-	{
-		if (var->look_up_down == 1)
-			if (var->up_down_offset < (main->window_height / 3))
-				var->up_down_offset += var->speed * var->look_up_down * 4;
-		if (var->look_up_down == -1)
-			if (var->up_down_offset > (main->window_height / 3) * -1)
-				var->up_down_offset += var->speed * var->look_up_down * 4;
 		return (1);
-	}
-	return (0);
-}
-
-int	check_player_health(t_main_s *var)
-{
-	t_xy_i	start;
-	t_xy_i	end;
-
-	start.x = 0;
-	start.y = 0;
-	end.x = var->window_width;
-	end.y = var->window_height;
-	if (var->p_infos->health <= 0)
-	{
-		var->p_infos->alive = false;
-		paintit(var->img2, 0xFF3333FF, &start, &end);
-		mlx_put_string(var->mlx, "GAME OVER", var->window_width / 2,
-			var->window_height / 2);
-		return (1);
-	}
 	return (0);
 }
 
@@ -89,8 +61,6 @@ void	loop_hook(void *ptr)
 
 	var = (t_main_s *)ptr;
 	now = get_time_mil();
-	if (check_player_health(var))
-		return ;
 	if (need_update(var, var->p_infos))
 	{
 		work_of_art(var, 1);
@@ -105,45 +75,6 @@ void	loop_hook(void *ptr)
 void	mlx_loops_and_hooks(t_main_s *var)
 {
 	mlx_key_hook(var->mlx, key_hook, var);
-	mlx_mouse_hook(var->mlx, mouse_hook, var);
-	// mlx_cursor_hook(var->mlx, cursor_func, var);
 	mlx_loop_hook(var->mlx, loop_hook, var);
 	mlx_loop(var->mlx);
 }
-
-// void cursor_func(double xpos, double ypos, void* param)
-// {
-//     t_main_s *var;
-//     double delta_x, delta_y;
-
-//     var = (t_main_s *)param;
-
-//     // Calculate mouse deltas (change in position)
-//     delta_x = xpos - var->bonus->mouse_x;
-//     delta_y = ypos - var->bonus->mouse_y;
-
-//     // Check if the horizontal delta exceeds a threshold
-//     if (delta_x > 5) {
-//         var->p_infos->turn_arround = -1;  // Turn right
-//     } else if (delta_x < -5) {
-//         var->p_infos->turn_arround = 1;   // Turn left
-//     }
-
-//     // Check if the vertical delta exceeds a threshold
-//     if (delta_y > 5) {
-//         var->p_infos->look_up_down = -1;  // Look down
-//     } else if (delta_y < -5) {
-//         var->p_infos->look_up_down = 1; // Look up
-//     }
-
-//     // Update mouse position for the next frame
-//     var->bonus->mouse_x = xpos;
-//     var->bonus->mouse_y = ypos;
-
-//     // Optional: Reset mouse position to center if it goes out of bounds
-//     if (xpos < 0 || xpos > var->window_width || ypos < 0
-// || ypos > var->window_height) {
-//         mlx_set_mouse_pos(var->mlx, var->window_width / 2, var->window_height
-// / 2);
-//     }
-// }

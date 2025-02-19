@@ -50,31 +50,11 @@ void	free_d_arr(char **av)
 	free(av);
 }
 
-void	free_main_bonus(t_bonus *var, t_main_s *main)
-{
-	if (var->door)
-		free_text(var->door);
-	if (var->dead_enemy_text)
-		free_text(var->dead_enemy_text);
-	if (var->enemy_text)
-		free_text(var->enemy_text);
-	if (var->floor_text)
-		free_text(var->floor_text);
-	if (var->sky_text)
-		free_text(var->sky_text);
-	if (var->obj_img)
-		free_text(var->obj_img);
-	mlx_delete_image(main->mlx, var->crosshair_img);
-	free(var);
-}
-
 void	reset_them_all(t_main_s *var)
 {
 	var->map = NULL;
 	var->mlx = NULL;
 	var->img2 = NULL;
 	var->text = NULL;
-	var->mini_map = NULL;
 	var->p_infos = NULL;
-	var->bonus = NULL;
 }

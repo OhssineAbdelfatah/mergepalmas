@@ -78,17 +78,17 @@ t_bonus	*init_bonus(t_main_s *main)
 	var = (t_bonus *)malloc(sizeof(t_bonus));
 	if (!var)
 		panic("malloc faild! \n");
-	var->enemy_text = safe_img_cnv("../assets/textures/AGAHA1.png");
-	var->dead_enemy_text = safe_img_cnv("../assets/textures/AGAHL0.png");
-	var->door = safe_img_cnv("../assets/textures/doortile.png");
-	var->floor_text = safe_img_cnv("../assets/floor/Brick/brick1.png");
-	var->sky_text = safe_img_cnv("../assets/sky/FuzzySky/Sunset.png");
-	var->obj_img = safe_img_cnv("../assets/textures/EHEDC0.png");
-	var->gun_img[0] = get_mlximg(main, "../assets/textures/RGLGD0.png");
-	var->gun_img[1] = get_mlximg(main, "../assets/textures/RGLFA0.png");
-	var->gun_img[2] = get_mlximg(main, "../assets/textures/RGLFB0.png");
-	var->gun_img[3] = get_mlximg(main, "../assets/textures/RGLFC0.png");
-	var->crosshair_img = get_mlximg(main, "../assets/textures/techno1.png");
+	var->enemy_text = safe_img_cnv("./assets/textures/AGAHA1.png");
+	var->dead_enemy_text = safe_img_cnv("./assets/textures/AGAHL0.png");
+	var->door = safe_img_cnv("./assets/textures/doortile.png");
+	var->floor_text = safe_img_cnv("./assets/floor/Brick/brick1.png");
+	var->sky_text = safe_img_cnv("./assets/sky/FuzzySky/Sunset.png");
+	var->obj_img = safe_img_cnv("./assets/textures/EHEDC0.png");
+	var->gun_img[0] = get_mlximg(main, "./assets/textures/RGLGD0.png");
+	var->gun_img[1] = get_mlximg(main, "./assets/textures/RGLFA0.png");
+	var->gun_img[2] = get_mlximg(main, "./assets/textures/RGLFB0.png");
+	var->gun_img[3] = get_mlximg(main, "./assets/textures/RGLFC0.png");
+	var->crosshair_img = get_mlximg(main, "./assets/textures/techno1.png");
 	resizing_img_bonus(main, var);
 	var->gun_img[1]->enabled = false;
 	var->gun_img[2]->enabled = false;

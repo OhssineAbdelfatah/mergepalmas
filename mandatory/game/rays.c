@@ -12,28 +12,6 @@
 
 #include "../includes/ps.h"
 
-void	check_doors_stuff(t_main_s *var, t_cast_rays *func, int i)
-{
-	if (func->h_xy_door.distance)
-	{
-		var->p_infos->rays[i].bonus_rays->hit_a_door = true;
-		set_doors_infos(var, func->h_xy_door, i, 'h');
-		if (func->v_xy_door.distance)
-		{
-			if (func->v_xy_door.distance < func->h_xy_door.distance)
-			{
-				set_doors_infos(var, func->v_xy_door, i, 'v');
-			}
-		}
-	}
-	else
-	{
-		if (func->v_xy_door.distance)
-			var->p_infos->rays[i].bonus_rays->hit_a_door = true;
-		set_doors_infos(var, func->v_xy_door, i, 'v');
-	}
-}
-
 void	cast_ray(t_main_s *var, int i)
 {
 	t_cast_rays	func;
@@ -41,13 +19,12 @@ void	cast_ray(t_main_s *var, int i)
 	init_cast_ray_s(&func);
 	if (is_straight_ray(var, &func, i))
 		return ;
-	func.distance1 = cast_horizontally(var, i, &func.h_xy, &func.h_xy_door);
-	func.distance2 = cast_vertically(var, i, &func.v_xy, &func.v_xy_door);
+	func.distance1 = cast_horizontally(var, i, &func.h_xy);
+	func.distance2 = cast_vertically(var, i, &func.v_xy);
 	if (func.distance1 < func.distance2 || func.distance1 == func.distance2)
 		set_ray_infos(&var->p_infos->rays[i], 'h', func.h_xy, func.distance1);
 	else if (func.distance1 > func.distance2)
 		set_ray_infos(&var->p_infos->rays[i], 'v', func.v_xy, func.distance2);
-	check_doors_stuff(var, &func, i);
 }
 
 void	shoot_the_rays(t_main_s *var)

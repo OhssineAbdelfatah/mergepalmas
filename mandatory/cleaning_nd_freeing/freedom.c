@@ -14,11 +14,6 @@ void	free_p_info(t_player_infos *player, t_main_s *var)
 		free_rays(var);
 		player->rays = NULL;
 	}
-	if (player->p_bonus)
-	{
-		free_p_bonus(var, player->p_bonus);
-		player->p_bonus = NULL;
-	}
 	free(player);
 	player = NULL;
 }
@@ -33,12 +28,8 @@ void	free_all(t_main_s *var)
 		mlx_delete_image(var->mlx, var->img2);
 	if (var->text)
 		free_texts(var->text);
-	if (var->bonus)
-		free_main_bonus(var->bonus, var);
 	if (var->parse)
 		free_data(var->parse);
-	if (var->mini_map)
-		free_minimap(var, var->mini_map);
 	mlx_terminate(var->mlx);
 	reset_them_all(var);
 	free(var);

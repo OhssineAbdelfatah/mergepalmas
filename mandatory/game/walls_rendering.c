@@ -45,19 +45,7 @@ double	adjust_distance(t_main_s *var, int i)
 	return (adjusted_distance);
 }
 
-void	door_slide_offset(t_main_s *var, double *offset)
-{
-	if (*offset >= 0 && var->p_infos->rays[699].bonus_rays->door->distance < 128
-		&& var->p_infos->rays[699].bonus_rays->door->distance > 0)
-		*offset -= 0.1;
-	else if (*offset < 1
-		&& var->p_infos->rays[699].bonus_rays->door->distance > 128
-		&& var->p_infos->rays[699].bonus_rays->door->distance > 0)
-		*offset += 0.1;
-}
-
-void	wall_rendering_core(t_main_s *var, t_wall_rendering *func,
-		double offset)
+void	wall_rendering_core(t_main_s *var, t_wall_rendering *func)
 {
 	while (func->i >= 0)
 	{
@@ -65,18 +53,13 @@ void	wall_rendering_core(t_main_s *var, t_wall_rendering *func,
 		func->adjusted_distance = adjust_distance(var, func->i);
 		if (func->adjusted_distance == 0)
 			func->adjusted_distance = 0.5;
-		var->walls->wall_hight = (square_len / func->adjusted_distance)
+		var->walls->wall_hight = (SQ_LEN / func->adjusted_distance)
 			* var->walls->distance_prj_plane;
-		func->top = (((var->window_height) / 2) - (var->walls->wall_hight / 2))
-			+ var->p_infos->up_down_offset;
+		func->top = (((var->window_height) / 2) - (var->walls->wall_hight / 2));
 		func->buttom = func->top + var->walls->wall_hight;
 		func->x_img = calc_x_img(var->p_infos->rays[func->i].horzt_or_vert,
-				var->p_infos->rays + func->i, square_len, func->texture->width);
-		render_sky(var, func->j, func->top, func->i);
+				var->p_infos->rays + func->i, SQ_LEN, func->texture->width);
 		draw_rectangle(var, func->texture, *func);
-		draw_floor(var, func->j, func->buttom, func->i);
-		if (is_there_door(var->p_infos->rays[func->i].bonus_rays, var, func->i))
-			draw_door(var, func->i, func->j, offset);
 		func->i--;
 		func->j++;
 	}
@@ -85,13 +68,11 @@ void	wall_rendering_core(t_main_s *var, t_wall_rendering *func,
 void	wall_rendering(t_main_s *var)
 {
 	t_wall_rendering	func;
-	static double		offset = 1;
 
 	func.color = 0;
 	func.i = var->p_infos->nbr_rays - 1;
 	func.j = 0;
 	var->walls = init_walls(var);
-	door_slide_offset(var, &offset);
-	wall_rendering_core(var, &func, offset);
+	wall_rendering_core(var, &func);
 	free(var->walls);
 }

@@ -23,16 +23,16 @@ void	init_cst_vert(t_casting *cst, t_main_s *var, int i)
 	left_right = 1;
 	if (var->p_infos->rays[i].facing_left)
 		left_right = -1;
-	cst->yintersection = floor(var->p_infos->y / square_len) * square_len;
+	cst->yintersection = floor(var->p_infos->y / SQ_LEN) * SQ_LEN;
 	if (left_right == 1)
-		cst->yintersection += square_len;
+		cst->yintersection += SQ_LEN;
 	if (var->p_infos->rays[i].facing_up)
 		cst->xintersection = var->p_infos->x - ((cst->yintersection
 					- var->p_infos->y) * cst->tan_angle);
 	else
 		cst->xintersection = var->p_infos->x - ((cst->yintersection
 					- var->p_infos->y) * cst->tan_angle);
-	cst->ysteps = square_len;
+	cst->ysteps = SQ_LEN;
 	cst->xsteps = cst->ysteps * cst->tan_angle;
 	if (var->p_infos->rays[i].facing_left)
 		cst->ysteps *= -1;
@@ -47,10 +47,10 @@ void	init_cst_horiz(t_casting *cst, t_main_s *var, int i)
 	angle = var->p_infos->rays[i].angle + (M_PI / 2.00);
 	angle = adjust_angle(angle);
 	cst->tan_angle = tan(angle);
-	cst->xintersection = floor(var->p_infos->x / floor(square_len))
-		* floor(square_len);
+	cst->xintersection = floor(var->p_infos->x / floor(SQ_LEN))
+		* floor(SQ_LEN);
 	if (var->p_infos->rays[i].facing_down)
-		cst->xintersection += square_len;
+		cst->xintersection += SQ_LEN;
 	if (var->p_infos->rays[i].facing_right)
 	{
 		cst->yintersection = var->p_infos->y + ((var->p_infos->x
@@ -61,26 +61,10 @@ void	init_cst_horiz(t_casting *cst, t_main_s *var, int i)
 		cst->yintersection = var->p_infos->y + ((var->p_infos->x
 					- cst->xintersection) / cst->tan_angle);
 	}
-	cst->xsteps = square_len;
+	cst->xsteps = SQ_LEN;
 	cst->ysteps = cst->xsteps / cst->tan_angle;
 	if (var->p_infos->rays[i].facing_down)
 		cst->ysteps *= -1;
-}
-
-int	hit_a_door(t_main_s *var, double xintersection, double yintersection, int i)
-{
-	int	x;
-	int	y;
-
-	x = (int)floor(xintersection / square_len);
-	y = (int)floor(yintersection / square_len);
-	if (y < 0 || x < 0 || x >= var->map_hight
-		|| y > (int)ft_strlen(var->map[x]))
-		return (0);
-	if (var->map[x][y] == 'D')
-		return (1);
-	(void)i;
-	return (0);
 }
 
 int	hit_a_wall(t_main_s *var, double xintersection, double yintersection, int i)
@@ -88,8 +72,8 @@ int	hit_a_wall(t_main_s *var, double xintersection, double yintersection, int i)
 	int	x;
 	int	y;
 
-	x = (int)floor(xintersection / square_len);
-	y = (int)floor(yintersection / square_len);
+	x = (int)floor(xintersection / SQ_LEN);
+	y = (int)floor(yintersection / SQ_LEN);
 	if (y < 0 || x < 0 || x >= var->map_hight
 		|| y > (int)ft_strlen(var->map[x]))
 		return (1);

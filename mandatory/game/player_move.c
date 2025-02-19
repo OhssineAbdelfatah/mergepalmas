@@ -30,8 +30,8 @@ int	is_there_a_wall(double new_y, double new_x, char **map)
 	int	x;
 	int	y;
 
-	x = (int)floor(new_x / (square_len));
-	y = (int)floor(new_y / (square_len));
+	x = (int)floor(new_x / (SQ_LEN));
+	y = (int)floor(new_y / (SQ_LEN));
 	if (map[y][x] == '1' || map[y][x] == 'O')
 		return (1);
 	return (0);
