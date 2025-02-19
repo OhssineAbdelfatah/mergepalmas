@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/ps.h"
+#include "../includes/ps_bonus.h"
 
 void	draw_v_sides(t_main_s *var, int width, int height, int frame_width)
 {

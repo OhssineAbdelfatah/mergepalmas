@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   door_bonus.c                                       :+:      :+:    :+:   */
+/*   door_bonus_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aohssine <aohssine@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/ps.h"
+#include "../includes/ps_bonus.h"
 
 int	calc_x_door(int hor_or_ver, t_ray_hit_door *ray, double door_hiegt,
 		double img_door_w)
@@ -91,12 +91,12 @@ void	draw_door(t_main_s *var, int i, int j, double offset)
 	adjusted_distance = adjust_distance_door(var, i);
 	if (adjusted_distance == 0)
 		adjusted_distance = 0.5;
-	tmp.door_h = ((double)square_len / adjusted_distance)
+	tmp.door_h = ((double)SQ_LEN / adjusted_distance)
 		* var->walls->distance_prj_plane;
 	tmp.top = ((var->window_height) / 2) - (tmp.door_h / 2)
 		+ var->p_infos->up_down_offset;
 	tmp.x_door = calc_x_door(var->p_infos->rays[i].bonus_rays->door->from,
-			var->p_infos->rays[i].bonus_rays->door, square_len,
+			var->p_infos->rays[i].bonus_rays->door, SQ_LEN,
 			var->bonus->door->width);
 	draw_door_pix(var, tmp);
 }

@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/ps.h"
+#include "../includes/ps_bonus.h"
 
 void	display_shooting(t_main_s *var)
 {

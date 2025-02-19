@@ -1,42 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   macros.h                                           :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ilaasri <ilaasri@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/19 21:03:45 by ilaasri           #+#    #+#             */
-/*   Updated: 2025/02/19 21:03:51 by ilaasri          ###   ########.fr       */
+/*   Created: 2025/02/19 23:59:11 by ilaasri           #+#    #+#             */
+/*   Updated: 2025/02/19 23:59:12 by ilaasri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MACROS_H
-# define MACROS_H
+#include "includes/ps_bonus.h"
 
-// FOR NEW MLX
-# define A 65
-# define D 68
-# define S 83
-# define W 87
-# define ESC 66
-# define R_ARROW 262
-# define L_ARROW 263
-
-# define SQ_LEN 64
-# define P_RADIUS 10
-# define EPSILON 1e-6
-
-typedef enum dir
+int	main(int ac, char **av)
 {
-	NONE,
-	LEFT,
-	RIGHT,
-	UP,
-	DOWN,
-	UP_LEFT,
-	UP_RIGHT,
-	DOWN_LEFT,
-	DOWN_RIGHT
-}	t_direction;
+	t_main_s		*var;
+	t_parse_data	*data;
 
-#endif
+	data = parse(ac, av);
+	var = init_main_var(data);
+	mlx_set_cursor_mode(var->mlx, MLX_MOUSE_DISABLED);
+	work_of_art(var, 1);
+	mlx_loops_and_hooks(var);
+	(void)ac;
+}

@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/ps.h"
+#include "../includes/ps_bonus.h"
 
 bool	check_doors_for_obj_rendering(t_main_s *var, t_player_bonus *ptr, int i,
 		int ray_to_inspect)

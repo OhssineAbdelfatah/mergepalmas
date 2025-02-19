@@ -1,4 +1,16 @@
-#include "../includes/ps.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   enemies_tools_bonus.c                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ilaasri <ilaasri@student.1337.ma>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/02/19 23:56:50 by ilaasri           #+#    #+#             */
+/*   Updated: 2025/02/19 23:56:52 by ilaasri          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "../includes/ps_bonus.h"
 
 int	get_color_enemy(t_main_s *var, t_render_enemy *func, int enemy_height,
 		int enemy_width)
@@ -73,7 +85,7 @@ void	damage_player(t_player_infos *player, t_enemy *enemy, int i)
 
 	diff_y = abs((int)floor(enemy[i].vector_y));
 	diff_x = abs((int)floor(enemy[i].vector_x));
-	if (diff_x <= square_len && diff_y <= square_len && time_to_damage > 10)
+	if (diff_x <= SQ_LEN && diff_y <= SQ_LEN && time_to_damage > 10)
 	{
 		time_to_damage = 0;
 		player->health -= 10;
@@ -92,7 +104,7 @@ void	chase_player(t_main_s *var, t_player_infos *p_player, t_enemy *enemy,
 	damage_player(p_player, enemy, i);
 	if (check_for_walls(var, p_player, enemy, i))
 		return ;
-	if (diff_x > square_len)
+	if (diff_x > SQ_LEN)
 	{
 		if (enemy[i].vector_x > 0)
 			enemy[i].vector_x -= (p_player->speed / 2);
@@ -100,7 +112,7 @@ void	chase_player(t_main_s *var, t_player_infos *p_player, t_enemy *enemy,
 			enemy[i].vector_x += (p_player->speed / 2);
 		enemy[i].x = p_player->y - enemy[i].vector_x;
 	}
-	if (diff_y > square_len)
+	if (diff_y > SQ_LEN)
 	{
 		if (enemy[i].vector_y > 0)
 			enemy[i].vector_y -= (p_player->speed / 2);

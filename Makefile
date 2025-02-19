@@ -1,6 +1,6 @@
 CC = cc 
 
-CFLAGS = -Wall -Werror -Wextra -fsanitize=address -g
+CFLAGS = -Wall -Werror -Wextra #-fsanitize=address -g
 
 LIBMLX = lib/mlx
 
@@ -25,9 +25,6 @@ GNL = lib/gnl/get_next_line.c lib/gnl/get_next_line_utils.c
 
 CONSTRUCTORS = mandatory/constructors/constructors.c mandatory/constructors/constructors_2.c 
 
-BONUS_FILES = 	bonus/game/draw_mini_map_pro.c bonus/game/bonus.c \
-				bonus/game/drawing_things_bonus.c bonus/game/floor_ceilling_bonus.c \
-				bonus/game/shooting_animation_bonus.c
 
 GAME_FILES = mandatory/game/hooks_nd_loops.c mandatory/game/casting_tools_2.c  mandatory/game/casting.c mandatory/game/casting_tools.c  mandatory/game/tools_2.c\
 			mandatory/game/tools.c mandatory/game/walls_rendering.c mandatory/game/rays.c \
@@ -38,18 +35,25 @@ GAME_FILES = mandatory/game/hooks_nd_loops.c mandatory/game/casting_tools_2.c  m
 CLEANING = mandatory/cleaning_nd_freeing/freedom.c mandatory/cleaning_nd_freeing/freedom_part2.c \
 			mandatory/cleaning_nd_freeing/freedom_part3.c
 
-TEXTURES	= mandatory/game/texture.c			
+TEXTURES	= mandatory/game/texture.c
 
-CLEANING_B = bonus/cleaning_nd_freeing/freedom.c bonus/cleaning_nd_freeing/freedom_part2.c \
-			bonus/cleaning_nd_freeing/freedom_part3.c
 
-TEXTURES_B	= bonus/game/texture.c bonus/game/door_bonus.c		
 
-GAME_FILES_B = bonus/game/hooks_nd_loops.c bonus/game/casting_tools_2.c  bonus/game/casting.c bonus/game/casting_tools.c  bonus/game/tools_2.c\
-			bonus/game/tools.c bonus/game/walls_rendering.c bonus/game/rays.c \
-			bonus/game/drawing.c bonus/game/player_move_hooks.c\
-			bonus/game/player_move.c \
-			bonus/game/game.c
+CLEANING_B = bonus/cleaning_nd_freeing/freedom_bonus.c bonus/cleaning_nd_freeing/freedom_part2_bonus.c \
+			bonus/cleaning_nd_freeing/freedom_part3_bonus.c
+
+TEXTURES_B	= bonus/game/texture_bonus.c bonus/game/door_bonus.c		
+
+
+BONUS_FILES = 	bonus/game/draw_mini_map_pro_bonus.c bonus/game/bonus.c \
+				bonus/game/drawing_things_bonus.c bonus/game/floor_ceilling_bonus.c \
+				bonus/game/shooting_animation_bonus.c
+
+GAME_FILES_B = bonus/game/hooks_nd_loops_bonus.c bonus/game/casting_tools_2_bonus.c  bonus/game/casting_bonus.c bonus/game/casting_tools_bonus.c  bonus/game/tools_2_bonus.c\
+			bonus/game/tools_bonus.c bonus/game/walls_rendering_bonus.c bonus/game/rays_bonus.c \
+			bonus/game/drawing_bonus.c bonus/game/player_move_hooks_bonus.c\
+			bonus/game/player_move_bonus.c \
+			bonus/game/game_bonus.c
 
 
 PARSING = 	mandatory/parsing/cub.c     mandatory/parsing/infos_utils2.c mandatory/parsing/infos_utils3.c \
@@ -60,29 +64,27 @@ PARSING = 	mandatory/parsing/cub.c     mandatory/parsing/infos_utils2.c mandator
 
 ENEMIES_OBJ = bonus/obj_enemies/obj_tools_bonus.c bonus/obj_enemies/obj_bonus.c\
 				bonus/obj_enemies/enemies_tools_bonus.c\
+				bonus/obj_enemies/enemies_tools_part2_bonus.c\
 				bonus/obj_enemies/enemies_bonus.c
 
 
-CONSTRUCTORS_B = bonus/constructors/constructors.c bonus/constructors/constructors_2.c \
-				bonus/constructors/constructors_bonus.c bonus/constructors/constructors_tools_bonus.c
+CONSTRUCTORS_B = bonus/constructors/constructors0_bonus.c bonus/constructors/constructors_2_bonus.c \
+				bonus/constructors/constructors_bonus.c bonus/constructors/constructors_tools_bonus.c\
+				bonus/constructors/constructors_tools2_bonus.c\
+				bonus/constructors/constructors_tools3_bonus.c
 
 
 PARSING_B = bonus/parsing_bonus/cub_bonus.c     bonus/parsing_bonus/infos_utils2_bonus.c bonus/parsing_bonus/infos_utils3_bonus.c \
 			bonus/parsing_bonus/map_check_bonus.c\
 			bonus/parsing_bonus/infos_parse_bonus.c  bonus/parsing_bonus/list_init_bonus.c    bonus/parsing_bonus/map_parse_bonus.c	\
 			bonus/parsing_bonus/valid_map_bonus.c    bonus/parsing_bonus/infos_utils_bonus.c  bonus/parsing_bonus/list_utils_bonus.c	\
-			bonus/parsing_bonus/safe_func_bonus.c    bonus/parsing_bonus/main.c bonus/parsing_bonus/test_bonus.c bonus/parsing_bonus/map_tools_bonus.c\
+			bonus/parsing_bonus/safe_func_bonus.c    bonus/parsing_bonus/test_bonus.c bonus/parsing_bonus/map_tools_bonus.c\
 			bonus/parsing_bonus/infos_parse2_bonus.c
-
-CFILES = ${PARSING} ${GNL} ${TEXTURES} ${ENEMIES_OBJ} ${GAME_FILES} ${BONUS_FILES} ${CONSTRUCTORS} ${CLEANING} main.c
-
-CFILESB = ${PARSING_B} ${GNL} ${TEXTURES} ${ENEMIES_OBJ} ${GAME_FILES} ${BONUS_FILES} ${CONSTRUCTORS} ${CLEANING} bonus/main.c
 
 MANDATORY = ${PARSING} ${GNL} ${TEXTURES} ${GAME_FILES} ${CONSTRUCTORS} ${CLEANING} mandatory/main.c 
 
-BONUS = ${PARSING_B} ${GNL} ${TEXTURES_B} ${ENEMIES_OBJ} ${GAME_FILES_B} ${BONUS_FILES} ${CONSTRUCTORS_B} ${CLEANING_B} bonus/main.c
+BONUS = ${PARSING_B} ${GNL} ${TEXTURES_B} ${ENEMIES_OBJ} ${GAME_FILES_B} ${BONUS_FILES} ${CONSTRUCTORS_B} ${CLEANING_B} bonus/main_bonus.c
 
-# OBJ = $(CFILES:.c=.o)
 OBJ = $(MANDATORY:.c=.o)
 OBJB = $(BONUS:.c=.o)
 

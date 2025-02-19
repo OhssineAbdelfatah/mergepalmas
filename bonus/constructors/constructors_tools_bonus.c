@@ -1,4 +1,16 @@
-#include "../includes/ps.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   constructors_tools_bonus.c                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ilaasri <ilaasri@student.1337.ma>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/02/19 22:03:07 by ilaasri           #+#    #+#             */
+/*   Updated: 2025/02/19 22:03:09 by ilaasri          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "../includes/ps_bonus.h"
 
 double	get_distance(t_player_infos *p_var, double x, double y)
 {
@@ -14,8 +26,8 @@ void	asign_values_obj(t_main_s *var, t_obj *obj, t_player_infos *p_var,
 	if (var->map[func->y][func->x] == 'O')
 	{
 		obj[func->i].visible = false;
-		obj[func->i].x = (double)(func->x * square_len) + (square_len / 2);
-		obj[func->i].y = (double)(func->y * square_len) + (square_len / 2);
+		obj[func->i].x = (double)(func->x * SQ_LEN) + (SQ_LEN / 2);
+		obj[func->i].y = (double)(func->y * SQ_LEN) + (SQ_LEN / 2);
 		obj[func->i].x_screen = 0;
 		obj[func->i].y_screen = 0;
 		obj[func->i].obj_height = 0;
@@ -54,8 +66,8 @@ void	asign_values_enemy(t_main_s *var, t_enemy *enemy, t_player_infos *p_var,
 	if (var->map[func->y][func->x] == 'e')
 	{
 		enemy[func->i].alive = true;
-		enemy[func->i].x = (double)(func->x * square_len) + (square_len / 2);
-		enemy[func->i].y = (double)(func->y * square_len) + (square_len / 2);
+		enemy[func->i].x = (double)(func->x * SQ_LEN) + (SQ_LEN / 2);
+		enemy[func->i].y = (double)(func->y * SQ_LEN) + (SQ_LEN / 2);
 		enemy[func->i].x_screen = 0;
 		enemy[func->i].y_screen = 0;
 		enemy[func->i].enemy_height = 0;

@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   macros.h                                           :+:      :+:    :+:   */
+/*   macros_bonus.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ilaasri <ilaasri@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/19 21:03:45 by ilaasri           #+#    #+#             */
-/*   Updated: 2025/02/19 21:03:51 by ilaasri          ###   ########.fr       */
+/*   Created: 2025/02/19 22:38:24 by ilaasri           #+#    #+#             */
+/*   Updated: 2025/02/19 22:38:26 by ilaasri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MACROS_H
-# define MACROS_H
+#ifndef MACROS_BONUS_H
+# define MACROS_BONUS_H
 
 // FOR NEW MLX
 # define A 65

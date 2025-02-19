@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/ps.h"
+#include "../includes/ps_bonus.h"
 
 void	set_player_direction(t_player_infos *var, char c)
 {
@@ -43,6 +43,7 @@ t_player_infos	*init_player_struct(t_main_s *ptr, char c, int x, int y)
 	var->fov = (M_PI / 180) * 60;
 	set_player_direction(var, c);
 	var->walls = init_walls(ptr);
+	var->p_bonus = init_player_bonus(ptr, var);
 	return (var);
 }
 
@@ -76,7 +77,10 @@ t_main_s	*init_main_var(t_parse_data *parse)
 	var->map_width = ft_strlen(var->map[0]);
 	var->mlx = mlx_init(var->window_width, var->window_height, "cub3D", false);
 	var->img2 = mlx_new_image(var->mlx, var->window_width, var->window_height);
+	var->mini_map = init_mini_map(var->mlx, var->window_width,
+			var->window_height);
 	var->text = init_textures(var);
+	var->bonus = init_bonus(var);
 	var->start_frame = get_time_mil();
 	return (var);
 }
@@ -100,6 +104,7 @@ t_ray_info	*init_rays(t_main_s *ptr, double ray_angle, double angle_incremet)
 		var[i].x_last_intersection = 0;
 		var[i].y_last_intersection = 0;
 		var[i].wall_dir = 0;
+		var[i].bonus_rays = init_bonus_rays();
 		i++;
 		ray_angle += angle_incremet;
 	}

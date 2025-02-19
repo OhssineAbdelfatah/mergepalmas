@@ -6,11 +6,11 @@
 /*   By: ilaasri <ilaasri@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/14 23:14:22 by ilaasri           #+#    #+#             */
-/*   Updated: 2025/02/14 23:14:23 by ilaasri          ###   ########.fr       */
+/*   Updated: 2025/02/19 23:40:28 by ilaasri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/ps.h"
+#include "../includes/ps_bonus.h"
 
 void	count_obj_enemi(t_main_s *var)
 {
@@ -83,7 +83,7 @@ void	count_obj_enemi(t_main_s *var)
 // {
 //     double new_y, new_x;
 //     new_y = var->p_infos->rays[i].bonus_rays->obj->x_intersection
-// / square_len;
+// / SQ_LEN;
 //     (void)new_x;
 //     (void)new_y;
 //     return (0.0);
@@ -186,8 +186,8 @@ void	count_obj_enemi(t_main_s *var)
 //     int x;
 //     int y;
 
-//     x = (int)floor(xintersection / square_len);
-//     y = (int)floor(yintersection / square_len);
+//     x = (int)floor(xintersection / SQ_LEN);
+//     y = (int)floor(yintersection / SQ_LEN);
 //     if (y < 0 || x < 0 || x >= var->map_hight
 // || y > (int)ft_strlen(var->map[x]))
 //         return (1);

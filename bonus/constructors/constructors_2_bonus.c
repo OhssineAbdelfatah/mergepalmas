@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   constructors_2.c                                   :+:      :+:    :+:   */
+/*   constructors_2_bonus.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ilaasri <ilaasri@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/19 21:03:12 by ilaasri           #+#    #+#             */
-/*   Updated: 2025/02/19 21:03:14 by ilaasri          ###   ########.fr       */
+/*   Created: 2025/02/19 23:58:29 by ilaasri           #+#    #+#             */
+/*   Updated: 2025/02/19 23:58:30 by ilaasri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/ps.h"
+#include "../includes/ps_bonus.h"
 
 int	**get_pixles(mlx_texture_t *img, int w, int h)
 {

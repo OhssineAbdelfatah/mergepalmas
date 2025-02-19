@@ -1,5 +1,6 @@
 {
     "files.associations": {
-        "parsing_bonus.h": "c"
+        "parsing_bonus.h": "c",
+        "ps.h": "c"
     }
 }

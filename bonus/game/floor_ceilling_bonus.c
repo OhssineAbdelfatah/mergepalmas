@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/ps.h"
+#include "../includes/ps_bonus.h"
 
 int	get_sky_color(t_main_s *var, int y, int nbr_ray)
 {
@@ -49,8 +49,8 @@ int	get_color_of_floor(t_main_s *var, double x, double y)
 	int		new_x;
 	int		new_y;
 
-	x_offset = (double)x / square_len;
-	y_offset = (double)y / square_len;
+	x_offset = (double)x / SQ_LEN;
+	y_offset = (double)y / SQ_LEN;
 	x_offset = x_offset - floor(x_offset);
 	y_offset = y_offset - floor(y_offset);
 	new_x = (double)var->bonus->floor_text->width * x_offset;
@@ -70,7 +70,7 @@ int	get_color_for_floor(t_main_s *var, int y, int nbr_ray)
 		- var->p_infos->rotation_angle;
 	func.beta = adjust_angle(func.beta);
 	func.r = y - ((var->window_height / 2) + var->p_infos->up_down_offset);
-	func.straight_line_dis = ((square_len / 2) / func.r)
+	func.straight_line_dis = ((SQ_LEN / 2) / func.r)
 		* var->p_infos->walls->distance_prj_plane;
 	func.origin_line_distance = func.straight_line_dis / cos(func.beta);
 	func.floor_x = var->p_infos->y + (cos(var->p_infos->rays[nbr_ray].angle

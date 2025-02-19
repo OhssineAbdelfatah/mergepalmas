@@ -1,42 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   macros.h                                           :+:      :+:    :+:   */
+/*   tools_2_bonus.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ilaasri <ilaasri@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/19 21:03:45 by ilaasri           #+#    #+#             */
-/*   Updated: 2025/02/19 21:03:51 by ilaasri          ###   ########.fr       */
+/*   Created: 2025/02/18 21:56:06 by ilaasri           #+#    #+#             */
+/*   Updated: 2025/02/18 21:56:07 by ilaasri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MACROS_H
-# define MACROS_H
+#include "../includes/ps_bonus.h"
 
-// FOR NEW MLX
-# define A 65
-# define D 68
-# define S 83
-# define W 87
-# define ESC 66
-# define R_ARROW 262
-# define L_ARROW 263
-
-# define SQ_LEN 64
-# define P_RADIUS 10
-# define EPSILON 1e-6
-
-typedef enum dir
+int	gettt_rgba(uint8_t *color)
 {
-	NONE,
-	LEFT,
-	RIGHT,
-	UP,
-	DOWN,
-	UP_LEFT,
-	UP_RIGHT,
-	DOWN_LEFT,
-	DOWN_RIGHT
-}	t_direction;
+	return (color[0] << 24 | color[1] << 16 | color[2] << 8 | color[3]);
+}
 
-#endif
+long long	get_time_mil(void)
+{
+	long long	res;
+	t_time		tp;
+
+	gettimeofday(&tp, NULL);
+	res = (tp.tv_sec * 1000) + (tp.tv_usec / 1000);
+	return (res);
+}

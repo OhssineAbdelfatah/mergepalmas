@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   texture.c                                          :+:      :+:    :+:   */
+/*   texture_bonus.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aohssine <aohssine@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/ps.h"
+#include "../includes/ps_bonus.h"
 
 t_text	*which_texture(t_ray_info *ray, t_text **texture)
 {
@@ -52,4 +52,10 @@ int	calc_y_img(int y_proj, int wall_hiegt, int img_h)
 	y_prc = (double)y_proj / (double)wall_hiegt;
 	y_img = y_prc * img_h;
 	return ((int)y_img);
+}
+
+int	is_there_door(t_rays_bonus *ray, t_main_s *var, int ray_nbr)
+{
+	return ((ray->hit_a_door && ray->door->distance
+			&& ray->door->distance < var->p_infos->rays[ray_nbr].distance));
 }

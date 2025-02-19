@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/ps.h"
+#include "../includes/ps_bonus.h"
 
 int	get_color_obj(t_main_s *var, t_render_obj func)
 {
@@ -33,7 +33,7 @@ void	init_render_obj(t_player_bonus *ptr, t_walls *walls, t_render_obj *func,
 {
 	func->x_increment = 0;
 	func->y_increment = 0;
-	func->obj_height = (square_len / ptr->obj[i].distance)
+	func->obj_height = (SQ_LEN / ptr->obj[i].distance)
 		* walls->distance_prj_plane;
 	func->obj_width = func->obj_height;
 	func->x_start = ptr->obj[i].x_screen - (func->obj_width / 2);

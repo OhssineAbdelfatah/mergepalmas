@@ -1,8 +1,19 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ps.h                                               :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ilaasri <ilaasri@student.1337.ma>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/02/19 21:02:56 by ilaasri           #+#    #+#             */
+/*   Updated: 2025/02/19 21:02:58 by ilaasri          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef PS_H
 # define PS_H
 
 # include <stdio.h>
-// #include <mlx.h>
 # include "game_structs.h"
 # include "macros.h"
 # include "norm_structs.h"
@@ -92,32 +103,16 @@ void			moving_around(mlx_key_data_t key, t_main_s *ptr);
 void			key_hook(mlx_key_data_t key, void *var);
 
 /*************************************************/
-//       >>   SHOOTING_ANIMATION_BONUS.C     <<
-/*************************************************/
-
-/*************************************************/
 //            >>   HOOKS_ND_LOOPS.C     <<
 /*************************************************/
-// int loop_hook(t_main_s *var);
 void			loop_hook(void *ptr);
 void			mlx_loops_and_hooks(t_main_s *var);
-
-/****************************************************/
-//          >> DRAW_MINI_MAP  <<
-/****************************************************/
-int				draw_mini_map_42(t_main_s *var);
 
 /****************************TMP************ */
 void			work_of_art(t_main_s *var, int shoot);
 void			wall_rendering(t_main_s *var);
 void			paintit(mlx_image_t *img, int color, t_xy_i *start,
 					t_xy_i *till);
-
-/************************************************************/
-//                      >> BONUS.C <<
-/************************************************************/
-
-double			get_distance(t_player_infos *p_var, double x, double y);
 long long		get_time_mil(void);
 
 /************************************************************/

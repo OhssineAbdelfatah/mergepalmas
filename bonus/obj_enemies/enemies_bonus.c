@@ -1,4 +1,16 @@
-#include "../includes/ps.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   enemies_bonus.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ilaasri <ilaasri@student.1337.ma>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/02/19 23:57:04 by ilaasri           #+#    #+#             */
+/*   Updated: 2025/02/19 23:57:06 by ilaasri          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "../includes/ps_bonus.h"
 
 void	init_render_enemy(t_player_bonus *ptr, t_walls *walls,
 		t_render_enemy *func, int i)
@@ -6,7 +18,7 @@ void	init_render_enemy(t_player_bonus *ptr, t_walls *walls,
 	func->i = i;
 	func->x_increment = 0;
 	func->y_increment = 0;
-	ptr->enemy[i].enemy_height = (square_len / ptr->enemy[i].distance)
+	ptr->enemy[i].enemy_height = (SQ_LEN / ptr->enemy[i].distance)
 		* walls->distance_prj_plane;
 	ptr->enemy[i].enemy_width = ptr->enemy[i].enemy_height;
 	func->x_start = ptr->enemy[i].x_screen - (ptr->enemy[i].enemy_width / 2);
