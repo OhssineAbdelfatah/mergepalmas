@@ -36,8 +36,9 @@ int calc_y_img(int y_proj ,int wall_hiegt , int img_h);
 //            >>    DRAWING.C     <<
 /*************************************************/
 
-void draw_disk(mlx_image_t *img ,int x_c, int y_c, int radius, int color);
-void draw_a_line2(t_main_s *var, int s_x, int s_y, int f_x, int f_y, int color, mlx_image_t *img);
+void draw_disk(mlx_image_t *img ,int x_c, int y_c, int color);
+void	draw_a_line2(t_main_s *var, t_draw_mini_map func, int color, mlx_image_t *img);
+// void draw_a_line2(t_main_s *var, int s_x, int s_y, int f_x, int f_y, int color, mlx_image_t *img);
 
 /*************************************************/
 //            >>    DRAW_MINI_MAP.C     <<

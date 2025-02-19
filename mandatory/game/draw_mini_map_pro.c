@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   draw_mini_map_pro.c                                :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ilaasri <ilaasri@student.1337.ma>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/02/18 21:53:54 by ilaasri           #+#    #+#             */
+/*   Updated: 2025/02/18 21:53:56 by ilaasri          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../includes/ps.h"
 
 int	is_there_enemy(t_main_s *var, double x, double y)
@@ -101,8 +113,7 @@ int	draw_mini_map_42(t_main_s *var)
 	func.new_x = var->mini_map->p_x + sin(var->p_infos->rotation_angle) * 30;
 	func.new_y = var->mini_map->p_y + cos(var->p_infos->rotation_angle) * 30;
 	draw_disk(var->mini_map->img3, var->mini_map->p_x, var->mini_map->p_y,
-		player_radius, 0x000000FF);
-	draw_a_line2(var, var->mini_map->p_x, var->mini_map->p_y, func.new_x,
-		func.new_y, 0x00F0FF, var->mini_map->img3);
+		0x000000FF);
+	draw_a_line2(var, func, 0x00F0FFFF, var->mini_map->img3);
 	return (0);
 }
