@@ -12,6 +12,16 @@
 
 #include "../includes/ps_bonus.h"
 
+void	func(void *param)
+{
+	t_main_s	*var;
+
+	var = (t_main_s *)param;
+	free_all(var);
+	exit(0);
+	return ;
+}
+
 int	gettt_rgba(uint8_t *color)
 {
 	return (color[0] << 24 | color[1] << 16 | color[2] << 8 | color[3]);

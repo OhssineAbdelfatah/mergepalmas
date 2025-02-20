@@ -124,7 +124,8 @@ int				is_it_the_player(char c);
 //            >>    TOOLS_2.C     <<
 /*************************************************/
 int				gettt_rgba(uint8_t *color);
-
+long long		get_time_mil(void);
+void			func(void *param);
 /*************************************************/
 //            >>   CASTING_TOOLS_2.C     <<
 /*************************************************/

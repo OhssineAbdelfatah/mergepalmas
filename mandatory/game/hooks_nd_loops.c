@@ -72,8 +72,19 @@ void	loop_hook(void *ptr)
 	}
 }
 
+void	func(void *param)
+{
+	t_main_s	*var;
+
+	var = (t_main_s *)param;
+	free_all(var);
+	exit(0);
+	return ;
+}
+
 void	mlx_loops_and_hooks(t_main_s *var)
 {
+	mlx_close_hook(var->mlx, func, var);
 	mlx_key_hook(var->mlx, key_hook, var);
 	mlx_loop_hook(var->mlx, loop_hook, var);
 	mlx_loop(var->mlx);

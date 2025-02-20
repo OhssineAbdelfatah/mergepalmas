@@ -34,13 +34,13 @@ int	**gat_pixles(mlx_texture_t *img, int w, int h)
 	i = 0;
 	pixs = malloc(sizeof(int *) * h);
 	if (!pixs)
-		return ((printf("malooc in pix int** failed")), NULL);
+		panic("malooc in pix int** failed\n");
 	while (i < h)
 	{
 		j = 0;
 		pixs[i] = (int *)malloc(sizeof(int) * w);
 		if (!pixs)
-			return ((printf("malooc in pix int* failed")), NULL);
+			panic("malooc in pix int* failed\n");
 		while (j < w)
 		{
 			pixs[i][j] = gettt_rgba(&img->pixels[((i * w) + j) * 4]);

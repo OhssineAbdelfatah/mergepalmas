@@ -104,6 +104,7 @@ void	loop_hook(void *ptr)
 
 void	mlx_loops_and_hooks(t_main_s *var)
 {
+	mlx_close_hook(var->mlx, func, var);
 	mlx_key_hook(var->mlx, key_hook, var);
 	mlx_mouse_hook(var->mlx, mouse_hook, var);
 	mlx_cursor_hook(var->mlx, cursor_func, var);

@@ -37,7 +37,7 @@ t_player_infos	*init_player_struct(t_main_s *ptr, char c, int x, int y)
 	var->move_left_right = 0;
 	var->turn_arround = 0;
 	var->speed = 10;
-	var->rotation_speed = (M_PI / 180) * 4;
+	var->rotation_speed = (M_PI / 180) * 3;
 	var->rays = NULL;
 	var->nbr_rays = 0;
 	var->fov = (M_PI / 180) * 60;
@@ -75,7 +75,8 @@ t_main_s	*init_main_var(t_parse_data *parse)
 	var->map = parse->map;
 	var->map_hight = ft_dstr_len(var->map);
 	var->map_width = ft_strlen(var->map[0]);
-	var->mlx = mlx_init(var->window_width, var->window_height, "cub3D", false);
+	mlx_set_setting(0, 1);
+	var->mlx = mlx_init(var->window_width, var->window_height, "cub3D", true);
 	var->img2 = mlx_new_image(var->mlx, var->window_width, var->window_height);
 	var->mini_map = init_mini_map(var->mlx, var->window_width,
 			var->window_height);
